@@ -24,6 +24,7 @@ class Button extends HTMLElement {
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", this.handleMode);
+      this.toggle();
     }
   }
 

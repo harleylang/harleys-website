@@ -68,7 +68,7 @@ class Button extends HTMLElement {
     this.toggle();
   };
 
-  handleMode = (event: any) => this.toggle();
+  handleMode = () => this.toggle();
 
 }
 

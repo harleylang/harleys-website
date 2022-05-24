@@ -1,0 +1,30 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <title>sandbox</title>
+    <style>
+      #root {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(var(--col-bg-default));
+      }
+      h1 {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body style="margin: 0; overflow: hidden">
+    <script type="module" src="/src/index.ts"></script>
+    <h1>DEVELOPMENT SANDBOX</h1>
+    <div id="root" class="markdown-body">
+      <me-darkmode-toggle class="btn-primary">Testing</me-darkmode-toggle>
+    </div>
+  </body>
+</html>

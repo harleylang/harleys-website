@@ -1,0 +1,83 @@
+:host,
+body {
+  --dp: 16px;
+  --white: 255, 255, 255;
+  --grey: 217, 217, 217;
+  --dark-grey: 33, 33, 33;
+  --black: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host,
+  body {
+    --col-fg-default: var(--grey);
+    --col-bg-default: var(--black);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :host,
+  body {
+    --col-fg-default: var(--dark-grey);
+    --col-bg-default: var(--white);
+  }
+}
+
+body.light-mode {
+  --col-fg-default: var(--dark-grey);
+  --col-bg-default: var(--white);
+}
+
+body.dark-mode {
+  --col-fg-default: var(--grey);
+  --col-bg-default: var(--black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p,
+span,
+code,
+button {
+  color: rgba(var(--col-fg-default));
+  font-family: helvetica, sans-serif;
+}
+
+body {
+  height: calc(100vh - var(--dp));
+  width: calc(100vw - 50%);
+  margin: 0;
+  padding-top: var(--dp);
+  padding-left: 25%;
+  padding-right: 25%;
+  background-color: rgba(var(--col-bg-default));
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    width: calc(100vw - (var(--dp) * 2));
+    padding-left: var(--dp);
+    padding-right: var(--dp);
+  }
+}
+
+body,
+header {
+  overflow: hidden;
+}
+
+.silly {
+  font-family: "Brush Script MT", cursive;
+}
+
+.DarkmodeToggle__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

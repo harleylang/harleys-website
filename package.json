@@ -1,0 +1,40 @@
+{
+  "name": "harleys-website",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Harley Lang",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "clean": "yarn clean:dist && yarn clean:node_modules",
+    "clean:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
+    "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "husky-prettier": "pretty-quick --staged",
+    "prettier-write": "npx prettier --write .",
+    "prepare": "husky install",
+    "reset": "yarn clean && yarn setup",
+    "setup": "yarn && yarn turbo run build",
+    "start": "yarn workspace @harleys-website/www start",
+    "qa": "yarn qa:tsc",
+    "qa:tsc": "tsc --noEmit"
+  },
+  "repository": "git+https://github.com/harleylang/harleys-website.git",
+  "bugs": {
+    "url": "https://github.com/harleylang/harleys-website/issues"
+  },
+  "homepage": "https://github.com/harleylang/harleys-website#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3",
+    "turbo": "^1.1.2",
+    "typescript": "^4.5.4",
+    "yarn": "^1.22.17"
+  },
+  "workspaces": [
+    "ui/*",
+    "www"
+  ],
+  "packageManager": "yarn@1.22.17"
+}

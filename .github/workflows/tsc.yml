@@ -1,0 +1,11 @@
+name: "Typescript Compliance Check"
+
+on: push
+
+jobs:
+  tsc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: yarn setup
+      - run: yarn tsc

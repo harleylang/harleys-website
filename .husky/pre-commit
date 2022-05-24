@@ -1,0 +1,12 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '\n'
+echo '🐕 Woof! Running pre-commit scripts ...'
+
+echo '\n'
+echo '🐕🧼 Cleansing code formatting with prettier ...\n'
+npm run husky-prettier
+
+echo '\n'
+echo '🐕🪄 Tada! All pre-commit scripts have succeeded.\n'

@@ -1,0 +1,19 @@
+{
+  "name": "@harleys-website/www",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "wds --config ./wds.config.mjs",
+    "build": "rm -rf public && node ./esbuild.config.js"
+  },
+  "author": "Harley Lang",
+  "license": "MIT",
+  "devDependencies": {
+    "@chialab/esbuild-plugin-html": "^0.15.20",
+    "@web/dev-server": "^0.1.29",
+    "esbuild": "^0.14.18"
+  },
+  "dependencies": {}
+}

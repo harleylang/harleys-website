@@ -4,6 +4,14 @@
     <meta name="viewport" content="initial-scale=1.0" />
     <title>sandbox</title>
     <style>
+      :host,
+      body {
+        --dp: 16px;
+        --white: 255, 255, 255;
+        --grey: 217, 217, 217;
+        --dark-grey: 33, 33, 33;
+        --black: 0, 0, 0;
+      }
       #root {
         width: 100vw;
         height: 100vh;
@@ -13,10 +21,37 @@
         align-items: center;
         background-color: rgba(var(--col-bg-default));
       }
+
+      @media (prefers-color-scheme: dark) {
+        :host,
+        body {
+          --col-fg-default: var(--grey);
+          --col-bg-default: var(--black);
+        }
+      }
+
+      @media (prefers-color-scheme: light) {
+        :host,
+        body {
+          --col-fg-default: var(--dark-grey);
+          --col-bg-default: var(--white);
+        }
+      }
+
+      body.light-mode {
+        --col-fg-default: var(--dark-grey);
+        --col-bg-default: var(--white);
+      }
+
+      body.dark-mode {
+        --col-fg-default: var(--grey);
+        --col-bg-default: var(--black);
+      }
       h1 {
         position: absolute;
         width: 100%;
         text-align: center;
+        color: rgba(var(--col-fg-default));
       }
     </style>
   </head>

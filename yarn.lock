@@ -31,7 +31,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@chialab/esbuild-plugin-html@^0.15.20":
+"@chialab/esbuild-plugin-html@^0.15.28":
   version "0.15.28"
   resolved "https://registry.yarnpkg.com/@chialab/esbuild-plugin-html/-/esbuild-plugin-html-0.15.28.tgz#f52fb36c8a353c9c637967ac570b9cd703b3df44"
   integrity sha512-UdRLFsSzRzSPuAxEVxcaxIeAUJdw+lifS34wiBMuoPryBHteo4IDlzqDWU5GEQV7CsOdMzYVBQsClFraW1ADYw==

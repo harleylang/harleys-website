@@ -4,11 +4,10 @@ const template = document.createElement("template");
 
 template.innerHTML = `
   <style>${css}</style>
-
   <div class="switch">
-  <label for="DarkmodeToggle__input" id="DarkmodeToggle__label">
-    a darkmode label
-  </label>
+    <label for="DarkmodeToggle__input" id="DarkmodeToggle__label">
+      a darkmode label
+    </label>
     <input type="checkbox" id="DarkmodeToggle__input" aria-labelledby="DarkmodeToggle__label">
     <span class="slider round"></span>
   </div>
@@ -21,10 +20,11 @@ class Button extends HTMLElement {
     if (this.shadowRoot !== null) {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
       const input = this.shadowRoot.querySelector("input");
-      if (input) input.addEventListener('click', this.handleClick);
-      window.matchMedia('(prefers-color-scheme: dark)')
-        .addEventListener('change', this.handleMode);
-      document.body.addEventListener('change', () => console.log('HERE'))
+      if (input) input.addEventListener("click", this.handleClick);
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", this.handleMode);
+      document.body.addEventListener("change", () => console.log("HERE"));
     }
   }
 
@@ -33,10 +33,13 @@ class Button extends HTMLElement {
     if (shadow) {
       const input = shadow.querySelector("input");
       if (input) {
-        const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const overrideDarkMode = document.body.classList.contains('dark-mode');
-        const overrideLightMode = document.body.classList.contains('light-mode');
-        switch(true) {
+        const prefersDarkMode =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const overrideDarkMode = document.body.classList.contains("dark-mode");
+        const overrideLightMode =
+          document.body.classList.contains("light-mode");
+        switch (true) {
           case overrideDarkMode:
             input.checked = true;
             break;
@@ -58,18 +61,17 @@ class Button extends HTMLElement {
     if (input) {
       const checked = (input as HTMLInputElement).checked;
       if (checked) {
-        document.body.classList.remove('light-mode');
-        document.body.classList.add('dark-mode');
+        document.body.classList.remove("light-mode");
+        document.body.classList.add("dark-mode");
       } else {
-        document.body.classList.add('light-mode');
-        document.body.classList.remove('dark-mode');
-      };
-    };
+        document.body.classList.add("light-mode");
+        document.body.classList.remove("dark-mode");
+      }
+    }
     this.toggle();
   };
 
   handleMode = () => this.toggle();
-
 }
 
 window.customElements.define("me-darkmode-toggle", Button);

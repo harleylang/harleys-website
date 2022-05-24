@@ -19,12 +19,11 @@ class Button extends HTMLElement {
     this.attachShadow({ mode: "open" });
     if (this.shadowRoot !== null) {
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      const input = this.shadowRoot.querySelector("input");
-      if (input) input.addEventListener("click", this.handleClick);
+      const span = this.shadowRoot.querySelector("span");
+      if (span) span.addEventListener("click", this.handleClick);
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", this.handleMode);
-      document.body.addEventListener("change", () => console.log("HERE"));
     }
   }
 
@@ -57,18 +56,22 @@ class Button extends HTMLElement {
     }
   };
 
-  handleClick = ({ currentTarget: input }: MouseEvent) => {
-    if (input) {
-      const checked = (input as HTMLInputElement).checked;
-      if (checked) {
-        document.body.classList.remove("light-mode");
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.add("light-mode");
-        document.body.classList.remove("dark-mode");
+  handleClick = () => {
+    const shadow = this.shadowRoot;
+    if (shadow) {
+      const input = shadow.querySelector("input");
+      if (input) {
+        const checked = (input as HTMLInputElement).checked;
+        if (checked) {
+          document.body.classList.add("light-mode");
+          document.body.classList.remove("dark-mode");
+        } else {
+          document.body.classList.remove("light-mode");
+          document.body.classList.add("dark-mode");
+        }
       }
+      this.toggle();
     }
-    this.toggle();
   };
 
   handleMode = () => this.toggle();

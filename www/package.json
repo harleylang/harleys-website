@@ -15,7 +15,5 @@
     "@web/dev-server": "^0.1.29",
     "esbuild": "^0.14.18"
   },
-  "dependencies": {
-    "@harleys-website/DarkModeToggle": "link:./../ui/DarkModeToggle"
-  }
+  "dependencies": {}
 }

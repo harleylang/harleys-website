@@ -5,6 +5,22 @@ body {
   --grey: 217, 217, 217;
   --dark-grey: 33, 33, 33;
   --black: 0, 0, 0;
+  --neon-blue: 7, 0, 184;
+  --neon-green: 0, 255, 136;
+  --gradient-neon-blue-green: linear-gradient(
+    0deg,
+    rgb(var(--neon-blue)) 0%,
+    rgb(var(--neon-green)) 100%
+  );
+  --purple: 131, 58, 180;
+  --orange: 253, 29, 29;
+  --yellow: 252, 176, 69;
+  --gradient-purple-orange: linear-gradient(
+    0deg,
+    rgb(var(--purple)) 0%,
+    rgb(var(--orange)) 50%,
+    rgb(var(--yellow)) 100%
+  );
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +28,8 @@ body {
   body {
     --col-fg-default: var(--grey);
     --col-bg-default: var(--black);
+    --col-gradient: var(--gradient-neon-blue-green);
+    --col-gradient-fallback: var(--neon-blue);
   }
 }
 
@@ -20,17 +38,23 @@ body {
   body {
     --col-fg-default: var(--dark-grey);
     --col-bg-default: var(--white);
+    --col-gradient: var(--gradient-purple-orange);
+    --col-gradient-fallback: var(--purple);
   }
 }
 
 body.light-mode {
   --col-fg-default: var(--dark-grey);
   --col-bg-default: var(--white);
+  --col-gradient: var(--gradient-purple-orange);
+  --col-gradient-fallback: var(--purple);
 }
 
 body.dark-mode {
   --col-fg-default: var(--grey);
   --col-bg-default: var(--black);
+  --col-gradient: var(--gradient-neon-blue-green);
+  --col-gradient-fallback: var(--neon-blue);
 }
 
 h1,
@@ -74,6 +98,16 @@ body {
 body,
 header {
   overflow: hidden;
+}
+
+.gradient {
+  background-color: var(--col-gradient-fallback);
+  background: var(--col-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }
 
 .silly {

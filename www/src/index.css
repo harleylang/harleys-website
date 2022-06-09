@@ -21,6 +21,7 @@ body {
     rgb(var(--orange)) 50%,
     rgb(var(--yellow)) 100%
   );
+  transition: background-color 0.5s ease;
 }
 
 @media (prefers-color-scheme: dark) {

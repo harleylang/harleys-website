@@ -96,9 +96,9 @@ body {
   }
 }
 
-body,
-header {
-  overflow: hidden;
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .gradient {

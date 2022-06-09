@@ -21,7 +21,6 @@ body {
     rgb(var(--orange)) 50%,
     rgb(var(--yellow)) 100%
   );
-  transition: background-color 0.5s ease;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,6 +55,10 @@ body.dark-mode {
   --col-bg-default: var(--black);
   --col-gradient: var(--gradient-neon-blue-green);
   --col-gradient-fallback: var(--neon-blue);
+}
+
+body.background-transition {
+  transition: background-color 0.5s ease;
 }
 
 h1,

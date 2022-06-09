@@ -43,9 +43,14 @@ div,
 p,
 span,
 code,
-button {
+button,
+abbr {
   color: rgba(var(--col-fg-default));
   font-family: helvetica, sans-serif;
+}
+
+abbr {
+  text-decoration: unset;
 }
 
 body {

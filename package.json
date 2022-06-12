@@ -16,6 +16,7 @@
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn turbo run build",
     "start": "yarn workspace @harleys-website/www start",
+    "preview": "yarn workspace @harleys-website/www preview",
     "qa": "yarn qa:tsc",
     "qa:tsc": "tsc --noEmit"
   },

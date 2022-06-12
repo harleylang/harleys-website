@@ -3,5 +3,5 @@ export default {
   watch: true,
   nodeResolve: true,
   port: 3000,
-  appIndex: "/public/index.html",
+  appIndex: "/src/index.html",
 };

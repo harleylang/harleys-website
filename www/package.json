@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "wds --config ./wds.config.mjs",
-    "build": "rm -rf public && node ./esbuild.config.js"
+    "build": "rm -rf public && node ./esbuild.config.js",
+    "preview": "wds --config ./wds.config.pub.mjs"
   },
   "author": "Harley Lang",
   "license": "MIT",

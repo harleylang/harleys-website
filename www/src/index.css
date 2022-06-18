@@ -114,6 +114,10 @@ body {
   -moz-text-fill-color: transparent;
 }
 
+.extra:first-letter {
+  font-size: 175%;
+}
+
 .silly {
   font-family: "Brush Script MT", cursive;
 }

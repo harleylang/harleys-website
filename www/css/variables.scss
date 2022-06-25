@@ -1,0 +1,24 @@
+:host,
+body {
+  --dp: 16px;
+  --white: 255, 250, 250;
+  --grey: 217, 217, 217;
+  --dark-grey: 33, 33, 33;
+  --black: 20, 20, 20;
+  --neon-blue: 7, 0, 184;
+  --neon-green: 0, 255, 136;
+  --gradient-neon-blue-green: linear-gradient(
+    0deg,
+    rgb(var(--neon-blue)) 0%,
+    rgb(var(--neon-green)) 100%
+  );
+  --purple: 131, 58, 180;
+  --orange: 253, 29, 29;
+  --yellow: 252, 176, 69;
+  --gradient-purple-orange: linear-gradient(
+    0deg,
+    rgb(var(--purple)) 0%,
+    rgb(var(--orange)) 50%,
+    rgb(var(--yellow)) 100%
+  );
+}

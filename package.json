@@ -23,9 +23,9 @@
     "qa:tsc": "tsc --noEmit",
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn turbo run build",
-    "start": "wds --config ./wds.config.mjs",
+    "start": "wds --config ./wds.config.mjs --app-index www/html/index.html",
     "build": "rm -rf public && node ./esbuild.config.js",
-    "preview": "wds --config ./wds.config.pub.mjs"
+    "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },
   "dependencies": {
     "@harleys-website/me-darkmode-toggle": "link:../www/js/DarkModeToggle"

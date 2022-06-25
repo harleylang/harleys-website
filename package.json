@@ -1,11 +1,17 @@
 {
-  "name": "harleys-website",
+  "name": "@harleys-website/www",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Harley Lang",
-  "description": "",
+  "description": "it's me website",
   "main": "index.js",
   "private": true,
+  "type": "module",
+  "repository": "git+https://github.com/harleylang/harleys-website.git",
+  "bugs": {
+    "url": "https://github.com/harleylang/harleys-website/issues"
+  },
+  "homepage": "https://github.com/harleylang/harleys-website#readme",
   "scripts": {
     "clean": "yarn clean:dist && yarn clean:node_modules",
     "clean:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
@@ -13,19 +19,21 @@
     "husky-prettier": "pretty-quick --staged",
     "prettier-write": "npx prettier --write .",
     "prepare": "husky install",
+    "qa": "yarn qa:tsc",
+    "qa:tsc": "tsc --noEmit",
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn turbo run build",
-    "start": "yarn workspace @harleys-website/www start",
-    "preview": "yarn workspace @harleys-website/www preview",
-    "qa": "yarn qa:tsc",
-    "qa:tsc": "tsc --noEmit"
+    "start": "wds --config ./wds.config.mjs",
+    "build": "rm -rf public && node ./esbuild.config.js",
+    "preview": "wds --config ./wds.config.pub.mjs"
   },
-  "repository": "git+https://github.com/harleylang/harleys-website.git",
-  "bugs": {
-    "url": "https://github.com/harleylang/harleys-website/issues"
+  "dependencies": {
+    "@harleys-website/me-darkmode-toggle": "link:../www/js/DarkModeToggle"
   },
-  "homepage": "https://github.com/harleylang/harleys-website#readme",
   "devDependencies": {
+    "@chialab/esbuild-plugin-html": "^0.15.28",
+    "@web/dev-server": "^0.1.29",
+    "esbuild": "^0.14.18",
     "husky": "^7.0.4",
     "prettier": "^2.5.1",
     "pretty-quick": "^3.1.3",
@@ -34,8 +42,7 @@
     "yarn": "^1.22.17"
   },
   "workspaces": [
-    "ui/*",
-    "www"
+    "www/js/*"
   ],
   "packageManager": "yarn@1.22.17"
 }

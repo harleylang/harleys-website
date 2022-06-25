@@ -3,6 +3,6 @@ export default {
   watch: true,
   nodeResolve: true,
   port: 3000,
-  appIndex: "../www/src/index.html",
-  rootDir: "..",
+  appIndex: "www/html/index.html",
+  rootDir: ".",
 };

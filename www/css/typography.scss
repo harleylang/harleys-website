@@ -24,3 +24,13 @@ abbr {
 .silly {
   font-family: "Brush Script MT", cursive;
 }
+
+.gradient {
+  background-color: var(--col-gradient-fallback);
+  background: var(--col-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}

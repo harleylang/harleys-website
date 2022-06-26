@@ -9,6 +9,8 @@ body {
   padding-top: var(--dp);
   padding-left: 25%;
   padding-right: 25%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 @media only screen and (max-width: 600px) {
@@ -17,21 +19,6 @@ body {
     padding-left: var(--dp);
     padding-right: var(--dp);
   }
-}
-
-body {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.gradient {
-  background-color: var(--col-gradient-fallback);
-  background: var(--col-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
 }
 
 .DarkmodeToggle__wrapper {

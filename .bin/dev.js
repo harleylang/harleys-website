@@ -1,5 +1,5 @@
 /**
- * dev.js -- script
+ * dev.js -- a helper script for selecting js modules to run in a dev environment
  *
  * finds directories in www/js
  * - each directory is a yarn workspace
@@ -9,6 +9,7 @@
  *
  */
 
+import chalk from "chalk";
 import fs from "fs";
 import inquirer from "inquirer";
 
@@ -30,6 +31,13 @@ function getDirectories(path) {
 
 var files = getDirectories(dir);
 
+console.log(
+  chalk.white(`
+SANDBOX DEVELOPMENT ENVIRONMENT for js modules in "www/js/*"\n
+Follow the prompts to proceed or type ctrl+c to escape. \n
+`)
+);
+
 inquirer
   .prompt({
     type: "list",
@@ -38,6 +46,11 @@ inquirer
     choices: files,
   })
   .then((answers) => {
+    console.log(
+      chalk.green(
+        `\n Starting ${answers.module} development environment ... \n`
+      )
+    );
     spawn("yarn", ["workspace", `@harleys-website/${answers.module}`, "dev"], {
       stdio: "inherit",
     });

@@ -36,6 +36,7 @@
   "devDependencies": {
     "@chialab/esbuild-plugin-html": "^0.15.28",
     "@web/dev-server": "^0.1.29",
+    "chalk": "^5.0.1",
     "esbuild": "^0.14.18",
     "esbuild-runner": "^2.2.1",
     "husky": "^7.0.4",

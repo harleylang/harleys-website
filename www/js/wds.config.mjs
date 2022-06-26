@@ -48,6 +48,6 @@ const args = argLoader();
 if (typeof args.element === "undefined")
   throw new Error('ERROR: missing arg "element"');
 
-const { folder, element } = args;
+const { element } = args;
 
-export default config({ folder, element });
+export default config({ element });

@@ -21,7 +21,7 @@
     "prepare": "husky install",
     "dev": "esr .bin/dev.js",
     "qa": "yarn qa:tsc",
-    "qa:tsc": "tsc --noEmit",
+    "qa:tsc": "tsc",
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn turbo run build && yarn sass",
     "sass": "sass www/css",
@@ -30,7 +30,8 @@
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },
   "dependencies": {
-    "@harleys-website/me-darkmode-toggle": "link:../www/js/DarkModeToggle"
+    "@harleys-website/me-darkmode-toggle": "link:../www/js/me-darkmode-toggle",
+    "@harleys-website/me-viewfinder-carousel": "link:../www/js/me-viewfinder-carousel"
   },
   "devDependencies": {
     "@chialab/esbuild-plugin-html": "^0.15.28",

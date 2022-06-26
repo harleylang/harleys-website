@@ -59,7 +59,11 @@
   resolved "https://registry.yarnpkg.com/@chialab/node-resolve/-/node-resolve-0.15.28.tgz#c6103dbb6bc5f7e27033b05aefb3fedfa2069285"
   integrity sha512-wiB8EuL36jcbV0S78Z2VnIcJcuUK7sXclQGRwR9owCtqRjC0lLHjWCn/IkJd8IWN/tdVLj0HLA+qUbylxqZcFg==
 
-"@harleys-website/me-darkmode-toggle@link:../www/js/DarkModeToggle":
+"@harleys-website/me-darkmode-toggle@link:../www/js/me-darkmode-toggle":
+  version "0.0.0"
+  uid ""
+
+"@harleys-website/me-viewfinder-carousel@link:../www/js/me-viewfinder-carousel":
   version "0.0.0"
   uid ""
 

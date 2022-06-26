@@ -2,7 +2,7 @@
   "name": "@harleys-website/me-viewfinder-carousel",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "dev": "yarn wds element=me-viewfinder-carousel & sass -w ../../css",

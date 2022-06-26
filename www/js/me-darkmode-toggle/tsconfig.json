@@ -4,5 +4,5 @@
     "rootDir": "src",
     "baseUrl": "src"
   },
-  "exclude": ["vite.config.ts"]
+  "include": ["src/**/*"]
 }

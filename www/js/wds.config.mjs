@@ -1,6 +1,6 @@
 import { esbuildPlugin } from "@web/dev-server-esbuild";
 
-function config({ folder, element }) {
+function config({ element }) {
   return {
     open: true,
     watch: true,
@@ -19,7 +19,7 @@ function config({ folder, element }) {
           if (context.response.is("html")) {
             let updated = context.body.replace(
               /<div id="js-script"><\/div>/,
-              `<script type="module" src="${folder}/src/index.ts"></script>`
+              `<script type="module" src="${element}/src/index.ts"></script>`
             );
             updated = updated.replace(
               /<div id="root"><\/div>/,
@@ -45,8 +45,6 @@ function argLoader() {
 
 const args = argLoader();
 
-if (typeof args.folder === "undefined")
-  throw new Error('ERROR: missing arg "folder"');
 if (typeof args.element === "undefined")
   throw new Error('ERROR: missing arg "element"');
 

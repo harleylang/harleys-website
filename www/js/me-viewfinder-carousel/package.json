@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "yarn wds folder=ViewFinderCarousel element=me-viewfinder-carousel & sass -w ../../css",
+    "dev": "yarn wds element=me-viewfinder-carousel & sass -w ../../css",
     "wds": "wds --config ../wds.config.mjs",
     "build": "node ./esbuild.config.js && tsc -p tsconfig.build.json"
   },

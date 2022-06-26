@@ -1,0 +1,25 @@
+{
+  "name": "@harleys-website/me-viewfinder-carousel",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "yarn wds folder=ViewFinderCarousel element=me-viewfinder-carousel & sass -w ../../css",
+    "wds": "wds --config ../wds.config.mjs",
+    "build": "node ./esbuild.config.js && tsc -p tsconfig.build.json"
+  },
+  "author": "Harley Lang",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.4",
+    "@web/dev-server": "^0.1.29",
+    "@web/dev-server-esbuild": "^0.2.16",
+    "@web/dev-server-import-maps": "^0.0.6",
+    "esbuild": "^0.14.8",
+    "esbuild-minify-templates": "^0.7.2",
+    "esbuild-plugin-svg": "^0.1.0",
+    "sass": "^1.53.0",
+    "typescript": "^4.5.4"
+  }
+}

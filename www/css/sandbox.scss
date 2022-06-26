@@ -1,0 +1,21 @@
+@import "./theme.scss";
+@import "./typography.scss";
+@import "./variables.scss";
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  text-align: center;
+}

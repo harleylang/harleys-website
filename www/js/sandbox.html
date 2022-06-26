@@ -1,0 +1,24 @@
+<html lang="en">
+  <!-- 
+    all files within www/js share this html file as an environment
+    for testing component styling and functionality
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0" />
+    <title>sandbox</title>
+    <script type="module">
+      import css from "../css/sandbox.css";
+      document.getElementById("css").innerHTML = css;
+    </script>
+    <!-- the above script will inject the sandbox css into the style tag below -->
+    <style id="css"></style>
+  </head>
+  <body>
+    <h1>DEVELOPMENT SANDBOX</h1>
+    <!-- wds.config.mjs replaces the following div with the corresponding js script -->
+    <div id="js-script"></div>
+    <!-- wds.config.mjs injects the following div with the target js-generated element -->
+    <div id="root"></div>
+  </body>
+</html>

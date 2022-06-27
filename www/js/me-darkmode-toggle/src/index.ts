@@ -74,7 +74,7 @@ class DarkModeToggle extends HTMLElement {
     }
   }
 
-  handleClick() {
+  handleClick = () => {
     const shadow = this.shadowRoot;
     if (shadow) {
       const input = shadow.querySelector("input");
@@ -86,7 +86,7 @@ class DarkModeToggle extends HTMLElement {
       document.body.classList.add("background-transition");
       this.toggle();
     }
-  }
+  };
 
   handleMode(e: MediaQueryListEvent) {
     if (e.media.includes("dark") && e.matches) setDarkMode();

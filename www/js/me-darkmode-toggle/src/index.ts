@@ -13,7 +13,19 @@ template.innerHTML = `
   </div>
 `;
 
-class Button extends HTMLElement {
+function setLightMode() {
+  localStorage.setItem("theme-mode", "light");
+  document.body.classList.add("light-mode");
+  document.body.classList.remove("dark-mode");
+}
+
+function setDarkMode() {
+  localStorage.setItem("theme-mode", "dark");
+  document.body.classList.add("dark-mode");
+  document.body.classList.remove("light-mode");
+}
+
+class DarkModeToggle extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -24,14 +36,13 @@ class Button extends HTMLElement {
       window
         .matchMedia("(prefers-color-scheme: dark)")
         .addEventListener("change", this.handleMode);
-      if (localStorage.getItem("theme-mode") === "dark") this.setDarkMode();
-      else if (localStorage.getItem("theme-mode") === "light")
-        this.setLightMode();
+      if (localStorage.getItem("theme-mode") === "dark") setDarkMode();
+      else if (localStorage.getItem("theme-mode") === "light") setLightMode();
       this.toggle();
     }
   }
 
-  toggle = () => {
+  toggle() {
     const shadow = this.shadowRoot;
     if (shadow) {
       const input = shadow.querySelector("input");
@@ -61,40 +72,28 @@ class Button extends HTMLElement {
         }
       }
     }
-  };
+  }
 
-  setLightMode = () => {
-    localStorage.setItem("theme-mode", "light");
-    document.body.classList.add("light-mode");
-    document.body.classList.remove("dark-mode");
-  };
-
-  setDarkMode = () => {
-    localStorage.setItem("theme-mode", "dark");
-    document.body.classList.add("dark-mode");
-    document.body.classList.remove("light-mode");
-  };
-
-  handleClick = () => {
+  handleClick() {
     const shadow = this.shadowRoot;
     if (shadow) {
       const input = shadow.querySelector("input");
       if (input) {
-        const checked = (input as HTMLInputElement).checked;
-        if (checked) this.setLightMode();
-        else this.setDarkMode();
+        const { checked } = input as HTMLInputElement;
+        if (checked) setLightMode();
+        else setDarkMode();
       }
       document.body.classList.add("background-transition");
       this.toggle();
     }
-  };
+  }
 
-  handleMode = (e: any) => {
-    if (e.media.includes("dark") && e.matches) this.setDarkMode();
-    else this.setLightMode();
+  handleMode(e: MediaQueryListEvent) {
+    if (e.media.includes("dark") && e.matches) setDarkMode();
+    else setLightMode();
     document.body.classList.add("background-transition");
     this.toggle();
-  };
+  }
 }
 
-window.customElements.define("me-darkmode-toggle", Button);
+window.customElements.define("me-darkmode-toggle", DarkModeToggle);

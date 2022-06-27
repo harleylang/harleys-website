@@ -22,6 +22,7 @@
     "dev": "esr .bin/dev.js",
     "qa": "yarn qa:tsc",
     "qa:tsc": "tsc",
+    "qa:eslint": "npx eslint --max-warnings=0 .",
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn turbo run build && yarn sass",
     "sass": "sass www/css",
@@ -30,15 +31,22 @@
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },
   "dependencies": {
+    "@chialab/esbuild-plugin-html": "^0.15.28",
     "@harleys-website/me-darkmode-toggle": "link:../www/js/me-darkmode-toggle",
-    "@harleys-website/me-viewfinder-carousel": "link:../www/js/me-viewfinder-carousel"
+    "@harleys-website/me-viewfinder-carousel": "link:../www/js/me-viewfinder-carousel",
+    "esbuild": "^0.14.18"
   },
   "devDependencies": {
-    "@chialab/esbuild-plugin-html": "^0.15.28",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
     "@web/dev-server": "^0.1.29",
     "chalk": "^5.0.1",
-    "esbuild": "^0.14.18",
     "esbuild-runner": "^2.2.1",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.1.0",
     "husky": "^7.0.4",
     "inquirer": "^9.0.0",
     "prettier": "^2.5.1",

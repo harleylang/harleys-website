@@ -9,5 +9,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
+  "include": ["www/**/*", ".eslintrc.cjs", "esbuild.config.js"],
   "exclude": ["**/dist/*.d.ts"]
 }

@@ -1,9 +1,9 @@
-name: "Typescript Compliance Check"
+name: "Code Quality Check"
 
 on: push
 
 jobs:
-  tsc:
+  code-quality-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

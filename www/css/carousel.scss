@@ -1,0 +1,69 @@
+form {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  ol {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+    input,
+    ::marker {
+      display: none;
+      content: "";
+    }
+    label {
+      position: relative;
+      top: 90%;
+      z-index: 2;
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: #111;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    section {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      :first-child {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    input:checked + label {
+      background-color: white;
+    }
+    input:checked ~ section {
+      opacity: 1;
+      animation: fade 0.5s forwards;
+      @keyframes fade {
+        0% {
+          opacity: 0.75;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  button {
+    position: absolute;
+    z-index: 2;
+    bottom: 0%;
+    margin: 0px 16px;
+  }
+  button.button--next {
+    right: 0;
+  }
+}

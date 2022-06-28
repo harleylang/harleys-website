@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "@chialab/esbuild-plugin-html": "^0.15.28",
+    "@harleys-website/me-carousel": "link:../www/js/me-carousel",
     "@harleys-website/me-darkmode-toggle": "link:../www/js/me-darkmode-toggle",
-    "@harleys-website/me-viewfinder-carousel": "link:../www/js/me-viewfinder-carousel",
     "esbuild": "^0.14.18"
   },
   "devDependencies": {

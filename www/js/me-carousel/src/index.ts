@@ -60,7 +60,7 @@ template.innerHTML = `
 </form>
 `;
 
-class ViewFinderCarousel extends HTMLElement {
+class Carousel extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -107,4 +107,4 @@ class ViewFinderCarousel extends HTMLElement {
   }
 }
 
-window.customElements.define("me-viewfinder-carousel", ViewFinderCarousel);
+window.customElements.define("me-carousel", Carousel);

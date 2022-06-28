@@ -38,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
     "@web/dev-server": "^0.1.29",
+    "@web/dev-server-esbuild": "^0.2.16",
     "chalk": "^5.0.1",
     "esbuild-runner": "^2.2.1",
     "eslint": "^8.18.0",

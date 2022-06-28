@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { esbuildPlugin } from "@web/dev-server-esbuild";
 
 function config({ element }) {
@@ -27,6 +28,7 @@ function config({ element }) {
             );
             return updated;
           }
+          return undefined;
         },
       },
     ],
@@ -34,10 +36,10 @@ function config({ element }) {
 }
 
 function argLoader() {
-  let rawargs = process.argv.filter((v) => v.includes("="));
-  let argObj = {};
-  for (let a = 0; a < rawargs.length; a++) {
-    let [key, val] = rawargs[a].split("=");
+  const rawargs = process.argv.filter((v) => v.includes("="));
+  const argObj = {};
+  for (let a = 0; a < rawargs.length; a += 1) {
+    const [key, val] = rawargs[a].split("=");
     argObj[key] = val;
   }
   return argObj;

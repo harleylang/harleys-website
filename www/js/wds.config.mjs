@@ -23,6 +23,10 @@ function config({ element }) {
               `<script type="module" src="${element}/src/index.ts"></script>`
             );
             updated = updated.replace(
+              /<div id="sandbox"><\/div>/,
+              `<script type="module" src="${element}/sandbox.js"></script>`
+            );
+            updated = updated.replace(
               /<div id="root"><\/div>/,
               `<div id="root"><${element}></${element}></div>`
             );

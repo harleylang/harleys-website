@@ -2,6 +2,8 @@
   <!-- 
     all files within www/js share this html file as an environment
     for testing component styling and functionality
+
+    to modify this page, define customizations in js/**/sandbox.js
   -->
   <head>
     <meta charset="utf-8" />
@@ -18,6 +20,8 @@
     <h1>DEVELOPMENT SANDBOX</h1>
     <!-- wds.config.mjs replaces the following div with the corresponding js script -->
     <div id="js-script"></div>
+    <!-- wds.config.mjs replaces the below script with the corresponding js file's sandbox script -->
+    <div id="sandbox"></div>
     <!-- wds.config.mjs injects the following div with the target js-generated element -->
     <div id="root"></div>
   </body>

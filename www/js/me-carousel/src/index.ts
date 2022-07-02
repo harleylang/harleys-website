@@ -6,59 +6,29 @@ const template = document.createElement("template");
 template.innerHTML = `
 <style>${carouselBase}</style>
 <form name="carousel">
-  <ol>
-    <li>
-      <input
-        type="radio"
-        id="carousel__input--1"
-        name="radios"
-        value="1"
-        checked
-      />
-      <label for="carousel__input--1"></label>
-      <section>
-        <img
-          src="https://dribbble.s3.amazonaws.com/users/322/screenshots/872485/coldchase.jpg"
-          alt="image 1"
-        />
-      </section>
-    </li>
-    <li>
-      <input type="radio" id="carousel__input--2" name="radios" value="2" />
-      <label for="carousel__input--2"></label>
-      <section>
-        <img
-          src="https://dribbble.s3.amazonaws.com/users/322/screenshots/980517/icehut_sm.jpg"
-          alt="image 2"
-        />
-      </section>
-    </li>
-    <li>
-      <input type="radio" id="carousel__input--3" name="radios" value="3" />
-      <label for="carousel__input--3"></label>
-      <section>
-        <img
-          src="https://dribbble.s3.amazonaws.com/users/322/screenshots/943660/hq_sm.jpg"
-          alt="image 3"
-        />
-      </section>
-    </li>
-
-    <li>
-      <input type="radio" id="carousel__input--4" name="radios" value="4" />
-      <label for="carousel__input--4"></label>
-      <section>
-        <img
-          src="https://dribbble.s3.amazonaws.com/users/322/screenshots/599584/home.jpg"
-          alt="image 4"
-        />
-      </section>
-    </li>
-  </ol>
+  <ol></ol>
   <button class="button--prev" type="button">PREV</button>
   <button class="button--next" type="button">NEXT</button>
 </form>
 `;
+
+const slide = document.createElement("template");
+
+function createSlide({ index, children }: { index: number; children: string }) {
+  return `
+    <li>
+      <input
+        type="radio"
+        id="carousel__input--${index}"
+        name="radios"
+        value="${index}"
+        ${index === 0 ? "checked" : ""}
+      />
+      <label for="carousel__input--${index}"></label>
+      <section>${children}</section>
+    </li>
+  `;
+}
 
 class Carousel extends HTMLElement {
   constructor() {
@@ -67,6 +37,8 @@ class Carousel extends HTMLElement {
     const shadow = this.shadowRoot;
     if (shadow) {
       shadow.appendChild(template.content.cloneNode(true));
+      const children = this.innerHTML;
+      console.log(children);
       const prev = shadow.querySelector(".button--prev");
       if (prev) {
         prev.addEventListener("click", () => {

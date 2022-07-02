@@ -37,8 +37,6 @@ class Carousel extends HTMLElement {
     const shadow = this.shadowRoot;
     if (shadow) {
       shadow.appendChild(template.content.cloneNode(true));
-      const children = this.innerHTML;
-      console.log(children);
       const prev = shadow.querySelector(".button--prev");
       if (prev) {
         prev.addEventListener("click", () => {
@@ -76,6 +74,23 @@ class Carousel extends HTMLElement {
         });
       }
     }
+  }
+
+  connectedCallback() {
+    // observer element mutations
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.addedNodes.length) this.setupSlides(mutation.addedNodes);
+      });
+    });
+    observer.observe(this, { childList: true });
+  }
+
+  setupSlides(nodes: NodeList) {
+    console.log(nodes);
+    // TODO:
+    // 1. iterate over nodes
+    // 2. clone and add to inner <ol></ol>
   }
 }
 

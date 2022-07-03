@@ -6,13 +6,11 @@ const template = document.createElement("template");
 template.innerHTML = `
 <style>${carouselBase}</style>
 <form name="carousel">
-  <ol></ol>
+  <ol id="slides"></ol>
   <button class="button--prev" type="button">PREV</button>
   <button class="button--next" type="button">NEXT</button>
 </form>
 `;
-
-const slide = document.createElement("template");
 
 function createSlide({ index, children }: { index: number; children: string }) {
   return `
@@ -22,7 +20,7 @@ function createSlide({ index, children }: { index: number; children: string }) {
         id="carousel__input--${index}"
         name="radios"
         value="${index}"
-        ${index === 0 ? "checked" : ""}
+        ${index === 1 ? "checked" : ""}
       />
       <label for="carousel__input--${index}"></label>
       <section>${children}</section>
@@ -86,11 +84,22 @@ class Carousel extends HTMLElement {
     observer.observe(this, { childList: true });
   }
 
-  setupSlides(nodes: NodeList) {
-    console.log(nodes);
-    // TODO:
-    // 1. iterate over nodes
-    // 2. clone and add to inner <ol></ol>
+  setupSlides(nodeList: NodeList) {
+    // eslint-disable-next-line no-var
+    var slides = "";
+    const nodes = [...nodeList].filter((n) => n instanceof HTMLElement);
+    for (let i = 0; i < nodes.length; i += 1) {
+      const node = nodes[i] as HTMLElement;
+      const newSlide = createSlide({ index: i + 1, children: node.outerHTML });
+      slides = `${slides}${newSlide}`;
+    }
+    const shadow = this.shadowRoot;
+    if (shadow) {
+      const slidesNode = shadow.querySelector("#slides");
+      if (slidesNode) {
+        slidesNode.innerHTML = slides;
+      }
+    }
   }
 }
 

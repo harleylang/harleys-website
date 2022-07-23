@@ -12,47 +12,49 @@ form {
     flex-direction: row;
     justify-content: center;
     gap: 4px;
-    input,
-    ::marker {
-      display: none;
-      content: "";
-    }
-    label {
-      position: relative;
-      top: 90%;
-      z-index: 2;
-      display: block;
-      width: 0.5rem;
-      height: 0.5rem;
-      background-color: #111;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    section {
-      position: absolute;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      :first-child {
+    li {
+      input,
+      &::marker {
+        display: none;
+        content: "";
+      }
+      label {
+        position: relative;
+        top: 90%;
+        z-index: 2;
+        display: block;
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: #111;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      > section, > img {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-      }
-    }
-    input:checked + label {
-      background-color: white;
-    }
-    input:checked ~ section {
-      opacity: 1;
-      animation: fade 0.5s forwards;
-      @keyframes fade {
-        0% {
-          opacity: 0.75;
+        opacity: 0;
+        :first-child {
+          width: 100%;
+          height: 100%;
         }
-        100% {
-          opacity: 1;
+      }
+      input:checked + label {
+        background-color: white;
+      }
+      input:checked ~ section, input:checked ~ img {
+        opacity: 1;
+        animation: fade 0.5s forwards;
+        @keyframes fade {
+          0% {
+            opacity: 0.75;
+          }
+          100% {
+            opacity: 1;
+          }
         }
       }
     }

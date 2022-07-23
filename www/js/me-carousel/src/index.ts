@@ -23,7 +23,7 @@ function createSlide({ index, children }: { index: number; children: string }) {
         ${index === 1 ? "checked" : ""}
       />
       <label for="carousel__input--${index}"></label>
-      <section>${children}</section>
+      ${children}
     </li>
   `;
 }

@@ -42,6 +42,7 @@ form {
         padding: 16px;
         min-height: 110%;
         img {
+          border: 2px dashed rgb(var(--dark-grey));
           width: 100%;
           border-radius: 16px;
           aspect-ratio: 16/9;
@@ -88,13 +89,18 @@ form {
     margin: 0px 48px;
     padding: 0;
     border-radius: 50%;
-    border: none;
+    background: rgb(var(--white));
+    border: 2px outset;
+    border-color: rgb(var(--white));
     width: 40px;
     height: 40px;
     cursor: pointer;
+    &:active {
+      border: 2px inset;
+    }
     span {
       position: relative;
-      bottom: 14px;
+      bottom: 16px;
     }
   }
   button.button--next {

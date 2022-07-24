@@ -67,6 +67,9 @@ form {
           }
         }
       }
+      input:not(:checked) ~ section {
+        display: none;
+      }
     }
   }
   button {

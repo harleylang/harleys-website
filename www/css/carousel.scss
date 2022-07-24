@@ -43,8 +43,12 @@ form {
           width: 100%;
           aspect-ratio: 16/9;
         }
+        h3 {
+          font-size: 22px;
+        }
         h3,
         p {
+          font-family: "Chewy";
           color: rgb(var(--black));
         }
       }

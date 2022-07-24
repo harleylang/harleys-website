@@ -29,7 +29,8 @@ form {
         border-radius: 50%;
         cursor: pointer;
       }
-      > section, > img {
+      > section,
+      > img {
         position: absolute;
         z-index: 1;
         top: 0;
@@ -45,7 +46,8 @@ form {
       input:checked + label {
         background-color: white;
       }
-      input:checked ~ section, input:checked ~ img {
+      input:checked ~ section,
+      input:checked ~ img {
         opacity: 1;
         animation: fade 0.5s forwards;
         @keyframes fade {

@@ -2,6 +2,7 @@ form {
   position: relative;
   width: 600px;
   height: 400px;
+  filter: drop-shadow(0 0 0.25rem rgb(var(--col-shadow)));
   ol {
     position: absolute;
     z-index: 1;
@@ -38,10 +39,10 @@ form {
         left: 0;
         width: calc(100% - 20px);
         min-height: 110%;
-        opacity: 0;
         img {
           width: 100%;
           aspect-ratio: 16/9;
+          opacity: 0;
         }
         h3 {
           font-size: 22px;
@@ -55,7 +56,7 @@ form {
       input:checked + label {
         background-color: white;
       }
-      input:checked ~ section {
+      input:checked ~ section img {
         opacity: 1;
         animation: fade 0.5s forwards;
         @keyframes fade {

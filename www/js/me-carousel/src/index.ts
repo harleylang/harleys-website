@@ -34,6 +34,7 @@ function createSlide({ index, children }: { index: number; children: string }) {
 class Carousel extends HTMLElement {
   constructor() {
     super();
+    this.loadFonts();
     this.attachShadow({ mode: "open" });
     const shadow = this.shadowRoot;
     if (shadow) {
@@ -73,6 +74,27 @@ class Carousel extends HTMLElement {
             }
           }
         });
+      }
+    }
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  loadFonts() {
+    const fonts = ["https://fonts.googleapis.com/css2?family=Chewy"];
+    const linksInHead = Array.from(document.head.children)
+      .filter(
+        (e) =>
+          e.nodeName === "LINK" && !fonts.includes((e as HTMLLinkElement).href)
+      )
+      .map((e) => (e as HTMLLinkElement).href);
+
+    for (let f = 0; f < fonts.length; f += 1) {
+      const font = fonts[f];
+      if (!linksInHead.includes(font)) {
+        const link = document.createElement("link");
+        link.href = font;
+        link.rel = "stylesheet";
+        document.head.appendChild(link);
       }
     }
   }

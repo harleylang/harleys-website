@@ -7,8 +7,8 @@ template.innerHTML = `
 <style>${carouselBase}</style>
 <form name="carousel">
   <ol id="slides"></ol>
-  <button class="button--prev" type="button">PREV</button>
-  <button class="button--next" type="button">NEXT</button>
+  <button class="button--prev" type="button"><span>&lt</span></button>
+  <button class="button--next" type="button"><span>&gt</span></button>
 </form>
 `;
 
@@ -80,7 +80,10 @@ class Carousel extends HTMLElement {
 
   // eslint-disable-next-line class-methods-use-this
   loadFonts() {
-    const fonts = ["https://fonts.googleapis.com/css2?family=Chewy"];
+    const fonts = [
+      "https://fonts.googleapis.com/css?family=Permanent Marker",
+      "https://fonts.googleapis.com/css2?family=Chewy",
+    ];
     const linksInHead = Array.from(document.head.children)
       .filter(
         (e) =>

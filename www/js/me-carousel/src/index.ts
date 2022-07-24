@@ -13,6 +13,9 @@ template.innerHTML = `
 `;
 
 function createSlide({ index, children }: { index: number; children: string }) {
+  let content: string;
+  if (children.includes("<section")) content = children;
+  else content = `<section>${children}</section>`;
   return `
     <li>
       <input
@@ -23,7 +26,7 @@ function createSlide({ index, children }: { index: number; children: string }) {
         ${index === 1 ? "checked" : ""}
       />
       <label for="carousel__input--${index}"></label>
-      ${children}
+      ${content}
     </li>
   `;
 }

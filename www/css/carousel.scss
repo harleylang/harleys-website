@@ -47,11 +47,15 @@ form {
           aspect-ratio: 16/9;
         }
         h3 {
-          font-size: 22px;
+          font-family: "Permanent Marker";
+          font-size: 36px;
+          margin: 16px 0px;
+        }
+        p {
+          font-family: "Chewy";
         }
         h3,
         p {
-          font-family: "Chewy";
           color: rgb(var(--black));
         }
       }
@@ -76,12 +80,27 @@ form {
     }
   }
   button {
+    font-family: "Permanent Marker";
+    font-size: 40px;
     position: absolute;
     z-index: 2;
     bottom: 17%;
     margin: 0px 48px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    span {
+      position: relative;
+      bottom: 14px;
+    }
   }
   button.button--next {
     right: 0;
+    span {
+      right: -3px;
+    }
   }
 }

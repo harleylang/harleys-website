@@ -24,7 +24,9 @@
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn sass && yarn turbo run build",
     "sass": "sass www/css",
-    "start": "wds --config ./wds.config.mjs --app-index www/html/index.html & sass -w www/css",
+    "start": "concurrently  -n 'SERVER,SCSS' -c 'bgBlue.bold,bgMagenta.bold' 'yarn start:server' 'yarn start:scss'",
+    "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
+    "start:scss": "sass -w www/css",
     "build": "rm -rf public && node ./esbuild.config.js",
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },

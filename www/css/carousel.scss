@@ -1,6 +1,8 @@
 form {
   position: relative;
+  min-width: 300px;
   width: 600px;
+  max-width: 100%;
   height: 400px;
   filter: drop-shadow(0 0 0.25rem rgb(var(--col-shadow)));
   ol {

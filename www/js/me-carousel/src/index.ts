@@ -75,6 +75,8 @@ class Carousel extends HTMLElement {
           }
         });
       }
+      // setup initial children
+      this.setupSlides(this.children as unknown as NodeList);
     }
   }
 

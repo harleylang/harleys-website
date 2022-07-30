@@ -25,7 +25,7 @@ body.light-mode {
   --col-bg-default: var(--white);
   --col-gradient: var(--gradient-purple-orange);
   --col-gradient-fallback: var(--purple);
-  --col-shadow: var(--white);
+  --col-shadow: var(--dark-grey);
 }
 
 body.dark-mode {
@@ -33,7 +33,7 @@ body.dark-mode {
   --col-bg-default: var(--black);
   --col-gradient: var(--gradient-neon-blue-green);
   --col-gradient-fallback: var(--neon-blue);
-  --col-shadow: var(--dark-grey);
+  --col-shadow: var(--white);
 }
 
 body.background-transition {

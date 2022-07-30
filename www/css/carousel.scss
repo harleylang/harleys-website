@@ -3,46 +3,52 @@ form {
   min-width: 300px;
   width: 600px;
   max-width: 100%;
-  height: 400px;
+  height: fit-content;
   filter: drop-shadow(0 0 0.25rem rgb(var(--col-shadow)));
   ol {
-    position: absolute;
-    z-index: 1;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 4px;
+    input {
+      display: none;
+    }
+    input:checked + li {
+      width: 100%;
+    }
+    input:checked + li section img {
+      opacity: 1;
+      animation: fade 0.5s forwards;
+      @keyframes fade {
+        0% {
+          opacity: 0.9;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
+    input:not(:checked) + li section {
+      display: none;
+    }
+    input:checked ~ .controls label.checked {
+      background-color: white;
+    }
     li {
-      input,
+      height: fit-content;
       &::marker {
         display: none;
         content: "";
-      }
-      label {
-        position: relative;
-        top: 75%;
-        z-index: 2;
-        display: block;
-        width: 1rem;
-        height: 1rem;
-        background-color: #111;
-        border-radius: 50%;
-        cursor: pointer;
+        position: absolute;
       }
       section {
         border-radius: 16px;
         border: 10px solid white;
         background: white;
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        left: 0;
         width: calc(100% - 20px - 32px);
         padding: 16px;
-        min-height: 110%;
         img {
           border: 2px groove rgba(var(--dark-grey), 25%);
           width: 100%;
@@ -63,53 +69,53 @@ form {
           color: rgb(var(--black));
         }
       }
-      input:checked + label {
-        background-color: white;
-      }
-      input:checked ~ section img {
-        opacity: 1;
-        animation: fade 0.5s forwards;
-        @keyframes fade {
-          0% {
-            opacity: 0.9;
-          }
-          100% {
-            opacity: 1;
-          }
-        }
-      }
-      input:not(:checked) ~ section {
-        display: none;
-      }
     }
   }
-  button {
-    font-family: "Permanent Marker";
-    font-size: 40px;
+  .controls {
     position: absolute;
-    z-index: 2;
-    bottom: 17%;
-    margin: 0px 48px;
-    padding: 0;
-    border-radius: 50%;
-    background: rgb(var(--white));
-    border: 2px outset;
-    border-color: rgb(var(--white));
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    &:active {
-      border: 2px inset;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .labels {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      label {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        background-color: #111;
+        border-radius: 50%;
+        cursor: pointer;
+      }
     }
-    span {
-      position: relative;
-      bottom: 16px;
+    button {
+      font-family: "Permanent Marker";
+      font-size: 40px;
+      margin: 0px 48px;
+      padding: 0;
+      border-radius: 50%;
+      background: rgb(var(--white));
+      border: 2px outset;
+      border-color: rgb(var(--white));
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      &:active {
+        border: 2px inset;
+      }
+      span {
+        position: relative;
+        bottom: 16px;
+      }
     }
-  }
-  button.button--next {
-    right: 0;
-    span {
-      right: -3px;
+    button.button--next {
+      right: 0;
+      span {
+        right: -3px;
+      }
     }
   }
 }

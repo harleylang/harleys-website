@@ -6,9 +6,13 @@ const template = document.createElement("template");
 template.innerHTML = `
 <style>${carouselBase}</style>
 <form name="carousel">
-  <ol id="slides"></ol>
-  <button class="button--prev" type="button"><span>&lt</span></button>
-  <button class="button--next" type="button"><span>&gt</span></button>
+  <ol id="slides">
+    <div id="controls" class="controls">
+      <button class="button--prev" type="button"><span>&lt</span></button>
+      <div id="labels" class="labels"></div>
+      <button class="button--next" type="button"><span>&gt</span></button>
+    </div>
+  </ol>
 </form>
 `;
 
@@ -16,19 +20,25 @@ function createSlide({ index, children }: { index: number; children: string }) {
   let content: string;
   if (children.includes("<section")) content = children;
   else content = `<section>${children}</section>`;
-  return `
+
+  const slide = document.createElement("template");
+  slide.innerHTML = `
+    <input
+      type="radio"
+      id="carousel__input--${index}"
+      name="radios"
+      value="${index}"
+      ${index === 1 ? "checked" : ""}
+    />
     <li>
-      <input
-        type="radio"
-        id="carousel__input--${index}"
-        name="radios"
-        value="${index}"
-        ${index === 1 ? "checked" : ""}
-      />
-      <label for="carousel__input--${index}"></label>
       ${content}
     </li>
   `;
+
+  const label = document.createElement("template");
+  label.innerHTML = `<label for="carousel__input--${index}"></label>`;
+
+  return { slide, label };
 }
 
 class Carousel extends HTMLElement {
@@ -45,7 +55,7 @@ class Carousel extends HTMLElement {
           const form = shadow.querySelector("form");
           if (form && form !== null) {
             const radioChecked = form.querySelector(
-              'input[type="radio"]:checked'
+              'input[type="radio"][name="radios"]:checked'
             ) as HTMLInputElement;
             if (radioChecked) {
               const selected = parseInt(radioChecked.value.toString(), 10);
@@ -63,7 +73,7 @@ class Carousel extends HTMLElement {
           const form = shadow.querySelector("form");
           if (form && form !== null) {
             const radioChecked = form.querySelector(
-              'input[type="radio"]:checked'
+              'input[type="radio"][name="radios"]:checked'
             ) as HTMLInputElement;
             if (radioChecked) {
               const selected = parseInt(radioChecked.value.toString(), 10);
@@ -115,19 +125,26 @@ class Carousel extends HTMLElement {
   }
 
   setupSlides(nodeList: NodeList) {
-    // eslint-disable-next-line no-var
-    var slides = "";
+    const shadow = this.shadowRoot;
     const nodes = [...nodeList].filter((n) => n instanceof HTMLElement);
     for (let i = 0; i < nodes.length; i += 1) {
       const node = nodes[i] as HTMLElement;
-      const newSlide = createSlide({ index: i + 1, children: node.outerHTML });
-      slides = `${slides}${newSlide}`;
-    }
-    const shadow = this.shadowRoot;
-    if (shadow) {
-      const slidesNode = shadow.querySelector("#slides");
-      if (slidesNode) {
-        slidesNode.innerHTML = slides;
+      const metaElements = createSlide({
+        index: i + 1,
+        children: node.outerHTML,
+      });
+      if (shadow) {
+        const slidesNode = shadow.querySelector("#slides");
+        const controlsNode = shadow.querySelector("#controls");
+        if (slidesNode && controlsNode) {
+          slidesNode.insertBefore(
+            metaElements.slide.content.cloneNode(true),
+            controlsNode
+          );
+        }
+        const labelsNode = shadow.querySelector("#labels");
+        if (labelsNode)
+          labelsNode.appendChild(metaElements.label.content.cloneNode(true));
       }
     }
   }

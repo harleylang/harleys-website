@@ -16,7 +16,7 @@
     --col-bg-default: var(--white);
     --col-gradient: var(--gradient-purple-orange);
     --col-gradient-fallback: var(--purple);
-    --col-shadow: var(--dark-grey);
+    --col-shadow: var(--light-grey);
   }
 }
 
@@ -25,7 +25,7 @@ body.light-mode {
   --col-bg-default: var(--white);
   --col-gradient: var(--gradient-purple-orange);
   --col-gradient-fallback: var(--purple);
-  --col-shadow: var(--dark-grey);
+  --col-shadow: var(--light-grey);
 }
 
 body.dark-mode {

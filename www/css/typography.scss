@@ -29,19 +29,23 @@ blockquote {
     font-size: 3.5em;
     line-height: 0;
     display: block;
-    height: 0;
-    width: 0;
+    width: 30px;
   }
   &:after {
     position: relative;
-    left: calc(100% - 10px);
+    left: calc(100% - 5px);
     content: close-quote;
     font-size: 3.5em;
     line-height: 0;
     display: block;
-    height: 0;
-    width: 0;
+    width: 30px;
   } 
+  &:hover:before, &:hover:after {
+    animation-name: spin-with-skip;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+  }
 }
 
 .extra:first-letter {

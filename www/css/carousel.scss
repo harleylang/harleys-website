@@ -5,7 +5,7 @@ form {
   height: fit-content;
   filter: drop-shadow(0 0 0.25rem rgb(var(--col-shadow)));
   img {
-    filter: sepia(75%);
+    filter: var(--col-img-filter);
     transition: all 0.35s;
   }
   &:hover img {

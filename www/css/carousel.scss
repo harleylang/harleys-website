@@ -1,6 +1,5 @@
 form {
   position: relative;
-  min-width: 300px;
   width: 600px;
   max-width: 100%;
   height: fit-content;
@@ -74,14 +73,20 @@ form {
   .controls {
     position: absolute;
     width: 100%;
+    aspect-ratio: 16/9;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
+    > * {
+      margin-bottom: 16px;
+    }
     .labels {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
+      height: 40px;
       label {
         display: block;
         width: 1rem;
@@ -94,7 +99,6 @@ form {
     button {
       font-family: "Permanent Marker";
       font-size: 40px;
-      margin: 0px 48px;
       padding: 0;
       border-radius: 50%;
       background: rgb(var(--white));
@@ -111,7 +115,11 @@ form {
         bottom: 16px;
       }
     }
+    button.button--prev {
+      margin-left: 48px;
+    }
     button.button--next {
+      margin-right: 48px;
       right: 0;
       span {
         right: -3px;

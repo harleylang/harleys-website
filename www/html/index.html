@@ -10,82 +10,131 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤪</text></svg>"
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <script type="module" src="../js/me-carousel/dist/index.js"></script>
     <script type="module" src="../js/me-darkmode-toggle/dist/index.js"></script>
   </head>
   <body>
-    <header>
-      <h1 class="extra silly gradient">Hello there,</h1>
-      <!-- Hellooo from the otherrrr ssiiIIIIiiide -->
-    </header>
     <main>
-      <p>
-        Welcome to my website. My name is Harley. I'm a Canadian living in
-        Scotland, a former behaviour analyst working as a web developer, and an
-        aspiring couch potato. (I'll get there one day!)
-        <!-- Aren't biographies fun!? -->
-      </p>
-      <p>
-        I bet you are not wondering how I ended up making websites in Scotland.
-        Some say it was the pandemic, others say it was
-        <abbr title="You only live once">YOLO</abbr> fever. I have my own
-        theories on the matter, but I believe it was someone important who once
-        said: when life gives you lemons, the lemonade is always sweeter on the
-        other side.
-        <!-- Nice little malaphor for you; I'm something of a poet myself. -->
-      </p>
-      <p>
-        Anyway, I might put more content here in the future. I probably won't
-        put more content here in the future. All I can guarantee is this dark
-        mode button, behold:<!-- It makes me employable. -->
-      </p>
-      <div class="DarkmodeToggle__wrapper">
-        <code>&lt;!--</code>
-        <me-darkmode-toggle></me-darkmode-toggle>
-        <code>--&gt;</code>
-      </div>
+      <article>
+        <h1 class="extra silly gradient">Hello there,</h1>
+        <!-- Hellooo from the otherrrr ssiiIIIIiiide -->
+        <p>
+          Welcome to my website. My name is Harley. I'm a Canadian living in
+          Scotland, a former behaviour analyst working as a web developer, and an
+          aspiring couch potato. (I'll get there one day!)
+          <!-- Aren't biographies fun!? -->
+        </p>
+        <p>
+          I bet you are not wondering how I ended up making websites in Scotland.
+          Some say it was the pandemic, others say it was
+          <abbr title="You only live once">YOLO</abbr> fever. I have my own
+          theories on the matter, but I believe it was someone important who once
+          said: when life gives you lemons, the lemonade is always sweeter on the
+          other side.
+          <!-- Nice little malaphor for you; I'm something of a poet myself. -->
+        </p>
+        <p>
+          Anyway, I might put more content here in the future. I probably won't
+          put more content here in the future. All I can guarantee is this dark
+          mode button, behold:<!-- It makes me employable. -->
+        </p>
+        <div class="darkmode-toggle__wrapper">
+          <code>&lt;!--</code>
+          <me-darkmode-toggle></me-darkmode-toggle>
+          <code>--&gt;</code>
+        </div>
+        <p>beoOOOOOoOOOOooppP,</p>
+        <!-- The target audience for this joke is less than 10, might delete later -->
+        <p><strong class="silly">Harley</strong></p>
+      </article>
+      <article>
+        <small>
+          PS: People frequently write me and say things like, 
+          <blockquote>
+            hi harley! 
+            You should add photos to your site. I want to see photos and maybe, for 
+            example, you can write some stuff about yourself too. actual stuff, none of that filler
+            you use to demo your skills. give me the s c o o p. also, i want it to feel like we are sitting 
+            on a couch flipping through an old craft-made photo album. wouldn't that be fun?!?! 
+            and because this is the <u>inter</u>net it must be <u>inter</u>active, click, photo, 
+            click photo, you know? mybe while we are at it, lets make it a carousel.can you 
+            do that?
+          </blockquote> 
+          So this is a delivery to you, the fans. HL - 2022-07-31
+          <!-- 
+            I wouldn't be surprised if someone leaves the page at this point. The content is fairly
+            chaotic and non-sensical. This website is a sandbox for developing user interfaces and
+            showcasing my web development skills. So why not have some fun while we're at it?!
+          -->
+        </small>
+        <div class="carousel__wrapper">
+          <me-carousel>
+            <section>
+              <img
+                  src="https://live.staticflickr.com/65535/52254317024_61e7d23fdc_b.jpg"
+                  alt="A photo of Harley"
+              />
+              <h3>About moi</h3>
+              <p>TODO: write something quirky, interesting, and fun.</p>
+            </section>
+            <section>
+              <img
+                  src="https://live.staticflickr.com/65535/52254030601_bb48e256b3_o.jpg"
+                  alt="Me and me miss"
+              />
+              <h3>Me image 2</h3>
+              <p>St. Andrews beach with me miss.</p>
+            </section>
+           <section>
+              <img
+                  src="https://live.staticflickr.com/65535/52253062707_47906b564c_b.jpg"
+                  alt="Harley on 'harley street'"
+              />
+              <h3>that's-all-folks.png</h3>
+            </section>
+          </me-carousel>
+        </div>
+      </article>
     </main>
     <footer>
-      <p>beoOOOOOoOOOOooppP,</p>
-      <!-- the target audience for this joke is less than 10, might delete later -->
-      <p><strong class="silly">Harley</strong></p>
-    </footer>
-    <!--
-      PS: If you are a fellow technology enthusiast looking to see how the sausage is made, 
-      check out my website repository on github: www.github.com/harleylang/harleys-website
+      <!--
+        PS: If you are a fellow technology enthusiast looking to see how the sausage is made, 
+        check out my website repository on github: www.github.com/harleylang/harleys-website
 
-      I have worked with a lot of technology:
-      - aws
-      - php
-      - sql
-      - jquery
-      - javascript
-      - nodejs
-      - v a n i l l a j a v a s c r i p t
-      - express
-      - react
-      - angular
-      - svelte
-      - web components
-      - css
-      - sass
-      - v a n i l l a c s s
-      - html
-      - vanilla html
-      - and much more!
-      
-      And if you have read this far, I hope you can see through my humourous candour.
+        I have worked with a lot of technology:
+        - aws
+        - php
+        - sql
+        - jquery
+        - javascript
+        - nodejs
+        - v a n i l l a j a v a s c r i p t
+        - express
+        - react
+        - angular
+        - svelte
+        - web components
+        - css
+        - sass
+        - v a n i l l a c s s
+        - html
+        - vanilla html
+        - and much more!
+        
+        And if you have read this far, I hope you have seen through my humourous candour.
 
-      I love coding. I love mentoring junior devs. I love going into work and contributing value.
-      
-      Others will tell you about how my previous experience in education brings a unique spin to how I approach my work.
-      - I am empathetic. I listen, understand, and act to improve team and stakeholder wellbeing.
-      - I am professional. I stay sharp, I over deliver on expectations, and I always support the team. 
-      - I am a leader. I can rapidly build rapport, communicate, and initiate projects that are people powered.
+        I love coding. I love mentoring junior devs. I love going into work and contributing value.
+        
+        Others will tell you about how my previous experience in education brings a unique spin to how I approach my work.
+        - I am empathetic. I listen, understand, and act to improve team and stakeholder wellbeing.
+        - I am professional. I stay sharp, I over deliver on expectations, and I always support the team. 
+        - I am a leader. I can rapidly build rapport, communicate, and initiate projects that are people powered.
 
-      I am not currently looking for work. I love my team and the organization I work for. 
-      
-      But if you love technology like I do, please feel free to get in touch!
+        I am not currently looking for work. I love my team and the organization I work for. 
+        
+        But if you love technology like I do, please feel free to get in touch!
 
-      -->
+        -->
+      </footer>
   </body>
 </html>

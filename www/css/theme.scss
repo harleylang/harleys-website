@@ -6,7 +6,7 @@
     --col-gradient: var(--gradient-neon-blue-green);
     --col-gradient-fallback: var(--neon-blue);
     --col-shadow: var(--white);
-    --col-img-filter: sepia(75%);
+    --col-img-filter: grayscale(75%);
   }
 }
 
@@ -18,7 +18,7 @@
     --col-gradient: var(--gradient-purple-orange);
     --col-gradient-fallback: var(--purple);
     --col-shadow: var(--light-grey);
-    --col-img-filter: grayscale(75%);
+    --col-img-filter: sepia(75%);
   }
 }
 

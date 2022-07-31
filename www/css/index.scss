@@ -4,7 +4,7 @@
 @import "./variables.scss";
 
 body {
-  height: calc(100vh - var(--dp));
+  height: fit-content;
   width: calc(100vw - 50%);
   margin: 0;
   padding-top: var(--dp);

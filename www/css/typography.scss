@@ -18,6 +18,32 @@ abbr {
   text-decoration: unset;
 }
 
+blockquote {
+  font-style: italic;
+  margin-top: 24px;
+  &:before {
+    position: relative;
+    left: -25px;
+    top: 15px;
+    content: open-quote;
+    font-size: 3.5em;
+    line-height: 0;
+    display: block;
+    height: 0;
+    width: 0;
+  }
+  &:after {
+    position: relative;
+    left: calc(100% - 10px);
+    content: close-quote;
+    font-size: 3.5em;
+    line-height: 0;
+    display: block;
+    height: 0;
+    width: 0;
+  } 
+}
+
 .extra:first-letter {
   font-size: 175%;
 }

@@ -40,7 +40,6 @@ form {
     li {
       height: fit-content;
       background: white;
-      border-radius: 16px;
       aspect-ratio: 16/13;
       &::marker {
         display: none;
@@ -48,15 +47,12 @@ form {
         position: absolute;
       }
       section {
-        border-radius: 16px;
         border: 10px solid white;
         background: white;
         width: calc(100% - 20px - 32px);
         padding: 16px;
         img {
-          border: 2px groove rgba(var(--dark-grey), 25%);
           width: 100%;
-          border-radius: 16px;
           aspect-ratio: 16/9;
         }
         h3 {
@@ -108,12 +104,13 @@ form {
         border-radius: 50%;
         background: rgb(var(--white));
         border: 2px outset;
-        border-color: rgb(var(--white));
+        border-color: rgba(var(--white), 40%);
         width: 40px;
         height: 40px;
         cursor: pointer;
         &:active {
           border: 2px inset;
+          border-color: rgb(var(--white), 40%);
         }
         span {
           position: relative;

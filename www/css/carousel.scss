@@ -4,6 +4,13 @@ form {
   max-width: 100%;
   height: fit-content;
   filter: drop-shadow(0 0 0.25rem rgb(var(--col-shadow)));
+  img {
+    filter: sepia(75%);
+    transition: all 0.35s;
+  }
+  &:hover img {
+    filter: none;
+  }
   ol {
     width: 100%;
     height: fit-content;

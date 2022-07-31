@@ -32,8 +32,10 @@ form {
     input:not(:checked) + li section {
       display: none;
     }
-    input:checked ~ .controls label.checked {
-      background-color: white;
+    @for $i from 1 through 10 {
+      input#carousel__input--#{$i}:checked ~ .controls label[for="carousel__input--#{$i}"] {
+        background-color: white;
+      }
     }
     li {
       height: fit-content;

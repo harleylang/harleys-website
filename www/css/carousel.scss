@@ -69,60 +69,60 @@ form {
         }
       }
     }
-  }
-  .controls {
-    position: absolute;
-    width: 100%;
-    aspect-ratio: 16/9;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    > * {
-      margin-bottom: 16px;
-    }
-    .labels {
+    .controls {
+      position: absolute;
+      width: 100%;
+      aspect-ratio: 16/9;
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      height: 40px;
-      label {
-        display: block;
-        width: 1rem;
-        height: 1rem;
-        background-color: #111;
+      justify-content: space-between;
+      align-items: flex-end;
+      > * {
+        margin-bottom: 16px;
+      }
+      .labels {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        label {
+          display: block;
+          width: 1rem;
+          height: 1rem;
+          background-color: #111;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+      }
+      button {
+        font-family: "Permanent Marker";
+        font-size: 40px;
+        padding: 0;
         border-radius: 50%;
+        background: rgb(var(--white));
+        border: 2px outset;
+        border-color: rgb(var(--white));
+        width: 40px;
+        height: 40px;
         cursor: pointer;
+        &:active {
+          border: 2px inset;
+        }
+        span {
+          position: relative;
+          bottom: 16px;
+        }
       }
-    }
-    button {
-      font-family: "Permanent Marker";
-      font-size: 40px;
-      padding: 0;
-      border-radius: 50%;
-      background: rgb(var(--white));
-      border: 2px outset;
-      border-color: rgb(var(--white));
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      &:active {
-        border: 2px inset;
+      button.button--prev {
+        margin-left: 48px;
       }
-      span {
-        position: relative;
-        bottom: 16px;
-      }
-    }
-    button.button--prev {
-      margin-left: 48px;
-    }
-    button.button--next {
-      margin-right: 48px;
-      right: 0;
-      span {
-        right: -3px;
+      button.button--next {
+        margin-right: 48px;
+        right: 0;
+        span {
+          right: -3px;
+        }
       }
     }
   }

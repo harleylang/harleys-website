@@ -51,6 +51,28 @@ class Carousel extends HTMLElement {
       shadow.appendChild(template.content.cloneNode(true));
       const prev = shadow.querySelector(".button--prev");
       if (prev) {
+        prev.addEventListener("touchend", (event: Event) => {
+          event.preventDefault(); // prevent mobile dbl tap zoom
+          const form = shadow.querySelector("form");
+          if (form && form !== null) {
+            const radioChecked = form.querySelector(
+              'input[type="radio"][name="radios"]:checked'
+            ) as HTMLInputElement;
+            if (radioChecked) {
+              const selected = parseInt(radioChecked.value.toString(), 10);
+              const radios = Array.from(form.elements).filter((e) => {
+                const element = e as HTMLElement & { name?: string };
+                return (
+                  typeof element.name !== "undefined" &&
+                  element.name === "radios"
+                );
+              }) as HTMLInputElement[];
+              const next = selected - 1;
+              if (next === 0) radios[radios.length - 1].checked = true;
+              else radios[next - 1].checked = true;
+            }
+          }
+        });
         prev.addEventListener("click", () => {
           const form = shadow.querySelector("form");
           if (form && form !== null) {
@@ -69,6 +91,28 @@ class Carousel extends HTMLElement {
       }
       const next = shadow.querySelector(".button--next");
       if (next) {
+        next.addEventListener("touchend", (event: Event) => {
+          event.preventDefault(); // prevent mobile dbl tap zoom
+          const form = shadow.querySelector("form");
+          if (form && form !== null) {
+            const radioChecked = form.querySelector(
+              'input[type="radio"][name="radios"]:checked'
+            ) as HTMLInputElement;
+            if (radioChecked) {
+              const selected = parseInt(radioChecked.value.toString(), 10);
+              const nextone = selected + 1;
+              const radios = Array.from(form.elements).filter((e) => {
+                const element = e as HTMLElement & { name?: string };
+                return (
+                  typeof element.name !== "undefined" &&
+                  element.name === "radios"
+                );
+              }) as HTMLInputElement[];
+              if (nextone === radios.length + 1) radios[0].checked = true;
+              else radios[nextone - 1].checked = true;
+            }
+          }
+        });
         next.addEventListener("click", () => {
           const form = shadow.querySelector("form");
           if (form && form !== null) {

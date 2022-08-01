@@ -124,15 +124,15 @@ form {
           position: relative;
           bottom: 16px;
         }
-      }
-      button.button--prev {
-        margin-left: 48px;
-      }
-      button.button--next {
-        margin-right: 48px;
-        right: 0;
-        span {
-          right: -3px;
+        &.button--prev {
+          margin-left: 48px;
+        }
+        &.button--next {
+          margin-right: 48px;
+          right: 0;
+          span {
+            right: -3px;
+          }
         }
       }
     }

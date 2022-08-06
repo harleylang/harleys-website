@@ -8,7 +8,20 @@ module.exports = {
   parserOptions: {
     project: [path.join(__dirname, "./tsconfig.json")],
   },
+  settings: {
+    "import/resolver": {
+      node: { extensions: ["js", "mjs"] },
+    },
+  },
   rules: {
     "prettier/prettier": ["error"],
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        js: "never",
+        mjs: "never",
+      },
+    ],
   },
 };

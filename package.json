@@ -17,7 +17,7 @@
     "clean:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
     "clean:node_modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
     "prettier-write": "npx prettier --write .",
-    "dev": "esr .bin/dev.js",
+    "dev": "esr .bin/dev.mjs",
     "qa": "yarn qa:tsc && yarn qa:eslint",
     "qa:tsc": "tsc",
     "qa:eslint": "npx eslint --max-warnings=0 .",
@@ -27,7 +27,7 @@
     "start": "yarn start:server & yarn start:scss",
     "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
     "start:scss": "sass -w www/css",
-    "build": "rm -rf public && node ./esbuild.config.js",
+    "build": "rm -rf public && node ./esbuild.config.mjs",
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },
   "dependencies": {

@@ -24,7 +24,7 @@ function config({ element }) {
             );
             updated = updated.replace(
               /<div id="sandbox"><\/div>/,
-              `<script type="module" src="${element}/sandbox.js"></script>`
+              `<script type="module" src="${element}/sandbox.mjs"></script>`
             );
             updated = updated.replace(
               /<div id="root"><\/div>/,

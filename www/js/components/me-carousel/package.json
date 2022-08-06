@@ -9,7 +9,7 @@
     "dev:server": "yarn wds element=me-carousel",
     "dev:scss": "sass -w ../../../css",
     "wds": "wds --config ../wds.config.mjs",
-    "build": "node ./esbuild.config.js && tsc -p tsconfig.build.json"
+    "build": "node ./esbuild.config.mjs && tsc -p tsconfig.build.json"
   },
   "author": "Harley Lang",
   "license": "MIT",

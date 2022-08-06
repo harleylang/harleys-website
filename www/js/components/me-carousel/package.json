@@ -10,7 +10,7 @@
     "dev:scss": "sass -w ../../../css",
     "wds": "wds --config ../wds.config.mjs",
     "build": "yarn build:esbuild && yarn build:tsc",
-    "build:esbuild": "node ../esbuild.config.mjs component=me-carousel",
+    "build:esbuild": "node ../../esbuild.config.mjs component=me-carousel",
     "build:tsc": "tsc -p tsconfig.build.json"
   },
   "author": "Harley Lang",

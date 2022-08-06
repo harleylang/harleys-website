@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-relative-packages
-import carouselBase from "../../../css/carousel.css";
+import carouselBase from "../../../../css/carousel.css";
 
 const template = document.createElement("template");
 

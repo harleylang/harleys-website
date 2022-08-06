@@ -32,8 +32,8 @@
   },
   "dependencies": {
     "@chialab/esbuild-plugin-html": "^0.15.28",
-    "@harleys-website/me-carousel": "link:../www/js/me-carousel",
-    "@harleys-website/me-darkmode-toggle": "link:../www/js/me-darkmode-toggle",
+    "@harleys-website/me-carousel": "link:../www/js/components/me-carousel",
+    "@harleys-website/me-darkmode-toggle": "link:../www/js/components/me-darkmode-toggle",
     "esbuild": "^0.14.18"
   },
   "devDependencies": {
@@ -56,7 +56,7 @@
     "yarn": "^1.22.17"
   },
   "workspaces": [
-    "www/js/*"
+    "www/js/components/*"
   ],
   "packageManager": "yarn@1.22.17"
 }

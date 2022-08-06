@@ -1,13 +1,13 @@
 {
-  "name": "@harleys-website/me-carousel",
+  "name": "@harleys-website/me-darkmode-toggle",
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "dev": "yarn dev:server & yarn dev:scss",
-    "dev:server": "yarn wds element=me-carousel",
-    "dev:scss": "sass -w ../../css",
+    "dev:server": "yarn wds element=me-darkmode-toggle",
+    "dev:scss": "sass -w ../../../css",
     "wds": "wds --config ../wds.config.mjs",
     "build": "node ./esbuild.config.js && tsc -p tsconfig.build.json"
   },

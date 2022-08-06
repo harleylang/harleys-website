@@ -6,8 +6,8 @@ function config({ element }) {
     open: true,
     watch: true,
     nodeResolve: true,
-    rootDir: "../../",
-    appIndex: "../../js/sandbox.html",
+    rootDir: "../../../",
+    appIndex: "../../../js/components/sandbox.html",
     plugins: [
       esbuildPlugin({
         ts: true,

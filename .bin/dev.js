@@ -21,7 +21,7 @@ import { spawn } from "child_process";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dir = join(__dirname, "..", "www", "js");
+const dir = join(__dirname, "..", "www", "js", "components");
 
 function getDirectories(path) {
   return fs.readdirSync(path).filter(function (file) {

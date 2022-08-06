@@ -74,11 +74,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@harleys-website/me-carousel@link:../www/js/me-carousel":
+"@harleys-website/me-carousel@link:../www/js/components/me-carousel":
   version "0.0.0"
   uid ""
 
-"@harleys-website/me-darkmode-toggle@link:../www/js/me-darkmode-toggle":
+"@harleys-website/me-darkmode-toggle@link:../www/js/components/me-darkmode-toggle":
   version "0.0.0"
   uid ""
 

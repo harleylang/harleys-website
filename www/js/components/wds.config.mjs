@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { esbuildPlugin } from "@web/dev-server-esbuild";
+import argLoader from "./argLoader.mjs";
 
 function config({ element }) {
   return {
@@ -39,21 +40,6 @@ function config({ element }) {
   };
 }
 
-function argLoader() {
-  const rawargs = process.argv.filter((v) => v.includes("="));
-  const argObj = {};
-  for (let a = 0; a < rawargs.length; a += 1) {
-    const [key, val] = rawargs[a].split("=");
-    argObj[key] = val;
-  }
-  return argObj;
-}
-
-const args = argLoader();
-
-if (typeof args.element === "undefined")
-  throw new Error('ERROR: missing arg "element"');
-
-const { element } = args;
+const { element } = argLoader(["element"]);
 
 export default config({ element });

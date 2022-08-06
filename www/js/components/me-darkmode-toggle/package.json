@@ -9,7 +9,9 @@
     "dev:server": "yarn wds element=me-darkmode-toggle",
     "dev:scss": "sass -w ../../../css",
     "wds": "wds --config ../wds.config.mjs",
-    "build": "node ./esbuild.config.mjs && tsc -p tsconfig.build.json"
+    "build": "yarn build:esbuild && yarn build:tsc",
+    "build:esbuild": "node ../esbuild.config.mjs component=me-darkmode-toggle",
+    "build:tsc": "tsc -p tsconfig.build.json"
   },
   "author": "Harley Lang",
   "license": "MIT",

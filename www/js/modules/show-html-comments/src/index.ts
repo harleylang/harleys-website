@@ -22,6 +22,11 @@ function attachHtmlToggleListeners() {
   }
 }
 
+/**
+ * findCommentNodes
+ * Search the DOM for all comments.
+ * @see https://stackoverflow.com/a/6028120/14198287
+ */
 function findCommentNodes(el: Document | HTMLElement | ChildNode) {
   // eslint-disable-next-line no-var
   var arr: ChildNode[] = [];

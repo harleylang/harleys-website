@@ -41,3 +41,21 @@ article {
     max-width: 100%;
   }
 }
+
+[htmlCommentToggle] {
+  font-weight: bold;
+  font-size: 24px;
+  animation: jittery var(--animation-jitter-duration) ease-in-out forwards infinite;
+  &:hover {
+    animation: unset;
+  }
+}
+
+[htmlCommentRevealed] {
+  font-style: italic;
+}
+
+[htmlCommentRevealed], [htmlCommentToggle] {
+  color: rgb(var(--col-fg-primary));
+  cursor: context-menu;
+}

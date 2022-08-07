@@ -38,29 +38,24 @@ function findCommentNodes(el: Document | HTMLElement | ChildNode) {
 
 function handleHtmlToggleEvents() {
   const commentNodes = findCommentNodes(document);
-
-  commentNodes.forEach((comment) => {
-    const sibling = (comment as HTMLElement).previousElementSibling;
-    if (sibling) {
-      const isRevealed =
-        typeof (sibling as unknown as HTMLElement).getAttribute(
-          "htmlCommentRevealed"
-        ) === "string";
-      switch (true) {
-        case isRevealed:
-          sibling.remove();
-          break;
-        default:
-          if (comment.parentNode !== null) {
-            const p = document.createElement("p");
-            p.innerHTML = `&lt;!-- ${comment.nodeValue ?? ""} --&gt;`;
-            p.setAttribute("htmlCommentRevealed", "");
-            comment.parentNode.insertBefore(p, comment);
-          }
-          break;
+  const commentsRevealed = Array.from(
+    document.querySelectorAll("[htmlCommentRevealed]")
+  );
+  if (commentsRevealed.length > 0) commentsRevealed.forEach((c) => c.remove());
+  else {
+    commentNodes.forEach((comment) => {
+      const sibling = (comment as HTMLElement).previousElementSibling;
+      if (sibling && comment.parentNode !== null) {
+        const p = document.createElement("p");
+        p.innerHTML = `&lt;!-- ${comment.nodeValue ?? ""} --&gt;`;
+        p.setAttribute("htmlCommentRevealed", "");
+        p.addEventListener("click", (event: Event) =>
+          (event.target as HTMLElement).remove()
+        );
+        comment.parentNode.insertBefore(p, comment);
       }
-    }
-  });
+    });
+  }
 }
 
 attachHtmlToggleListeners();

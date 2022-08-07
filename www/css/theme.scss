@@ -1,13 +1,11 @@
-@media (prefers-color-scheme: dark) {
-  :host,
-  body {
-    --col-fg-default: var(--grey);
-    --col-bg-default: var(--black);
-    --col-gradient: var(--gradient-neon-blue-green);
-    --col-gradient-fallback: var(--neon-blue);
-    --col-shadow: var(--white);
-    --col-img-filter: grayscale(75%);
-  }
+body.light-mode {
+  --col-fg-default: var(--dark-grey);
+  --col-bg-default: var(--white);
+  --col-gradient: var(--gradient-purple-orange);
+  --col-gradient-fallback: var(--purple);
+  --col-shadow: var(--light-grey);
+  --col-img-filter: sepia(75%);
+  --col-fg-primary: var(--orange);
 }
 
 @media (prefers-color-scheme: light) {
@@ -19,16 +17,8 @@
     --col-gradient-fallback: var(--purple);
     --col-shadow: var(--light-grey);
     --col-img-filter: sepia(75%);
+    --col-fg-primary: var(--orange);
   }
-}
-
-body.light-mode {
-  --col-fg-default: var(--dark-grey);
-  --col-bg-default: var(--white);
-  --col-gradient: var(--gradient-purple-orange);
-  --col-gradient-fallback: var(--purple);
-  --col-shadow: var(--light-grey);
-  --col-img-filter: sepia(75%);
 }
 
 body.dark-mode {
@@ -38,6 +28,20 @@ body.dark-mode {
   --col-gradient-fallback: var(--neon-blue);
   --col-shadow: var(--white);
   --col-img-filter: grayscale(75%);
+  --col-fg-primary: var(--neon-green);
+}
+
+@media (prefers-color-scheme: dark) {
+  :host,
+  body {
+    --col-fg-default: var(--grey);
+    --col-bg-default: var(--black);
+    --col-gradient: var(--gradient-neon-blue-green);
+    --col-gradient-fallback: var(--neon-blue);
+    --col-shadow: var(--white);
+    --col-img-filter: grayscale(75%);
+    --col-fg-primary: var(--neon-green);
+  }
 }
 
 body.background-transition {

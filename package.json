@@ -56,7 +56,8 @@
     "yarn": "^1.22.17"
   },
   "workspaces": [
-    "www/js/components/*"
+    "www/js/components/*",
+    "www/js/modules/*"
   ],
   "packageManager": "yarn@1.22.17"
 }

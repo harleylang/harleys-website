@@ -53,7 +53,7 @@ function handleHtmlToggleEvents() {
         default:
           if (comment.parentNode !== null) {
             const p = document.createElement("p");
-            p.innerHTML = comment.nodeValue ?? "";
+            p.innerHTML = `&lt;!-- ${comment.nodeValue ?? ""} --&gt;`;
             p.setAttribute("htmlCommentRevealed", "");
             comment.parentNode.insertBefore(p, comment);
           }

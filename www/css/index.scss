@@ -45,17 +45,19 @@ article {
 [htmlCommentToggle] {
   font-weight: bold;
   font-size: 24px;
-  animation: jittery var(--animation-jitter-duration) ease-in-out forwards infinite;
+  animation: twitchy var(--animation-twitchy-duration) ease-in-out forwards infinite;
   &:hover {
-    animation: unset;
+    cursor: context-menu;
   }
 }
 
 [htmlCommentRevealed] {
   font-style: italic;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 [htmlCommentRevealed], [htmlCommentToggle] {
   color: rgb(var(--col-fg-primary));
-  cursor: context-menu;
 }

@@ -22,13 +22,12 @@ body {
     rgb(var(--orange)) 50%,
     rgb(var(--yellow)) 100%
   );
-  --animation-jitter-duration: .5s;
+  --animation-jittery-duration: .5s;
+  @media (prefers-reduced-motion) {
+    --animation-jittery-duration: 30s;
+  }
+  --animation-twitchy-duration: 10s;
 }
 
-@media (prefers-reduced-motion) {
-  :host,
-  body {
-    --animation-jitter-duration: 30s;
-  }
-}
+
 

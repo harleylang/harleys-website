@@ -7,7 +7,11 @@ import svg from "esbuild-plugin-svg";
 async function config() {
   await esbuild.build({
     entryPoints: [`./src/index.ts`],
-    outfile: `./dist/index.js`,
+    format: "esm",
+    outdir: "./dist",
+    outExtension: {
+      ".js": ".mjs",
+    },
     plugins: [minifyTemplates(), svg(), writeFiles()],
     loader: { ".html": "text", ".css": "text" },
     bundle: true,

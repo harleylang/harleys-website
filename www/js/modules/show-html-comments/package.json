@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "yarn build:esbuild && yarn build:tsc",
-    "build:esbuild": "node ../../esbuild.config.mjs component=me-carousel",
+    "build:esbuild": "node ../../esbuild.config.mjs",
     "build:tsc": "tsc -p tsconfig.build.json"
   },
   "author": "Harley Lang",

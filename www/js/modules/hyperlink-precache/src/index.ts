@@ -1,9 +1,3 @@
-/**
- * hyperlink-precache.mjs
- * @description
- * TODO
- */
-
 async function precache(src: string) {
   const content = await fetch(src, { credentials: "include" }).then((d) =>
     d.text()
@@ -35,6 +29,17 @@ async function precache(src: string) {
   }
 }
 
+/**
+ * hyperlink-precache.mjs
+ * @description
+ * Looks for anchor tags with the attribute `data-precache`.
+ * Each matching anchor tag's href is fetched. Then, the received
+ * HTML is traversed for images, scripts, and styles to precache.
+ * @see
+ * Influenced by:
+ * - https://github.com/dieulot/instantclick
+ * - https://github.com/GoogleChromeLabs/quicklink/
+ */
 function hyperlinkPrecache() {
   const anchors = document.querySelectorAll("a");
   for (let i = 0; i < anchors.length; i += 1) {

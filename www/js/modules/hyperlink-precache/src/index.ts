@@ -1,7 +1,7 @@
 /**
  * hyperlink-precache.mjs
  * @description
- * Looks for anchor tags with the attribute `data-precache`.
+ * Looks for anchor tags with the attribute `precache`.
  * Each matching anchor tag's href is fetched. Then, the received
  * HTML is traversed for images, scripts, and styles to precache.
  * @see
@@ -47,10 +47,10 @@
     for (let i = 0; i < anchors.length; i += 1) {
       const anchor = anchors[i];
       const src = anchor.getAttribute("href");
-      if (src) {
+      const precacheAttr = typeof anchor.getAttribute("precache") === "string";
+      if (src && precacheAttr) {
         precache(src);
         // TODO: optimize preloadContent
-        // TODO: querySelect those with data attributes
         // TODO: only run on 4g or better connections
         // TODO: load only those found in the intersection observer
       }

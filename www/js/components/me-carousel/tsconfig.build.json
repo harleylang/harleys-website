@@ -1,8 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "declarationDir": "dist",
+    "outFile": "dist/me-carousel.d.ts",
     "declaration": true,
     "emitDeclarationOnly": true,
     "noEmit": false

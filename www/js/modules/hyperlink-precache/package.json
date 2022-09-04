@@ -1,5 +1,5 @@
 {
-  "name": "@harleys-website/preload-pages",
+  "name": "@harleys-website/hyperlink-precache",
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",

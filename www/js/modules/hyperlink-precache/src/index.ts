@@ -10,20 +10,20 @@
  * - https://github.com/GoogleChromeLabs/quicklink/
  */
 
+// TODO: only run on 3g or better connections
+// TODO: load only those found in the intersection observer
+
 (() => {
-  async function precache(src: string) {
-    const content = await fetch(src, { credentials: "include" }).then((d) =>
-      d.text()
-    );
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(content, "text/html");
+  function cacheImgs(doc: Document) {
     const imgs = doc.querySelectorAll("img");
-    const scripts = doc.querySelectorAll("script");
-    const links = doc.querySelectorAll("link");
     for (let i = 0; i < imgs.length; i += 1) {
       const img = imgs[i];
       new Image().src = img.getAttribute("src") ?? "";
     }
+  }
+
+  function cacheScripts(doc: Document) {
+    const scripts = doc.querySelectorAll("script");
     for (let i = 0; i < scripts.length; i += 1) {
       const script = scripts[i];
       const preloadLink = document.createElement("link");
@@ -32,6 +32,10 @@
       preloadLink.as = "script";
       document.head.appendChild(preloadLink);
     }
+  }
+
+  function cacheLinks(doc: Document) {
+    const links = doc.querySelectorAll("link");
     for (let i = 0; i < links.length; i += 1) {
       const link = links[i];
       const preloadLink = document.createElement("link");
@@ -42,18 +46,29 @@
     }
   }
 
+  async function precache(src: string) {
+    // fetch html file
+    const content = await fetch(src, { credentials: "include" }).then((data) =>
+      data.text()
+    );
+    // parse the file from string
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, "text/html");
+    // iterate over document, precache content by tag type
+    cacheImgs(doc);
+    cacheLinks(doc);
+    cacheScripts(doc);
+  }
+
   function hyperlinkPrecache() {
+    // get all anchors, iterate over each anchor
     const anchors = document.querySelectorAll("a");
     for (let i = 0; i < anchors.length; i += 1) {
       const anchor = anchors[i];
       const src = anchor.getAttribute("href");
       const precacheAttr = typeof anchor.getAttribute("precache") === "string";
-      if (src && precacheAttr) {
-        precache(src);
-        // TODO: optimize preloadContent
-        // TODO: only run on 4g or better connections
-        // TODO: load only those found in the intersection observer
-      }
+      // if src valid and anchor contains 'precache' attribute, trigger precache
+      if (src && precacheAttr) precache(src);
     }
   }
 

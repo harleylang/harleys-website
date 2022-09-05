@@ -6,11 +6,11 @@
  * HTML is traversed for images, scripts, and styles to precache.
  * @see
  * Influenced by:
+ * - https://addyosmani.com/blog/prefetching/
  * - https://github.com/dieulot/instantclick
  * - https://github.com/GoogleChromeLabs/quicklink/
  */
 
-// TODO: only run on 3g or better connections
 // TODO: load only those found in the intersection observer
 
 (() => {
@@ -60,15 +60,31 @@
     cacheScripts(doc);
   }
 
+  interface INetworkInformation extends NetworkInformation {
+    effectiveType?: string;
+  }
+  interface INavigator extends globalThis.Navigator {
+    connection: INetworkInformation;
+  }
+
   function hyperlinkPrecache() {
-    // get all anchors, iterate over each anchor
-    const anchors = document.querySelectorAll("a");
-    for (let i = 0; i < anchors.length; i += 1) {
-      const anchor = anchors[i];
-      const src = anchor.getAttribute("href");
-      const precacheAttr = typeof anchor.getAttribute("precache") === "string";
-      // if src valid and anchor contains 'precache' attribute, trigger precache
-      if (src && precacheAttr) precache(src);
+    const { connection } = navigator as INavigator;
+    const { effectiveType } = connection || {};
+    // only precache on fast or undefined connections
+    if (
+      typeof effectiveType !== "string" ||
+      !/\slow-2g|2g|3g/.test(effectiveType)
+    ) {
+      // get all anchors, iterate over each anchor
+      const anchors = document.querySelectorAll("a");
+      for (let i = 0; i < anchors.length; i += 1) {
+        const anchor = anchors[i];
+        const src = anchor.getAttribute("href");
+        const precacheAttr =
+          typeof anchor.getAttribute("precache") === "string";
+        // if src valid and anchor contains 'precache' attribute, trigger precache
+        if (src && precacheAttr) precache(src);
+      }
     }
   }
 

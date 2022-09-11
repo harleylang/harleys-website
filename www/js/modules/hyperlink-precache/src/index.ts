@@ -4,6 +4,18 @@
  * Looks for anchor tags with the attribute `precache`.
  * Each matching anchor tag's href is fetched. Then, the received
  * HTML is traversed for images, scripts, and styles to precache.
+ * @example
+ * In your *.html file:
+  <head>
+    <!-- ... add the following script ... -->
+    <script type="module" src="hyperlink-precache.mjs"></script>
+    <!-- ... -->
+  </head>
+  <body>
+    <!-- ... add the `precache` attribute to any anchor ... -->
+    <a href="./test.html" precache>testing</a>
+    <!-- ... -->
+  </body>
  * @see
  * Influenced by:
  * - https://addyosmani.com/blog/prefetching/

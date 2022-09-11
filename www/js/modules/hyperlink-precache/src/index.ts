@@ -77,8 +77,9 @@
         src,
         target: script.getAttribute("src") ?? "",
       });
+      if (target.includes("__web-dev-server")) return;
       preloadLink.href = target;
-      preloadLink.rel = "preload";
+      preloadLink.rel = "prefetch";
       preloadLink.as = "script";
       document.head.appendChild(preloadLink);
     }
@@ -93,8 +94,8 @@
         src,
         target: link.getAttribute("href") ?? "",
       });
-      preloadLink.href = target ?? "";
-      preloadLink.rel = "preload";
+      preloadLink.href = target;
+      preloadLink.rel = "stylesheet preload prefetch";
       preloadLink.as = "style";
       document.head.appendChild(preloadLink);
     }

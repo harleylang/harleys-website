@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outFile": "dist/me-darkmode-toggle.d.ts",
+    "outFile": "dist/hyperlink-precache.d.ts",
     "declaration": true,
     "emitDeclarationOnly": true,
     "noEmit": false

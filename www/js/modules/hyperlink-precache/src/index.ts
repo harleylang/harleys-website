@@ -11,8 +11,6 @@
  * - https://github.com/GoogleChromeLabs/quicklink/
  */
 
-// TODO: load only those found in the intersection observer
-
 (() => {
   function cacheImgs(doc: Document) {
     const imgs = doc.querySelectorAll("img");
@@ -67,26 +65,48 @@
     connection: INetworkInformation;
   }
 
-  function hyperlinkPrecache() {
+  function hyperlinkPrecache(src: string) {
     const { connection } = navigator as INavigator;
     const { effectiveType } = connection || {};
     // only precache on fast or undefined connections
     if (
       typeof effectiveType !== "string" ||
       !/\slow-2g|2g|3g/.test(effectiveType)
-    ) {
-      // get all anchors, iterate over each anchor
-      const anchors = document.querySelectorAll("a");
-      for (let i = 0; i < anchors.length; i += 1) {
-        const anchor = anchors[i];
-        const src = anchor.getAttribute("href");
-        const precacheAttr =
-          typeof anchor.getAttribute("precache") === "string";
-        // if src valid and anchor contains 'precache' attribute, trigger precache
-        if (src && precacheAttr) precache(src);
-      }
+    )
+      precache(src);
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // get target details
+          const { target } = entry;
+          const src = target.getAttribute("href");
+          // if src valid, trigger precache
+          if (src) hyperlinkPrecache(src);
+          // unobserve anchor
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0,
+    }
+  );
+
+  function initialize() {
+    // iterate over each anchor; setup observers
+    const anchors = document.querySelectorAll("a");
+    for (let i = 0; i < anchors.length; i += 1) {
+      const anchor = anchors[i];
+      // if anchor contains 'precache' attribute, add to observer
+      const precacheAttr = typeof anchor.getAttribute("precache") === "string";
+      if (precacheAttr) observer.observe(anchor);
     }
   }
 
-  window.addEventListener("load", hyperlinkPrecache, false);
+  window.addEventListener("load", initialize, false);
 })();

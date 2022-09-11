@@ -26,6 +26,7 @@ article {
 
 a {
   @include font-acme;
+  color: rgb(var(--col-fg-secondary));
 }
 
 header {
@@ -67,5 +68,5 @@ header {
 }
 
 [htmlCommentRevealed], [htmlCommentToggle] {
-  color: rgb(var(--col-fg-primary));
+  color: rgb(var(--col-fg-secondary));
 }

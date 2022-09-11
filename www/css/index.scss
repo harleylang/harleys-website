@@ -1,3 +1,4 @@
+@import "./fonts/acme.scss";
 @import "./keyframes.scss";
 @import "./theme.scss";
 @import "./typography.scss";
@@ -21,6 +22,16 @@ body {
 
 article {
   margin-bottom: 32px;
+}
+
+a {
+  @include font-acme;
+}
+
+header {
+  a {
+    font-size: 24px;
+  }
 }
 
 .darkmode-toggle__wrapper {

@@ -77,7 +77,8 @@
         src,
         target: script.getAttribute("src") ?? "",
       });
-      if (target.includes("__web-dev-server")) return;
+      // eslint-disable-next-line no-continue
+      if (target.includes("__web-dev-server")) continue;
       preloadLink.href = target;
       preloadLink.rel = "prefetch";
       preloadLink.as = "script";
@@ -89,6 +90,8 @@
     const links = doc.querySelectorAll("link");
     for (let i = 0; i < links.length; i += 1) {
       const link = links[i];
+      // eslint-disable-next-line no-continue
+      if (link.getAttribute("rel") === "icon") continue; // esc header icons
       const preloadLink = document.createElement("link");
       const target = parseRelativePath({
         src,

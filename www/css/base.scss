@@ -1,0 +1,56 @@
+@import "./fonts/acme.scss";
+@import "./keyframes.scss";
+@import "./theme.scss";
+@import "./typography.scss";
+@import "./variables.scss";
+
+body {
+  height: fit-content;
+  width: calc(100vw - 50%);
+  margin: 0;
+  padding-top: var(--dp);
+  padding-left: 25%;
+  padding-right: 25%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  @media only screen and (width < 600px) {
+    width: calc(100vw - (var(--dp) * 2));
+    padding-left: var(--dp);
+    padding-right: var(--dp);
+  }
+}
+
+article {
+  margin-bottom: 32px;
+}
+
+a {
+  @include font-acme;
+  color: rgb(var(--col-fg-secondary));
+}
+
+header {
+  a {
+    font-size: 24px;
+  }
+}
+
+[htmlCommentToggle] {
+  font-weight: bold;
+  font-size: 24px;
+  animation: twitchy var(--animation-twitchy-duration) ease-in-out forwards infinite;
+  &:hover {
+    cursor: context-menu;
+  }
+}
+
+[htmlCommentRevealed] {
+  font-style: italic;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+[htmlCommentRevealed], [htmlCommentToggle] {
+  color: rgb(var(--col-fg-secondary));
+}

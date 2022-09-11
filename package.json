@@ -23,10 +23,10 @@
     "qa:eslint": "npx eslint --max-warnings=0 .",
     "reset": "yarn clean && yarn setup",
     "setup": "yarn && yarn sass && yarn turbo run build",
-    "sass": "sass www/css",
+    "sass": "sass --no-source-map www/css",
     "start": "yarn start:server & yarn start:scss",
     "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
-    "start:scss": "sass -w www/css",
+    "start:scss": "sass --no-source-map -w www/css",
     "build": "rm -rf public && node ./esbuild.config.mjs",
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },

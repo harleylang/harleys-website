@@ -1,0 +1,10 @@
+@import url('http://fonts.googleapis.com/css?family=Acme');
+
+@mixin font-acme {
+  font-family: "Acme", serif;
+  font-size: 16px;
+}
+
+.acme {
+  @include font-acme;
+}

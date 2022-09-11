@@ -24,7 +24,35 @@
  */
 
 (() => {
-  function cacheImgs(doc: Document) {
+  function parseRelativePath({ src, target }: { src: string; target: string }) {
+    const pathLevelsSrc = src.split("./")[1].split("/").length - 1;
+    const relativeLevelsSrc = target.split("../").length - 1;
+    const relativeLevelsTarget = target.split("../").length - 1;
+    // if relative paths are used in the src and/or target
+    // append / snip "../" to correctly load scripts and modules
+    switch (true) {
+      case src.includes("../"):
+        return `${"../".repeat(relativeLevelsSrc)}${target}`;
+      case src.includes("./"):
+        if (pathLevelsSrc < relativeLevelsTarget) {
+          return `${target
+            .split("../")
+            .slice(-(relativeLevelsTarget - pathLevelsSrc + 1))
+            .join("../")}`;
+        }
+        break;
+      default:
+        return target;
+    }
+    return target;
+  }
+
+  interface ICacheFx {
+    doc: Document;
+    src: string;
+  }
+
+  function cacheImgs({ doc }: Pick<ICacheFx, "doc">) {
     const imgs = doc.querySelectorAll("img");
     for (let i = 0; i < imgs.length; i += 1) {
       const img = imgs[i];
@@ -32,24 +60,32 @@
     }
   }
 
-  function cacheScripts(doc: Document) {
+  function cacheScripts({ doc, src }: ICacheFx) {
     const scripts = doc.querySelectorAll("script");
     for (let i = 0; i < scripts.length; i += 1) {
       const script = scripts[i];
       const preloadLink = document.createElement("link");
-      preloadLink.href = script.src;
+      const target = parseRelativePath({
+        src,
+        target: script.getAttribute("src") ?? "",
+      });
+      preloadLink.href = target;
       preloadLink.rel = "preload";
       preloadLink.as = "script";
       document.head.appendChild(preloadLink);
     }
   }
 
-  function cacheLinks(doc: Document) {
+  function cacheLinks({ doc, src }: ICacheFx) {
     const links = doc.querySelectorAll("link");
     for (let i = 0; i < links.length; i += 1) {
       const link = links[i];
       const preloadLink = document.createElement("link");
-      preloadLink.href = link.href;
+      const target = parseRelativePath({
+        src,
+        target: link.getAttribute("href") ?? "",
+      });
+      preloadLink.href = target ?? "";
       preloadLink.rel = "preload";
       preloadLink.as = "style";
       document.head.appendChild(preloadLink);
@@ -65,9 +101,9 @@
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, "text/html");
     // iterate over document, precache content by tag type
-    cacheImgs(doc);
-    cacheLinks(doc);
-    cacheScripts(doc);
+    cacheImgs({ doc });
+    cacheLinks({ doc, src });
+    cacheScripts({ doc, src });
   }
 
   interface INetworkInformation extends NetworkInformation {

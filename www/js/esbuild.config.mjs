@@ -5,7 +5,8 @@ import { minifyTemplates, writeFiles } from "esbuild-minify-templates";
 import svg from "esbuild-plugin-svg";
 
 async function config() {
-  const filename = process.cwd().split("/").at(-1);
+  const splits = process.cwd().split("/");
+  const filename = splits[splits.length - 1];
   await esbuild.build({
     entryPoints: [`./src/index.ts`],
     format: "esm",

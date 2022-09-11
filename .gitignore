@@ -3,4 +3,4 @@ dist
 public
 .turbo
 *.log
-www/css/*.css*
+www/css/**/*.css*

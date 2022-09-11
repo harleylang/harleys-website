@@ -26,7 +26,7 @@
 (() => {
   function parseRelativePath({ src, target }: { src: string; target: string }) {
     const pathLevelsSrc = src.split("./")[1].split("/").length - 1;
-    const relativeLevelsSrc = target.split("../").length - 1;
+    const relativeLevelsSrc = src.split("../").length - 1;
     const relativeLevelsTarget = target.split("../").length - 1;
     // if relative paths are used in the src and/or target
     // append / snip "../" to correctly load scripts and modules
@@ -34,6 +34,14 @@
       case src.includes("../"):
         return `${"../".repeat(relativeLevelsSrc)}${target}`;
       case src.includes("./"):
+        // target requires relativity
+        if (relativeLevelsTarget === 0 && pathLevelsSrc > 0) {
+          return `${src
+            .split("/")
+            .slice(0, pathLevelsSrc + 1)
+            .join("/")}/${target}`;
+        }
+        // target does not have enough relativity
         if (pathLevelsSrc < relativeLevelsTarget) {
           return `${target
             .split("../")

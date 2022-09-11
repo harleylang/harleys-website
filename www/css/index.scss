@@ -12,15 +12,14 @@ body {
   padding-right: 25%;
   overflow-x: hidden;
   overflow-y: auto;
-}
-
-@media only screen and (max-width: 600px) {
-  body {
+  @media only screen and (width < 600px) {
     width: calc(100vw - (var(--dp) * 2));
     padding-left: var(--dp);
     padding-right: var(--dp);
   }
 }
+
+
 
 article {
   margin-bottom: 32px;

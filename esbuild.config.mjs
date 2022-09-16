@@ -9,7 +9,7 @@ await esbuild.build({
   plugins: [htmlPlugin()],
   assetNames: "[dir]/[name]",
   chunkNames: "[dir]/[name]-[hash]",
-  bundle: false,
+  bundle: true,
   minify: true,
   write: true,
 });

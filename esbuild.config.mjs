@@ -8,7 +8,7 @@ await esbuild.build({
   outbase: "www/html",
   plugins: [htmlPlugin()],
   assetNames: "[dir]/[name]",
-  chunkNames: "[dir]/[name]-[hash]",
+  chunkNames: "[ext]/[name]-[hash]",
   bundle: true,
   minify: true,
   write: true,

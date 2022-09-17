@@ -6,10 +6,13 @@ export default {
     dir: "public",
     assetFileNames: (assetInfo) => {
       let extType = assetInfo.name.split(".").at(1);
+      if (/css/i.test(extType)) {
+        return `${extType}/[name]-[hash][extname]`;
+      }
       if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
         extType = "img";
       }
-      return `${extType}/[name]-[hash][extname]`;
+      return `assets/${extType}/[name]-[hash][extname]`;
     },
     entryFileNames: "js/[name]-[hash].js",
   },

@@ -5,7 +5,7 @@ export default {
   output: {
     dir: "public",
     assetFileNames: (assetInfo) => {
-      let extType = assetInfo.name.split(".").at(1);
+      let extType = assetInfo.name.split(".")[1];
       if (/css/i.test(extType)) {
         return `assets/${extType}/[name]-[hash][extname]`;
       }

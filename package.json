@@ -27,14 +27,16 @@
     "start": "yarn start:server & yarn start:scss",
     "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
     "start:scss": "sass --no-source-map -w www/css",
-    "build": "rm -rf public && node ./esbuild.config.mjs",
+    "build": "rm -rf public && rollup -c ./rollup.config.mjs",
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
   },
   "dependencies": {
-    "@chialab/esbuild-plugin-html": "^0.15.28",
     "@harleys-website/me-carousel": "link:../www/js/components/me-carousel",
     "@harleys-website/me-darkmode-toggle": "link:../www/js/components/me-darkmode-toggle",
-    "esbuild": "^0.14.18"
+    "@harleys-website/hyperlink-precache": "link:../www/js/modules/hyperlink-precache",
+    "@harleys-website/show-html-comments": "link:../www/js/components/show-html-comments",
+    "@web/rollup-plugin-html": "^1.11.0",
+    "rollup": "^2.79.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.0",

@@ -18,7 +18,7 @@ export default {
   },
   plugins: [
     html({
-      input: ["./index.html", "./blog/index.html"],
+      input: ["**/*.html"],
       rootDir: path.join(process.cwd(), "./www/html"),
       flattenOutput: false,
     }),

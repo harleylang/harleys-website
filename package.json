@@ -28,7 +28,7 @@
     "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
     "start:scss": "sass --no-source-map -w www/css",
     "build": "rm -rf public && rollup -c ./rollup.config.mjs",
-    "preview": "wds --config ./wds.config.mjs --app-index public/index.html"
+    "preview": "wds --config ./wds.config.mjs --app-index public/index.html --root-dir public"
   },
   "dependencies": {
     "@harleys-website/me-carousel": "link:../www/js/components/me-carousel",

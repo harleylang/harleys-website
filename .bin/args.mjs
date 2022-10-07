@@ -1,4 +1,4 @@
-export default function argLoader(args) {
+export default function args(args) {
   const rawargs = process.argv.filter((v) => v.includes("="));
   const argObj = {};
   for (let a = 0; a < rawargs.length; a += 1) {

@@ -18,7 +18,7 @@ export default function args(args) {
           `ERROR: arg "${arg}" is not type string; received: ${typeof arg}`
         );
       if (typeof argObj[arg] === "undefined")
-        throw new Error('ERROR: missing arg "element"');
+        throw new Error(`ERROR: missing arg ${arg}`);
     }
   }
   return argObj;

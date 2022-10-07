@@ -34,12 +34,13 @@
     "@harleys-website/me-carousel": "link:../www/js/components/me-carousel",
     "@harleys-website/me-darkmode-toggle": "link:../www/js/components/me-darkmode-toggle",
     "@harleys-website/hyperlink-precache": "link:../www/js/modules/hyperlink-precache",
-    "@harleys-website/show-html-comments": "link:../www/js/components/show-html-comments"
+    "@harleys-website/show-html-comments": "link:../www/js/components/show-html-comments",
+    "@web/rollup-plugin-html": "^1.11.0",
+    "rollup": "^2.79.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
-    "@web/rollup-plugin-html": "^1.11.0",
     "@web/dev-server": "^0.1.29",
     "@web/dev-server-esbuild": "^0.2.16",
     "chalk": "^5.0.1",
@@ -51,7 +52,6 @@
     "eslint-plugin-prettier": "^4.1.0",
     "inquirer": "^9.0.0",
     "prettier": "^2.5.1",
-    "rollup": "^2.79.0",
     "sass": "^1.53.0",
     "turbo": "^1.1.2",
     "typescript": "^4.5.4",

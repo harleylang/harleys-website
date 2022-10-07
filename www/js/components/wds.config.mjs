@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { esbuildPlugin } from "@web/dev-server-esbuild";
-import argLoader from "./argLoader.mjs";
+import args from "../../../.bin/args.mjs";
 
 function config({ element }) {
   return {
@@ -40,6 +40,6 @@ function config({ element }) {
   };
 }
 
-const { element } = argLoader(["element"]);
+const { element } = args(["element"]);
 
 export default config({ element });

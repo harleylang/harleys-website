@@ -4,11 +4,16 @@
  */
 
 export default function args(args) {
-  const rawargs = process.argv.filter((v) => v.includes("="));
+  const rawargs = process.argv;
   const argObj = {};
   for (let a = 0; a < rawargs.length; a += 1) {
-    const [key, val] = rawargs[a].split("=");
-    argObj[key] = val;
+    const arg = rawargs[a];
+    if (arg.includes("--")) {
+      const key = arg.split("--")[1];
+      const val = rawargs[a + 1];
+      a += 1;
+      argObj[key] = val;
+    }
   }
   if (Array.isArray(args)) {
     for (let i = 0; i < args.length; i += 1) {

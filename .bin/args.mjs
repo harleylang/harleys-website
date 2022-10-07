@@ -1,3 +1,8 @@
+/**
+ * args.js -- a helper script for deriving args passed to a node script
+ * @param {string[]} args The arguments to derive.
+ */
+
 export default function args(args) {
   const rawargs = process.argv.filter((v) => v.includes("="));
   const argObj = {};

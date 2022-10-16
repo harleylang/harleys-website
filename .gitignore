@@ -3,4 +3,7 @@ dist
 public
 .turbo
 *.log
+# rendered css files
 www/css/**/*.css*
+# ssg'd html files
+www/html/blog/**/index.html

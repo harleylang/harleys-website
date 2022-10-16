@@ -27,7 +27,7 @@
     "start": "yarn start:server & yarn start:scss",
     "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
     "start:scss": "sass --no-source-map -w www/css",
-    "build": "rm -rf public && rollup -c ./rollup.config.mjs",
+    "build": "rm -rf public && yarn build:ssg:blog && rollup -c ./rollup.config.mjs",
     "build:ssg:blog": "esr .bin/ssg.mjs --template www/html/blog/template.html",
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html --root-dir public"
   },

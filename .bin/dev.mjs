@@ -1,12 +1,11 @@
 /**
- * dev.js -- a helper script for selecting js modules to run in a dev environment
+ * dev.js -- development environment boot script
  *
- * finds directories in www/js
- * - each directory is a yarn workspace
- * lists each workspace using inquirer.js
- * plugs the chosen module into this command:
+ * This script finds js modules with a development environment at `www/js`.
+ * Each directory that is a yarn workspace is listed in the console via inquirer.
+ * Next, the user selects which workspace they want to run.
+ * Finally, the chosen module is plugged into this command:
  * `yarn workspace @harleys-website/X dev`
- *
  */
 
 import chalk from "chalk";

@@ -25,7 +25,6 @@
     |- /2020                
         |- article.html     <-- this is the LOCAL artcle slot override
         |- index.html       <-- ssg'd file w/ LOCAL article and GLOBAL header
- *
  */
 
 import { readFileSync, writeFileSync } from "fs";

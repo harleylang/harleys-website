@@ -63,7 +63,9 @@ span,
 code,
 button,
 abbr,
-small {
+small,
+li,
+time {
   color: rgba(var(--col-fg-default));
 }
 

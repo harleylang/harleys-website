@@ -25,7 +25,7 @@ const dir = join(__dirname, "..", "www", "js", "components");
 
 function getDirectories(path) {
   return fs.readdirSync(path).filter(function (file) {
-    return fs.statSync(path + "/" + file).isDirectory();
+    return fs.statSync(join(path, file)).isDirectory();
   });
 }
 

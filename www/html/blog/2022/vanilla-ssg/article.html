@@ -1,22 +1,32 @@
 <section>
   <p>
-    Recently I wanted to start writing technical blog posts about my research on
-    various web development topics. Before I began, my first task involved
-    researching how I could architect a web environment that would make
-    publishing simple and easy to use. So I aimed to meet the following
-    requirements:
+    Writing can be as tedious as publishing, but the pain of publishing can be turned
+    into a quick and easy experience with the help of the right software. Sites like 
+    Blogger and Medium, as well as products like Wordpress are among the easiest and 
+    most popular solutions. For me however, I wanted to make my own solution because, 
+    well, damn it, this is my website.
+    <u><em>How hard can it really be to write software to publish blog posts?</em></u>
+  </p>
+  <p>
+    So I took a stab at writing my own solution, that's what I'll describe here in this
+    blog post. And for my ideal self-publication experience, my custom-built software 
+    needed to give me the ability to:
   </p>
   <ul>
-    <li>
-      I want to write blog posts in plain HTML, nothing fancy like markdown.
-    </li>
-    <li>
-      I want to save my blog posts to files, no need for a database at this
-      time.
-    </li>
-    <li>I want to create the system myself, for fun.</li>
-    <li>I want to avoid javascript frameworks, how hard could it be?</li>
+    <li>write blog posts in plain HTML, nothing fancy like markdown,</li>
+    <li>save my blog posts to files, avoiding the need for databases,</li>
+    <li>easily integrate into my current site styles, for consistency,</li>
+    <li>avoid javascript frameworks, to keep my site light and quick,</li>
+    <li>create the system myself, for the sake of fun.</li>
   </ul>
+  <p>I soon realized what I needed was static site generation.</p>
+</section>
+<section>
+  <h2>Static Site Generation</h2>
+  <p>more to write soon....</p>
+</section>
+<section>
+  <h2>My Solution</h2>
   <p>
     Currently my personal website follows a simple folder structure recommended
     in the
@@ -26,21 +36,14 @@
     >
     guide:
   </p>
-  <pre>
-    <code>
-      www
-      └── css
-          └──  ... css assets in here
-      └── html
-          ├── index.html
-          └── ... other html
-      └── js
-          └──  ... js assets in here
-    </code>
-  </pre>
-  <p>I soon realized I needed static site generation.</p>
-</section>
-<section>
-  <h2>Static Site Generation</h2>
-  <p>more to write soon....</p>
+<pre><code>
+  www
+  └── css
+      └──  ... css assets in here
+  └── html
+      ├── index.html
+      └── ... other html
+  └── js
+      └──  ... js assets in here
+</code></pre>
 </section>

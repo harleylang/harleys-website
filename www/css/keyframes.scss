@@ -82,11 +82,11 @@
   }
 }
 
-@keyframes width-grow {
+@keyframes slide-right {
   0% {
-    width: 0%;
+    right: 0;
   }
   100% {
-    width: var(--width);
+    right: -100%;
   }
 }

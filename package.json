@@ -28,7 +28,7 @@
     "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
     "start:scss": "sass --no-source-map -w www/css",
     "start:ssg": "yarn start:ssg:blog",
-    "start:ssg:blog": "esr .bin/watch.mjs --dir www/html/blog/ --ignore index.html --cmd 'yarn build:ssg:blog'",
+    "start:ssg:blog": "esr .bin/watch.mjs --dir www/html/blog --ignore index.html --cmd 'yarn build:ssg:blog'",
     "build": "rm -rf public && yarn build:ssg:blog && yarn sass && rollup -c ./rollup.config.mjs",
     "build:ssg:blog": "esr .bin/ssg.mjs --template www/html/blog/template.html && prettier --write www/html/blog/**/index.html",
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html --root-dir public"

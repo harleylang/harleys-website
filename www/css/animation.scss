@@ -1,0 +1,7 @@
+.width-grow {
+  --width-grow-duration: 1.5s;
+  @media (prefers-reduced-motion) {
+    --width-grow-duration: 0s;
+  }
+  animation: width-grow var(--width-grow-duration) cubic-bezier(0.27, 1.32, 0.25, 1);
+}

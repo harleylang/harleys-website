@@ -81,3 +81,12 @@
       transform: translate(3px, 1px) scale(.95, .95);
   }
 }
+
+@keyframes width-grow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--width);
+  }
+}

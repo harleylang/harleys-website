@@ -34,9 +34,9 @@
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html --root-dir public"
   },
   "dependencies": {
+    "@harleys-website/hyperlink-precache": "link:../www/js/modules/hyperlink-precache",
     "@harleys-website/me-carousel": "link:../www/js/components/me-carousel",
     "@harleys-website/me-darkmode-toggle": "link:../www/js/components/me-darkmode-toggle",
-    "@harleys-website/hyperlink-precache": "link:../www/js/modules/hyperlink-precache",
     "@harleys-website/show-html-comments": "link:../www/js/components/show-html-comments",
     "@web/rollup-plugin-html": "^1.11.0",
     "rollup": "^2.79.0"
@@ -47,6 +47,7 @@
     "@web/dev-server": "^0.1.29",
     "@web/dev-server-esbuild": "^0.2.16",
     "chalk": "^5.0.1",
+    "chokidar": "^3.5.3",
     "esbuild-runner": "^2.2.1",
     "eslint": "^8.18.0",
     "eslint-config-airbnb-base": "^15.0.0",

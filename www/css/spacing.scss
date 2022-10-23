@@ -1,15 +1,69 @@
+$spacing-array: (0,5,8,10,12,15,16,18,20,25,30,35,40,45,50);
+
 .margin {
-  &-top {
-    &-20 {
-      margin-top: 20px !important;
+  @each $i in $spacing-array {
+    &-#{$i} {
+      margin: #{$i}px !important;
+    }
+  } 
+  $edges: (top, bottom, left, right);
+  @each $e in $edges {
+    &-#{$e} {
+      @each $i in $spacing-array {
+        &-#{$i} {
+          margin-#{$e}: #{$i}px !important;
+        }
+      } 
     }
   }
-  &-bottom {
-    &-20 {
-      margin-bottom: 20px !important;
+  &-tb {
+    @each $i in $spacing-array {
+      &-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+      }
+    } 
+  }
+  &-lr {
+    @each $i in $spacing-array {
+      &-#{$i} {
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
+      }
+    } 
+  }
+}
+
+.padding {
+  @each $i in $spacing-array {
+    &-#{$i} {
+      padding: #{$i}px !important;
     }
-    &-30 {
-      margin-bottom: 30px !important;
+  } 
+  $edges: (top, bottom, left, right);
+  @each $e in $edges {
+    &-#{$e} {
+      @each $i in $spacing-array {
+        &-#{$i} {
+          padding-#{$e}: #{$i}px !important;
+        }
+      } 
     }
+  }
+  &-tb {
+    @each $i in $spacing-array {
+      &-#{$i} {
+        padding-top: #{$i}px !important;
+        padding-bottom: #{$i}px !important;
+      }
+    } 
+  }
+  &-lr {
+    @each $i in $spacing-array {
+      &-#{$i} {
+        padding-left: #{$i}px !important;
+        padding-right: #{$i}px !important;
+      }
+    } 
   }
 }

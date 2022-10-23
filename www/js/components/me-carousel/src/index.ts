@@ -7,11 +7,11 @@ template.innerHTML = `
 <style>${carouselBase}</style>
 <form name="carousel">
   <ol id="slides">
-    <div id="controls" class="controls">
+    <li id="controls" class="controls">
       <button class="button--prev" type="button"><span>&lt</span></button>
       <div id="labels" class="labels"></div>
       <button class="button--next" type="button"><span>&gt</span></button>
-    </div>
+    </li>
   </ol>
 </form>
 `;

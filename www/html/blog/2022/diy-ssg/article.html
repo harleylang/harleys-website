@@ -301,8 +301,25 @@
     >, this script will take a template, walk a directory, and generate static
     content for all matching slots.
   </p>
-  <section>
-    <h2>Wrapping Up</h2>
-    <p></p>
-  </section>
+</section>
+<section>
+  <h2>Wrapping Up</h2>
+  <p>
+    It is not much but it'll do. What I have described here is my high-level
+    approach to designing a custom SSG tool. Credit owed to 
+    <a
+      href="https://ogzhanolguncu.com/blog/react-ssr-ssg-from-scratch#ssg-on-top-of-ssr"
+      >this article that describes SSG in node</a
+    >, which I drew a little bit of influence from when creating my solution.
+  </p>
+  <p>
+    There are certainly opportunities to improve my solution, some ideas of mine include:
+  </p>
+  <ul class="flex flex-column flex-gap-10">
+    <li>Single Page SSG: rather than recursively generating files from a base directory, it would be nice to target just a single directory for cases where there may be many subdirectories (e.g., generation on the fly).</li>
+    <li>SSG from a fountain: pull data from a remote source and plug the returned content into a template.</li>
+    <li>Hybrid SSG: pull <em>some</em> data from a remote source (e.g., define an endpoint within a file to ping, parse, and print).</li>
+    <li>SSR On Top: If the above 3 tasks are implemented then it would be interesting to link unfound pages with an SSG runner; is this when SSG becomes SSR??</li>
+    <li>CMS layer, but let's not get to far ahead of ourselves.</li>
+  </ul>
 </section>

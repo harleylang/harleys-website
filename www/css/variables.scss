@@ -1,3 +1,7 @@
+@function shade($shadeCode, $amount) {
+  @return hsl(var(--#{$shadeCode}_h), var(--#{$shadeCode}_s), calc(#{var(--#{$shadeCode}_l)} + #{$amount}));
+}
+
 :host,
 body {
   --dp: 16px;
@@ -8,20 +12,26 @@ body {
   --light-black: 29, 30, 34;
   --black: 20, 20, 20;
   --neon-blue: 7, 0, 184;
+  --neon-blue_h: 242;
+  --neon-blue_s: 100%;
+  --neon-blue_l: 36.1%; 
   --neon-green: 0, 255, 136;
   --light-blue: 237, 253, 253;
   --gradient-neon-blue-green: linear-gradient(
     0deg,
-    rgb(var(--neon-blue)) 0%,
+    #{shade('neon-blue', 25%)} 0%,
     rgb(var(--neon-green)) 100%
   );
   --purple: 131, 58, 180;
+  --purple_h: 276;
+  --purple_s: 51%;
+  --purple_l: 47%; 
   --orange: 253, 29, 29;
   --light-orange: 254, 240, 239;
   --yellow: 252, 176, 69;
   --gradient-purple-orange: linear-gradient(
     0deg,
-    rgb(var(--purple)) 0%,
+    #{shade('purple', 5%)} 0%,
     rgb(var(--orange)) 50%,
     rgb(var(--yellow)) 100%
   );

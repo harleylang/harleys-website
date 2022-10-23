@@ -107,11 +107,6 @@ blockquote {
   }
 }
 
-code {
-  width: 100%;
-  overflow-x: scroll;
-}
-
 dialog {
   width: 500px;
   max-width: 100%;
@@ -126,6 +121,11 @@ dialog {
   &:hover {
     cursor: pointer;
   }
+}
+
+pre {
+  width: 100%;
+  overflow-x: scroll;
 }
 
 summary {

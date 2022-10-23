@@ -1,5 +1,57 @@
+<script>
+  var points = 0;
+</script>
 <section>
-  <p>
+  <p id="skip">
+    <a href="#meat-and-potatoes">Click here to skip to the meat-and-potatoes</a
+    >. Otherwise you <em>will</em> end up reading a story about why I wrote this
+    article. It reads like a preface to an online recipe;
+    <abbr title="Your milage may vary">ymmv</abbr>.
+    <a href="#meat-and-potatoes"
+      >Last chance, click here NOW to skip to the good shit</a
+    >.
+  </p>
+  <p id="bait">
+    <a href="#"
+      >... ok now that the nerds are gone ... this one is for all those online
+      recipes fans out there ... click here ...</a
+    >
+  </p>
+  <dialog id="scoreboard"></dialog>
+  <p id="psych" class="hide">
+    <a href="#">oof, you got me ... ok let's skip ahead for real now ...</a>
+  </p>
+  <script>
+    (() => {
+      function baitAndSwitch() {
+        points += 1;
+        const scoreboard = document.getElementById("scoreboard");
+        if (scoreboard) {
+          scoreboard.innerHTML = `👌 psych, harley ${points} - you 0`;
+          scoreboard.showModal();
+        }
+        const skip = document.getElementById("skip");
+        const bait = document.getElementById("bait");
+        const psych = document.getElementById("psych");
+        if (skip) skip.classList.add("hide");
+        if (bait) bait.classList.add("hide");
+        if (psych) psych.classList.remove("hide");
+      }
+      function initialise() {
+        const bait = document.getElementById("bait");
+        bait.addEventListener("click", baitAndSwitch, false);
+        const psych = document.getElementById("psych");
+        psych.addEventListener("click", baitAndSwitch, false);
+        const scoreboard = document.getElementById("scoreboard");
+        scoreboard.addEventListener("click", function () {
+          scoreboard.close();
+        });
+      }
+      window.addEventListener("load", initialise, false);
+    })();
+  </script>
+  <hr />
+  <p class="extra">
     Writing can be as tedious as publishing, but the pain of publishing can be
     turned into a quick and easy experience with the help of the right software.
     Sites like Blogger and Medium, as well as products like Wordpress are among
@@ -103,7 +155,7 @@
   <p>Besides, I'm in the mood to build an SSG tool myself. So let's begin.</p>
 </section>
 <section>
-  <h2>My Solution</h2>
+  <h2 id="meat-and-potatoes">My Solution</h2>
   <p>
     Currently my personal website follows a simple folder structure used
     traditionally in server directories and recommended in the

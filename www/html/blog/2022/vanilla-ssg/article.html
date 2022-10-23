@@ -5,21 +5,21 @@
   <p id="skip">
     <a href="#meat-and-potatoes">Click here to skip to the meat-and-potatoes</a
     >. Otherwise you <em>will</em> end up reading a story about why I wrote this
-    article. It reads like a preface to an online recipe;
+    article. It reads like a preface to an online recipe and
     <abbr title="Your milage may vary">ymmv</abbr>.
     <a href="#meat-and-potatoes"
-      >Last chance, click here NOW to skip to the good shit</a
+      >Last chance, click here NOW to go to the good shit</a
     >.
   </p>
   <p id="bait">
-    <a href="#"
-      >... ok now that the nerds are gone ... this one is for all those online
-      recipes fans out there ... click here ...</a
+    ... ok now that the nerds are gone ... this one is for all the online
+      recipes fans out there ... <a id="click-bait" href="#"
+      >click here to reveal a bonus preface ...</a
     >
   </p>
   <dialog id="scoreboard"></dialog>
   <p id="psych" class="hide">
-    <a href="#">oof, you got me ... ok let's skip ahead for real now ...</a>
+    <a href="#">oof, got'ya ... ok for real now, let's skip ahead ...</a>
   </p>
   <script>
     (() => {
@@ -42,8 +42,8 @@
         if (psych) psych.classList.remove("hide");
       }
       function initialise() {
-        const bait = document.getElementById("bait");
-        bait.addEventListener("click", baitAndSwitch, false);
+        const clickBait = document.getElementById("click-bait");
+        clickBait.addEventListener("click", baitAndSwitch, false);
         const psych = document.getElementById("psych");
         psych.addEventListener("click", baitAndSwitch, false);
         const scoreboard = document.getElementById("scoreboard");

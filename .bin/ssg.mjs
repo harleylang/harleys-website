@@ -23,7 +23,7 @@
     |                           (global slots are not required; script will fail graciously)
     └── header.html          <-- this is the GLOBAL header slot default / fallback
     └── 2020                
-        └── article.html     <-- this is the LOCAL artcle slot override
+        └── article.html     <-- this is the LOCAL article slot override
         └── index.html       <-- SSG'd file w/ LOCAL article and GLOBAL header
  */
 

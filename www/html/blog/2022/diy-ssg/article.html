@@ -104,8 +104,8 @@
   </blockquote>
   <p>
     So SSG is a tool that generates static files and because those files are
-    static, pages load quickly. But what exactly do SSG tools do to
-    generate those static files, and when does this process happen? FreeCodeCamp
+    static, pages load quickly. But what exactly do SSG tools do to generate
+    those static files, and when does this process happen? FreeCodeCamp
     <a
       href="https://www.freecodecamp.org/news/static-site-generation-with-nextjs/"
       >describes SSG as a process of</a
@@ -245,5 +245,66 @@
     >
     is as little as 20 lines of node code. Not bad!
   </p>
-  <p></p>
+  <p>
+    <code>ssg.mjs</code> requires two arguments: "--base" (optional) and
+    "--template". If a base is not provided, the template's directory is assumed
+    to be the base directory. The template is HTML that includes content "slots"
+    within HTML comments using the following syntax:
+    <code>&lt;!--ssg:xyz.html--&gt;</code>.
+  </p>
+  <p>
+    Content slots are identified by parsing the template for the matching
+    syntax. For example, if the slot
+    <code>&lt;!--ssg:article.html--&gt;</code> is defined, then the SSG script
+    will walk recursively from the base directory to find files matching
+    "article.html". For each file found that matches the slot, a page is
+    generated. If multiple slots are defined and multiple matches are found in a
+    specific directory, the content for both files are injected into the
+    template and one file is generated.
+  </p>
+  <p>
+    Global slot content can be defined at the base directory. For example, if
+    the slot <code>&lt;!--ssg:header.html--&gt;</code> is defined at
+    "/base-dir/header.html", then the content within "/base-dir/header.html"
+    will be considered the global or fallback content to use for each page. For
+    example, if the SSG script finds a directory with only "article.html"
+    defined, then the global content for the header defined in
+    "/base-dir/header.html" will be used for that page. If however that same
+    directory contained a "header.html", that content is used for that slot
+    instead.
+  </p>
+  <p>
+    Here is a diagram to further illustrate how script will take a template and
+    apply it to all matching slots from the base directory:
+  </p>
+  <pre><code>
+    blog                     <-- "base" - nested folders are targeted for iteration
+    └── index.html           <-- this file is ignored
+    └── blog-template.html   <-- "template" - this file is the template
+    |                             - within this file are two slots:
+    |                             <!--ssg:article.html--> and <!--ssg:header.html-->
+    └── article.html         <-- this is the GLOBAL article slot default / fallback
+    |                           (global slots are not required; script will fail graciously)
+    └── header.html          <-- this is the GLOBAL header slot default / fallback
+    └── 2020/10                
+        └── article.html     <-- this is the LOCAL article slot override
+        └── index.html       <-- SSG'd file w/ LOCAL article and GLOBAL header
+    └── 2020/11                
+        └── article.html     <-- this is the LOCAL article slot override
+        └── header.html      <-- this is the LOCAL header slot override
+        └── index.html       <-- SSG'd file w/ both LOCAL article AND header
+</code></pre>
+  <p>
+    <a
+      href="https://github.com/harleylang/harleys-website/blob/main/.bin/ssg.mjs"
+      >With just under 60 lines of source code</a
+    >, this script will take a template, walk a directory, and generate static
+    content for all matching slots.
+  </p>
+  <section>
+    <h2>Wrapping Up</h2>
+    <p>
+
+    </p>
+  </section>
 </section>

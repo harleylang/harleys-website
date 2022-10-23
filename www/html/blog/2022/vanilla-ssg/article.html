@@ -28,8 +28,11 @@
         const scoreboard = document.getElementById("scoreboard");
         if (scoreboard) {
           scoreboard.innerHTML = `👌 psych, harley ${points} - you 0`;
-          if (scoreboard.showModal) { scoreboard.showModal(); }
-          else { scoreboard.setAttribute('open', true); };
+          if (scoreboard.showModal) {
+            scoreboard.showModal();
+          } else {
+            scoreboard.setAttribute("open", true);
+          }
         }
         const skip = document.getElementById("skip");
         const bait = document.getElementById("bait");
@@ -45,8 +48,11 @@
         psych.addEventListener("click", baitAndSwitch, false);
         const scoreboard = document.getElementById("scoreboard");
         scoreboard.addEventListener("click", function () {
-          if (scoreboard.close) { scoreboard.close(); } 
-          else { scoreboard.removeAttribute('open'); };
+          if (scoreboard.close) {
+            scoreboard.close();
+          } else {
+            scoreboard.removeAttribute("open");
+          }
         });
       }
       window.addEventListener("load", initialise, false);
@@ -138,7 +144,9 @@
       <a
         href="https://github.com/harleylang/harleys-website/blob/main/www/js/components/me-carousel/src/index.ts"
         >poloroid-like carousel</a
-      >).
+      >). (And because I wanted my blog posts to be written in HTML, I could
+      even write one-off javascript interactivity, like the "cooking recipe" 
+      easter egg functionality at the beginning of this post.)
     </p>
     <p class="margin-left-20">
       I just haven't written interactivity that requires stateful layers or

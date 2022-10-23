@@ -1,3 +1,4 @@
+@import "./_variables.scss";
 @import "./fonts/acme.scss";
 @import "./flex.scss";
 @import "./keyframes.scss";
@@ -5,7 +6,6 @@
 @import "./theme.scss";
 @import "./typography.scss";
 @import "./utilities.scss";
-@import "./variables.scss";
 
 body {
   height: fit-content;

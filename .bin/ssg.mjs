@@ -1,10 +1,8 @@
 /**
  * ssg.mjs -- static site generation script
- *
  * Given a template and a target directory base, this script will
  * iterate over the nested directories from the base directory and
  * files that match the content specified in the template.
- *  
  * @arg {string | undefined} base
  * The directory to target for ssg iteration. If not defined,
  * the template's path is used for iteration.
@@ -22,9 +20,13 @@
     └── article.html         <-- this is the GLOBAL article slot default / fallback
     |                           (global slots are not required; script will fail graciously)
     └── header.html          <-- this is the GLOBAL header slot default / fallback
-    └── 2020                
+    └── 2020/10                
         └── article.html     <-- this is the LOCAL article slot override
         └── index.html       <-- SSG'd file w/ LOCAL article and GLOBAL header
+    └── 2020/11                
+        └── article.html     <-- this is the LOCAL article slot override
+        └── header.html      <-- this is the LOCAL header slot override
+        └── index.html       <-- SSG'd file w/ both LOCAL article AND header
  */
 
 import { readFileSync, writeFileSync } from "fs";

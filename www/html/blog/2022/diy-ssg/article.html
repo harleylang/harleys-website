@@ -283,21 +283,21 @@
     and apply it to all matching slots from the base directory:
   </p>
   <pre><code>
-    blog                     <-- "base" - nested folders are targeted for iteration
-    └── index.html           <-- this file is ignored
-    └── blog-template.html   <-- "template" - this file is the template
-    |                             - within this file are two slots:
-    |                             &lt;!--ssg:article.html--&gt; and &lt;!--ssg:header.html--&gt;
-    └── article.html         <-- this is the GLOBAL article slot default / fallback
-    |                           (global slots are not required; script will fail graciously)
-    └── header.html          <-- this is the GLOBAL header slot default / fallback
+    blog                     -- "base" - nested folders are targeted for iteration
+    └── index.html           -- this file is ignored
+    └── blog-template.html   -- "template" - this file is the template
+    |                             -- within this file are two slots:
+    |                             -- &lt;!--ssg:article.html--&gt; and &lt;!--ssg:header.html--&gt;
+    └── article.html         -- this is the GLOBAL article slot default / fallback
+    |                             -- (global slots are not required; script will fail graciously)
+    └── header.html          -- this is the GLOBAL header slot default / fallback
     └── 2020/10                
-        └── article.html     <-- this is the LOCAL article slot override
-        └── index.html       <-- SSG'd file w/ LOCAL article and GLOBAL header
+        └── article.html     -- this is the LOCAL article slot override
+        └── index.html       -- SSG'd file w/ LOCAL article and GLOBAL header
     └── 2020/11                
-        └── article.html     <-- this is the LOCAL article slot override
-        └── header.html      <-- this is the LOCAL header slot override
-        └── index.html       <-- SSG'd file w/ both LOCAL article AND header
+        └── article.html     -- this is the LOCAL article slot override
+        └── header.html      -- this is the LOCAL header slot override
+        └── index.html       -- SSG'd file w/ both LOCAL article AND header
 </code></pre>
   <p>
     For a more complex example, take a

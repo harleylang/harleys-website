@@ -82,3 +82,19 @@ body {
 summary {
   cursor: pointer;
 }
+
+dialog {
+  width: 500px;
+  max-width: 100%;
+  &::backdrop {
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(3px);
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

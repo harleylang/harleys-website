@@ -2,6 +2,7 @@ body.light-mode {
   --col-fg-default: var(--dark-grey);
   --col-bg-default: var(--white);
   --col-bg-card-dark: var(--light-black);
+  --col-bg-card-light: var(--light-orange);
   --col-gradient: var(--gradient-purple-orange);
   --col-gradient-fallback: var(--purple);
   --col-shadow: var(--light-grey);
@@ -16,6 +17,7 @@ body.light-mode {
     --col-fg-default: var(--dark-grey);
     --col-bg-default: var(--white);
     --col-bg-card-dark: var(--light-black);
+    --col-bg-card-light: var(--light-orange);
     --col-gradient: var(--gradient-purple-orange);
     --col-gradient-fallback: var(--purple);
     --col-shadow: var(--light-grey);
@@ -29,6 +31,7 @@ body.dark-mode {
   --col-fg-default: var(--grey);
   --col-bg-default: var(--black);
   --col-bg-card-dark: var(--light-black);
+  --col-bg-card-light: var(--light-blue);
   --col-gradient: var(--gradient-neon-blue-green);
   --col-gradient-fallback: var(--neon-blue);
   --col-shadow: var(--white);
@@ -43,6 +46,7 @@ body.dark-mode {
     --col-fg-default: var(--grey);
     --col-bg-default: var(--black);
     --col-bg-card-dark: var(--light-black);
+    --col-bg-card-light: var(--light-blue);
     --col-gradient: var(--gradient-neon-blue-green);
     --col-gradient-fallback: var(--neon-blue);
     --col-shadow: var(--white);

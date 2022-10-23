@@ -9,6 +9,7 @@ body {
   --black: 20, 20, 20;
   --neon-blue: 7, 0, 184;
   --neon-green: 0, 255, 136;
+  --light-blue: 237, 253, 253;
   --gradient-neon-blue-green: linear-gradient(
     0deg,
     rgb(var(--neon-blue)) 0%,
@@ -16,6 +17,7 @@ body {
   );
   --purple: 131, 58, 180;
   --orange: 253, 29, 29;
+  --light-orange: 254, 240, 239;
   --yellow: 252, 176, 69;
   --gradient-purple-orange: linear-gradient(
     0deg,

@@ -137,8 +137,8 @@ class Carousel extends HTMLElement {
   // eslint-disable-next-line class-methods-use-this
   loadFonts() {
     const fonts = [
-      "https://fonts.googleapis.com/css?family=Permanent Marker",
-      "https://fonts.googleapis.com/css2?family=Chewy",
+      "https://fonts.googleapis.com/css?family=Permanent Marker&display=swap",
+      "https://fonts.googleapis.com/css2?family=Chewy&display=swap",
     ];
     const linksInHead = Array.from(document.head.children)
       .filter(

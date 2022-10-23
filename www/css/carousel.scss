@@ -71,12 +71,14 @@ form {
           &:nth-of-type(1) {
             font-family: "Permanent Marker";
             font-size: 36px;
+            font-display: swap;
             text-align: center;
             margin: 16px 0px;
           }
         }
         p {
           font-family: "Chewy";
+          font-display: swap;
         }
       }
     }
@@ -110,6 +112,7 @@ form {
       button {
         font-family: "Permanent Marker";
         font-size: 40px;
+        font-display: swap;
         padding: 0;
         border-radius: 50%;
         background: rgb(var(--white));

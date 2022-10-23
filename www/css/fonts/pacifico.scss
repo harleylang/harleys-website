@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
 
 @mixin font-pacifico {
   font-family: "Pacifico", serif;
   font-size: 16px;
+  font-display: swap;
 }
 
 .pacifico {

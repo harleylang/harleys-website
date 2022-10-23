@@ -1,17 +1,22 @@
 <section>
   <p>
-    Writing can be as tedious as publishing, but the pain of publishing can be turned
-    into a quick and easy experience with the help of the right software. Sites like 
-    Blogger and Medium, as well as products like Wordpress are among the easiest and 
-    most popular solutions for blogging. In my case, I wanted to make my own solution 
-    because damn it, this is my website.
-    <u><em>How hard can it really be to write software to publish blog posts?</em></u>
+    Writing can be as tedious as publishing, but the pain of publishing can be
+    turned into a quick and easy experience with the help of the right software.
+    Sites like Blogger and Medium, as well as products like Wordpress are among
+    the easiest and most popular solutions for blogging. In my case, I wanted to
+    make my own solution because damn it, I'm a web developer and this is my
+    website.
+    <u
+      ><em
+        >How hard can it really be to write software to publish blog posts?</em
+      ></u
+    >
   </p>
   <p>
-    So I took a stab at writing my own solution, that's what I'll describe here in this
-    blog post. My solution needed to match a few criteria that I felt were my ideal 
-    self-publication experience. To that end, I needed my custom blogging software to
-    give me the ability to:
+    So I took a stab at writing my own solution, that's what I'll describe here
+    in this blog post. I sought out to create a solution that matched a few
+    criteria that I imagined would be my ideal self-publication experience. In
+    particular, I needed my custom blogging software to give me the ability to:
   </p>
   <ul>
     <li>write blog posts in plain HTML, nothing fancy like markdown,</li>
@@ -20,24 +25,95 @@
     <li>avoid javascript frameworks, to keep my site light and quick,</li>
     <li>create the system myself, for the sake of fun.</li>
   </ul>
-  <p>I soon realized what I needed was static site generation.</p>
+  <p>I realized I needed static site generation.</p>
 </section>
 <section>
-  <h2>Static Site Generation</h2>
-  <p>more to write soon....</p>
+  <h2>Static Site Generation (SSG)</h2>
+  <p>
+    What the <em>he||</em> is SSG and why would we use it? Cloudflare
+    <a
+      href="https://www.cloudflare.com/learning/performance/static-site-generator/"
+      >defines SSG as </a
+    >...
+  </p>
+  <blockquote>
+    ... a tool that generates a full static HTML website based on raw data and a
+    set of templates. Essentially, a static site generator automates the task of
+    coding individual HTML pages and gets those pages ready to serve to users
+    ahead of time. Because these HTML pages are pre-built, they can load very
+    quickly in users' browsers.
+  </blockquote>
+  <p>
+    So SSG is a tool that generates static files and because those files are
+    static, pages load more quickly. But what exactly do SSG tools do to
+    generate those static files, and when does this process happen? FreeCodeCamp
+    <a
+      href="https://www.freecodecamp.org/news/static-site-generation-with-nextjs/"
+      >describes SSG as a process of</a
+    >
+    ...
+  </p>
+  <blockquote>
+    ... compiling and rendering a website or app at build time. The output is a
+    bunch of static files, including the HTML file itself and assets like
+    JavaScript and CSS.
+  </blockquote>
+  <p>
+    The same FreeCodeCamp article above mentions
+    <a href="https://nextjs.org/">Next.js</a> as an option for applications
+    built in React, which would give me excellent control and out-of-the-box
+    config for performing SSG.
+  </p>
+  <details>
+    <summary>
+      Unfortunately Next.js is not a good option for me simply because my
+      personal website does not use React. I briefly unpacked this tangent,
+      click here to read more.
+    </summary>
+    <p class="margin-left-20">
+      This probably deserves a blog post in-and-of-itself, but for illustration,
+      most interactivity on my site is either written in typescript and compiled
+      down to a javascript module (e.g., see my
+      <a
+        href="https://github.com/harleylang/harleys-website/blob/main/www/js/modules/show-html-comments/src/index.ts"
+        >show-html-comments</a
+      >
+      module; it's responsible for
+      <a href="../index.html">the HTML comment easter egg on my about page</a>),
+      or a small web component (e.g., see my
+      <a
+        href="https://github.com/harleylang/harleys-website/blob/main/www/js/components/me-carousel/src/index.ts"
+        >poloroid-like carousel</a
+      >).
+    </p>
+    <p class="margin-left-20">
+      I just haven't written interactivity that requires stateful layers or
+      super complex user experiences to justify reaching for javascript
+      frameworks (yet). Instead, my use cases are small and discrete, which can
+      be perfectly addressed by importing small and discrete global javascript
+      modules.
+    </p>
+    <p class="margin-left-20">
+      This allows me to easily add-and-remove scripts to different pages, as
+      well as gain a performance boost because each script is bundled and loaded
+      separately. So although I am a big fan of React, for now I'd prefer an
+      option that will keep my javascript overhead light.
+    </p>
+  </details>
+  <p>Besides, I'm in the mood to build an SSG tool myself. So let's begin.</p>
 </section>
 <section>
   <h2>My Solution</h2>
   <p>
-    Currently my personal website follows a simple folder structure recommended
-    in the
+    Currently my personal website follows a simple folder structure used
+    traditionally in server directories and recommended in the
     <a
       href="https://modern-web.dev/guides/going-buildless/serving/#serving-web-content"
       >modern web dev</a
     >
     guide:
   </p>
-<pre><code>
+  <pre><code>
   www
   └── css
       └──  ... css assets in here

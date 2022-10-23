@@ -28,7 +28,8 @@
         const scoreboard = document.getElementById("scoreboard");
         if (scoreboard) {
           scoreboard.innerHTML = `👌 psych, harley ${points} - you 0`;
-          scoreboard.showModal();
+          if (scoreboard.showModal) { scoreboard.showModal(); }
+          else { scoreboard.setAttribute('open', true); };
         }
         const skip = document.getElementById("skip");
         const bait = document.getElementById("bait");
@@ -44,7 +45,8 @@
         psych.addEventListener("click", baitAndSwitch, false);
         const scoreboard = document.getElementById("scoreboard");
         scoreboard.addEventListener("click", function () {
-          scoreboard.close();
+          if (scoreboard.close) { scoreboard.close(); } 
+          else { scoreboard.removeAttribute('open'); };
         });
       }
       window.addEventListener("load", initialise, false);

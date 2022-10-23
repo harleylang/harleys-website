@@ -69,10 +69,16 @@ button,
 abbr,
 small,
 li,
-time {
+time,
+blockquote,
+details, summary {
   color: rgba(var(--col-fg-default));
 }
 
 body {
   background-color: rgba(var(--col-bg-default));
+}
+
+summary {
+  cursor: pointer;
 }

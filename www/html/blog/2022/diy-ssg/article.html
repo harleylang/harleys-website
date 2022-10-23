@@ -189,7 +189,8 @@
 </code></pre>
   <p>
     To get started, I updated my <code>package.json</code> with the following
-    scripts that will trigger my custom SSG script in two situations:
+    scripts that will trigger my custom SSG script in two situations, hot module
+    reloading and builds:
   </p>
   <pre><code>
   "start": "yarn start:server & yarn start:scss & yarn start:ssg",
@@ -232,7 +233,7 @@
     <code>watch.mjs</code> is a handy script that will watch a directory for
     file changes and trigger a side-effect command in response. In this case,
     the command <code>yarn build:ssg:blog</code> runs in response to file
-    changes. Essentially this provides hot-module-reloading in my local
+    changes. Essentially this provides hot module reloading (HMR) in my local
     development environment for all SSG'd content. This means that I can make
     changes to a blog file, save it, and immediately see the SSG'd version of
     that blog post in my browser. Much of the heavy lifting for this
@@ -246,11 +247,11 @@
     is as little as 20 lines of node code. Not bad!
   </p>
   <p>
-    <code>ssg.mjs</code> requires two arguments: "--base" (optional) and
-    "--template". If a base is not provided, the template's directory is assumed
-    to be the base directory. The template is HTML that includes content "slots"
-    within HTML comments using the following syntax:
-    <code>&lt;!--ssg:xyz.html--&gt;</code>.
+    For both HMR and builds, I call <code>ssg.mjs</code>. This script requires
+    two arguments: "--base" (optional) and "--template". If a base is not
+    provided, the template's directory is assumed to be the base directory. The
+    template is HTML that includes content "slots" within HTML comments using
+    the following syntax: <code>&lt;!--ssg:xyz.html--&gt;</code>.
   </p>
   <p>
     Content slots are identified by parsing the template for the matching
@@ -274,15 +275,15 @@
     instead.
   </p>
   <p>
-    Here is a diagram to further illustrate how script will take a template and
-    apply it to all matching slots from the base directory:
+    Here is a diagram to further illustrate how the script will take a template
+    and apply it to all matching slots from the base directory:
   </p>
   <pre><code>
     blog                     <-- "base" - nested folders are targeted for iteration
     └── index.html           <-- this file is ignored
     └── blog-template.html   <-- "template" - this file is the template
     |                             - within this file are two slots:
-    |                             <!--ssg:article.html--> and <!--ssg:header.html-->
+    |                             &lt;!--ssg:article.html--&gt; and &lt;!--ssg:header.html--&gt;
     └── article.html         <-- this is the GLOBAL article slot default / fallback
     |                           (global slots are not required; script will fail graciously)
     └── header.html          <-- this is the GLOBAL header slot default / fallback
@@ -300,7 +301,8 @@
       href="https://github.com/harleylang/harleys-website/tree/a67b1c48/www/html/blog"
       >look at my blog directory</a
     >
-    as of the publication of this blog post.
+    as-of the publication of this blog post. (It looks similar to the above
+    diagram, but with more slots!)
   </p>
   <p>
     <a
@@ -340,8 +342,10 @@
     </li>
     <li>
       SSR On Top: If the above 3 tasks are implemented then it would be
-      interesting to link unfound pages with an SSG runner; is this when SSG
-      becomes SSR??
+      interesting to respond to unfound pages within a known SSG target with an
+      SSG runner, for SSG on-the-fly. This might be helpful for cases where
+      there are hundreds or more entries to generate. (Is this when SSG becomes
+      SSR??)
     </li>
     <li>CMS layer, but let's not get to far ahead of ourselves.</li>
   </ul>

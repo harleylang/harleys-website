@@ -14,17 +14,17 @@
  * For each directory in the base path that includes at least 1 slot,
  * an `index.html` is generated with 
  * @example Folder structure:
-    /blog                   <-- "base" - nested folders are targeted for iteration
-    |- index.html           <-- this file is ignored
-    |- blog-template.html   <-- "template" - this file is the template
-    |                         - within this file are two slots:
-    |                           <!--ssg:article.html--> and <!--ssg:header.html-->
-    |- article.html         <-- this is the GLOBAL article slot default / fallback
+    blog                     <-- "base" - nested folders are targeted for iteration
+    └── index.html           <-- this file is ignored
+    └── blog-template.html   <-- "template" - this file is the template
+    |                             - within this file are two slots:
+    |                             <!--ssg:article.html--> and <!--ssg:header.html-->
+    └── article.html         <-- this is the GLOBAL article slot default / fallback
     |                           (global slots are not required; script will fail graciously)
-    |- header.html          <-- this is the GLOBAL header slot default / fallback
-    |- /2020                
-        |- article.html     <-- this is the LOCAL artcle slot override
-        |- index.html       <-- ssg'd file w/ LOCAL article and GLOBAL header
+    └── header.html          <-- this is the GLOBAL header slot default / fallback
+    └── 2020                
+        └── article.html     <-- this is the LOCAL artcle slot override
+        └── index.html       <-- SSG'd file w/ LOCAL article and GLOBAL header
  */
 
 import { readFileSync, writeFileSync } from "fs";

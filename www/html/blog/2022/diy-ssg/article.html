@@ -13,9 +13,8 @@
   </p>
   <p id="bait">
     ... ok now that the nerds are gone ... this one is for all the online
-      recipes fans out there ... <a id="click-bait" href="#"
-      >click here to reveal a bonus preface ...</a
-    >
+    recipes fans out there ...
+    <a id="click-bait" href="#">click here to reveal a bonus preface ...</a>
   </p>
   <dialog id="scoreboard"></dialog>
   <p id="psych" class="hide">
@@ -113,7 +112,7 @@
     >
     ...
   </p>
-  <blockquote>
+  <blockquote class="margin-tb-20">
     ... compiling and rendering a website or app at build time. The output is a
     bunch of static files, including the HTML file itself and assets like
     JavaScript and CSS.
@@ -145,7 +144,7 @@
         href="https://github.com/harleylang/harleys-website/blob/main/www/js/components/me-carousel/src/index.ts"
         >poloroid-like carousel</a
       >). (And because I wanted my blog posts to be written in HTML, I could
-      even write one-off javascript interactivity, like the "cooking recipe" 
+      even write one-off javascript interactivity, like the "cooking recipe"
       easter egg functionality at the beginning of this post.)
     </p>
     <p class="margin-left-20">
@@ -167,8 +166,8 @@
 <section>
   <h2 id="meat-and-potatoes">My Solution</h2>
   <p>
-    Currently my personal website follows a simple folder structure used
-    traditionally in server directories and recommended in the
+    Currently my personal website follows a simple folder structure that is
+    traditionally used in server directories, which is recommended in the
     <a
       href="https://modern-web.dev/guides/going-buildless/serving/#serving-web-content"
       >modern web dev</a
@@ -185,4 +184,63 @@
   └── js
       └──  ... js assets in here
 </code></pre>
+  <p>
+    To get started, I updated my <code>package.json</code> with the following
+    scripts that will trigger my custom SSG script in two situations:
+  </p>
+  <pre><code>
+  "start": "yarn start:server & yarn start:scss & yarn start:ssg",
+  "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
+  "start:scss": "sass --no-source-map -w www/css --style compressed",
+  "start:ssg": "yarn start:ssg:blog",
+  "start:ssg:blog": "esr .bin/watch.mjs --dir www/html/blog --ignore index.html --cmd 'yarn build:ssg:blog'",
+  "build": "rm -rf public && yarn build:ssg && yarn sass && rollup -c ./rollup.config.mjs",
+  "build:ssg": "yarn build:ssg:blog",
+  "build:ssg:blog": "esr .bin/ssg.mjs --template www/html/blog/template.html && prettier --write www/html/blog/**/index.html",
+</code></pre>
+  <p>A couple critical additions here:</p>
+  <ol class="flex flex-column flex-gap-10">
+    <li>
+      <code>start</code> runs <code>start:ssg</code> and therefore runs
+      <code>start:ssg:blog</code> in parallel with other local development
+      config.
+    </li>
+    <ul>
+      <li>
+        Notice that <code>start:ssg:blog</code> calls
+        <code>.bin/watch.mjs</code>.
+      </li>
+      <li>
+        Also notice that <code>yarn build:ssg:blog</code> is passed as the "--cmd" argument to the
+        <code>.bin/watch.mjs</code> script.
+      </li>
+    </ul>
+    <li>
+      <code>build</code> runs <code>build:ssg</code> and therefore runs
+      <code>build:ssg:blog</code>.
+    </li>
+    <ul>
+      <li>
+        Notice that <code>build:ssg:blog</code> calls <code>.bin/ssg.mjg</code>.
+      </li>
+    </ul>
+  </ol>
+  <p>
+    <code>watch.mjs</code> is a handy script that will watch a directory for
+    file changes and trigger a side-effect command in response. In this case,
+    the command <code>yarn build:ssg:blog</code> runs in response to file
+    changes. Essentially this provides hot-module-reloading in my local
+    development environment for all SSG'd content. This means that I can make
+    changes to a blog file, save it, and immediately see the SSG'd version of
+    that blog post in my browser. Much of the heavy lifting for this
+    functionality is provided by the
+    <a href="https://github.com/paulmillr/chokidar">chokidar</a> node library,
+    meaning
+    <a
+      href="https://github.com/harleylang/harleys-website/blob/main/.bin/watch.mjs"
+      >the source code for this watch script</a
+    >
+    is as little as 20 lines of node code. Not bad!
+  </p>
+  <p></p>
 </section>

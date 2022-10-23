@@ -79,8 +79,37 @@ body {
   background-color: rgba(var(--col-bg-default));
 }
 
-summary {
-  cursor: pointer;
+blockquote {
+  &:before {
+    position: relative;
+    left: -25px;
+    top: 15px;
+    content: open-quote;
+    font-size: 3.5em;
+    line-height: 0;
+    display: block;
+    width: 30px;
+  }
+  &:after {
+    position: relative;
+    left: calc(100% - 5px);
+    content: close-quote;
+    font-size: 3.5em;
+    line-height: 0;
+    display: block;
+    width: 30px;
+  } 
+  &:hover:before, &:hover:after {
+    animation-name: spin-with-skip;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+  }
+}
+
+code {
+  width: 100%;
+  overflow-x: scroll;
 }
 
 dialog {
@@ -97,4 +126,8 @@ dialog {
   &:hover {
     cursor: pointer;
   }
+}
+
+summary {
+  cursor: pointer;
 }

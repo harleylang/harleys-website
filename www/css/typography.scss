@@ -14,7 +14,8 @@ abbr,
 small,
 li, 
 summary,
-details {
+details,
+blockquote {
   font-family: helvetica, sans-serif;
 }
 
@@ -24,32 +25,6 @@ abbr {
 
 blockquote {
   font-style: italic;
-  margin-top: 24px;
-  &:before {
-    position: relative;
-    left: -25px;
-    top: 15px;
-    content: open-quote;
-    font-size: 3.5em;
-    line-height: 0;
-    display: block;
-    width: 30px;
-  }
-  &:after {
-    position: relative;
-    left: calc(100% - 5px);
-    content: close-quote;
-    font-size: 3.5em;
-    line-height: 0;
-    display: block;
-    width: 30px;
-  } 
-  &:hover:before, &:hover:after {
-    animation-name: spin-with-skip;
-    animation-duration: 1500ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in;
-  }
 }
 
 code {

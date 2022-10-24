@@ -4,8 +4,9 @@
   font-family: "Bubblegum Sans", sans-serif;
   font-size: 16px;
   font-display: swap;
+  line-height: 1;
 }
 
 .bubblegum {
-  @include font-bubblegum;
+  @include font-bubblegum();
 }

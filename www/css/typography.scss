@@ -1,4 +1,4 @@
-@import './fonts/bubblegum-sans.scss';
+@import './fonts/fondamento.scss';
 
 h1,
 h2,
@@ -52,7 +52,7 @@ code {
 }
 
 .silly {
-  @include font-bubblegum;
+  @include font-fondamento;
 }
 
 .gradient {

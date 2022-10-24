@@ -177,7 +177,7 @@
     >
     guide:
   </p>
-  <pre><code class="'langage-plaintext">
+  <pre><code class="language-plaintext">
   www
   └── css
       └──  ... css assets in here
@@ -192,7 +192,7 @@
     scripts that will trigger my custom SSG script in two situations, hot module
     reloading and builds:
   </p>
-  <pre><code>
+  <pre><code class="language-json">
   "start": "yarn start:server & yarn start:scss & yarn start:ssg",
   "start:server": "wds --config ./wds.config.mjs --app-index www/html/index.html",
   "start:scss": "sass --no-source-map -w www/css --style compressed",
@@ -321,7 +321,7 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
     Here is a diagram to further illustrate how the script will take a template
     and apply it to all matching slots from the base directory:
   </p>
-  <pre><code class="'langage-plaintext">
+  <pre><code class="language-plaintext">
     blog                     -- "base" - nested folders are targeted for iteration
     └── index.html           -- this file is ignored
     └── blog-template.html   -- "template" - this file is the template

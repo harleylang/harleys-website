@@ -203,32 +203,33 @@
   "build:ssg:blog": "esr .bin/ssg.mjs --template www/html/blog/template.html && prettier --write www/html/blog/**/index.html",
 </code></pre>
   <p>A couple critical additions here:</p>
-  <ol class="flex flex-column flex-gap-10">
+  <ol>
     <li>
       <code>start</code> runs <code>start:ssg</code> and therefore runs
       <code>start:ssg:blog</code> in parallel with other local development
       config.
     </li>
-    <ul>
-      <li>
-        Notice that <code>start:ssg:blog</code> calls
-        <code>.bin/watch.mjs</code>.
-      </li>
-      <li>
-        Also notice that <code>yarn build:ssg:blog</code> is passed as the
-        "--cmd" argument to the <code>.bin/watch.mjs</code> script.
-      </li>
-    </ul>
+  </ol>
+  <ul class="margin-left-20">
+    <li>
+      Notice that <code>start:ssg:blog</code> calls <code>.bin/watch.mjs</code>.
+    </li>
+    <li>
+      Also notice that <code>yarn build:ssg:blog</code> is passed as the "--cmd"
+      argument to the <code>.bin/watch.mjs</code> script.
+    </li>
+  </ul>
+  <ol>
     <li>
       <code>build</code> runs <code>build:ssg</code> and therefore runs
       <code>build:ssg:blog</code>.
     </li>
-    <ul>
-      <li>
-        Notice that <code>build:ssg:blog</code> calls <code>.bin/ssg.mjg</code>.
-      </li>
-    </ul>
   </ol>
+  <ul class="margin-left-20">
+    <li>
+      Notice that <code>build:ssg:blog</code> calls <code>.bin/ssg.mjg</code>.
+    </li>
+  </ul>
   <p>
     <code>watch.mjs</code> is a handy script that will watch a directory for
     file changes and trigger a side-effect command in response. In this case,
@@ -236,19 +237,20 @@
     changes. Essentially this provides hot module reloading (HMR) in my local
     development environment for all SSG'd content. This means that I can make
     changes to a blog file, save it, and immediately see the SSG'd version of
-    that blog post in my browser.</p>
+    that blog post in my browser.
+  </p>
   <details>
-    <summary>Much of the heavy lifting for this
-    functionality is provided by the
-    <a href="https://github.com/paulmillr/chokidar">chokidar</a> node library,
-    meaning
-    <a
-      href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/watch.mjs"
-      >the source code for this watch script</a
-    >
-    is as little as 20 lines of node code. Not bad!
+    <summary>
+      Much of the heavy lifting for this functionality is provided by the
+      <a href="https://github.com/paulmillr/chokidar">chokidar</a> node library,
+      meaning
+      <a
+        href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/watch.mjs"
+        >the source code for this watch script</a
+      >
+      is as little as 20 lines of node code. Not bad!
     </summary>
-<pre><code class="language-javascript">
+    <pre><code class="language-javascript">
 /**
  * watch.mjs -- file change side-effect script
  *
@@ -348,12 +350,14 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
     diagram, but with more slots!)
   </p>
   <details>
-    <summary><a
-      href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/ssg.mjs"
-      >With just under 60 lines of source code</a
-    >, <code>ssg.mjs</code> will take a template, walk a directory, and generate
-    static content for all matching slots.</summary>
-<pre><code class="language-javascript">
+    <summary>
+      <a
+        href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/ssg.mjs"
+        >With just under 60 lines of source code</a
+      >, <code>ssg.mjs</code> will take a template, walk a directory, and
+      generate static content for all matching slots.
+    </summary>
+    <pre><code class="language-javascript">
  /**
   * ssg.mjs -- static site generation script
   * Given a template and a target directory base, this script will

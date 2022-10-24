@@ -239,7 +239,7 @@
     changes to a blog file, save it, and immediately see the SSG'd version of
     that blog post in my browser.
   </p>
-  <details>
+  <details open>
     <summary>
       Much of the heavy lifting for this functionality is provided by the
       <a href="https://github.com/paulmillr/chokidar">chokidar</a> node library,
@@ -349,7 +349,7 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
     as-of the publication of this blog post. (It looks similar to the above
     diagram, but with more slots!)
   </p>
-  <details>
+  <details open>
     <summary>
       <a
         href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/ssg.mjs"

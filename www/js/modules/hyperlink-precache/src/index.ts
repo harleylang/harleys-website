@@ -72,11 +72,14 @@
     const scripts = doc.querySelectorAll("script");
     for (let i = 0; i < scripts.length; i += 1) {
       const script = scripts[i];
+      const scriptSrc = script.getAttribute("src") ?? "";
       const preloadLink = document.createElement("link");
-      const target = parseRelativePath({
-        src,
-        target: script.getAttribute("src") ?? "",
-      });
+      const target = scriptSrc.includes("http")
+        ? scriptSrc
+        : parseRelativePath({
+            src,
+            target: scriptSrc,
+          });
       // eslint-disable-next-line no-continue
       if (target.includes("__web-dev-server")) continue;
       preloadLink.href = target;
@@ -90,13 +93,16 @@
     const links = doc.querySelectorAll("link");
     for (let i = 0; i < links.length; i += 1) {
       const link = links[i];
+      const linkHref = link.getAttribute("href") ?? "";
       // eslint-disable-next-line no-continue
       if (link.getAttribute("rel") === "icon") continue; // esc header icons
       const preloadLink = document.createElement("link");
-      const target = parseRelativePath({
-        src,
-        target: link.getAttribute("href") ?? "",
-      });
+      const target = linkHref.includes("http")
+        ? linkHref
+        : parseRelativePath({
+            src,
+            target: linkHref,
+          });
       preloadLink.href = target;
       preloadLink.rel = "stylesheet preload prefetch";
       preloadLink.as = "style";

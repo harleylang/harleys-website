@@ -134,14 +134,14 @@
       most interactivity on my site is either written in typescript and compiled
       down to a javascript module (e.g., see my
       <a
-        href="https://github.com/harleylang/harleys-website/blob/e7decbc5/www/js/modules/show-html-comments/src/index.ts"
+        href="https://github.com/harleylang/harleys-website/blob/f6e30cd8/www/js/modules/show-html-comments/src/index.ts"
         >show-html-comments</a
       >
       module; it's responsible for
       <a href="../index.html">the HTML comment easter egg on my about page</a>),
       or a small web component (e.g., see my
       <a
-        href="https://github.com/harleylang/harleys-website/blob/e7decbc5/www/js/components/me-carousel/src/index.ts"
+        href="https://github.com/harleylang/harleys-website/blob/f6e30cd8/www/js/components/me-carousel/src/index.ts"
         >poloroid-like carousel</a
       >). (And because I wanted my blog posts to be written in HTML, I could
       even write one-off javascript interactivity, like the "cooking recipe"
@@ -245,7 +245,7 @@
       <a href="https://github.com/paulmillr/chokidar">chokidar</a> node library,
       meaning
       <a
-        href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/watch.mjs"
+        href="https://github.com/harleylang/harleys-website/blob/f6e30cd8/.bin/watch.mjs"
         >the source code for this watch script</a
       >
       is as little as 20 lines of node code. Not bad!
@@ -294,7 +294,7 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
     template is HTML that includes content "slots" within HTML comments using
     the following syntax: <code>&lt;!--ssg:xyz.html--&gt;</code>. For example,
     <a
-      href="https://github.com/harleylang/harleys-website/blob/e7decbc5/www/html/blog/template.html"
+      href="https://github.com/harleylang/harleys-website/blob/f6e30cd8/www/html/blog/template.html"
       >here is the template I used when this blog post was generated</a
     >.
   </p>
@@ -343,7 +343,7 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
   <p>
     For a more complex example, take a
     <a
-      href="https://github.com/harleylang/harleys-website/tree/e7decbc5/www/html/blog"
+      href="https://github.com/harleylang/harleys-website/tree/f6e30cd8/www/html/blog"
       >look at my blog directory</a
     >
     as-of the publication of this blog post. (It looks similar to the above
@@ -352,7 +352,7 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
   <details open>
     <summary>
       <a
-        href="https://github.com/harleylang/harleys-website/blob/e7decbc5/.bin/ssg.mjs"
+        href="https://github.com/harleylang/harleys-website/blob/f6e30cd8/.bin/ssg.mjs"
         >With just under 60 lines of source code</a
       >, <code>ssg.mjs</code> will take a template, walk a directory, and
       generate static content for all matching slots.
@@ -450,7 +450,7 @@ chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
        const relativePathStr = /(?<=)("\.\.\/)/g;
        sscontent = sscontent.replace(
          relativePathStr,
-         () => `"${"../".repeat(relativity)}`
+         () => `"${'../'.repeat(relativity)}`
        );
        // write file
        writeFileSync(`${__dir}/index.html`, sscontent);

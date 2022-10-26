@@ -1,6 +1,7 @@
 node_modules
 dist
 public
+assets
 .turbo
 *.log
 # rendered css files

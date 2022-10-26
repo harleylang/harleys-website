@@ -1,11 +1,11 @@
 @import "./_variables.scss";
-@import "./fonts/acme.scss";
-@import "./flex.scss";
-@import "./keyframes.scss";
-@import "./spacing.scss";
-@import "./theme.scss";
-@import "./typography.scss";
-@import "./utilities.scss";
+@import "./_fonts/_acme.scss";
+@import "./_flex.scss";
+@import "./_keyframes.scss";
+@import "./_spacing.scss";
+@import "./_theme.scss";
+@import "./_typography.scss";
+@import "./_utilities.scss";
 
 body {
   height: fit-content;

@@ -109,10 +109,13 @@
         <div class="carousel__wrapper">
           <me-carousel>
             <section>
-              <img
-                  src="https://i.postimg.cc/nzfFnnq5/img1.webp"
-                  alt="A photo of Harley"
-              />
+              <picture>
+                <source media="(max-width: 500px)" srcset="https://i.postimg.cc/gJJvMPCJ/me-spain-s.webp" />
+                <source media="(max-width: 900px)" srcset="https://i.postimg.cc/d1xGpxF9/me-spain-m.webp" />
+                <source media="(max-width: 1399px)" srcset="https://i.postimg.cc/qq62TxMH/me-spain-l.webp" />
+                <source media="(min-width: 1400px)" srcset="https://i.postimg.cc/HjGXs8Vc/me-spain-og.webp" />
+                <img src="https://i.postimg.cc/HjGXs8Vc/me-spain-og.webp" alt="A photo of Harley" />
+              </picture>
               <figcaption>About moi</figcaption>
               <p>TODO: write something here</p>
             </section>

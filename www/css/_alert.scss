@@ -29,7 +29,8 @@
     @media (prefers-reduced-motion) {
       --slide-right-duration: 0s;
     }
-    animation: slide-right var(--slide-right-duration) cubic-bezier(0.27, 1.1, 0.25, 1);
+    // TODO: re-enable this; this trick doesn't work if there is a gradient on the background. hmm.
+    // animation: slide-right var(--slide-right-duration) cubic-bezier(0.27, 1.1, 0.25, 1);
   }
   &:before, &:after {
     content: ' ';

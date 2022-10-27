@@ -55,6 +55,7 @@ body.dark-mode {
 }
 
 body {
+  min-height: calc(100vh - calc(var(--dp) * 2));
   position: relative;
   background-color: rgba(var(--col-bg-default));
   color: rgba(var(--col-fg-default));
@@ -77,15 +78,14 @@ body {
   // the idea of this is nice, but it requires at minimum:
   // 1) a dynamic background for dark / light mode
   // 2) transition easing, as it conflicts with the above
-  // 3) somehow hidden when the body element has no scroll, hmm
-  /* &:after {
+/*   &:after {
     content: '';
     width: 100%;
     height: 80vh;
     background: radial-gradient(circle 80vh at 50% 125%, #444, rgb(var(--col-bg-default))); //CCC for light mode
     position: absolute;
     z-index: -2;
-    bottom: -50px;
+    bottom: 0;
     left: 0;
   } */
 }

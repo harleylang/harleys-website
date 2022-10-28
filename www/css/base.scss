@@ -8,31 +8,31 @@
 @import "./_utilities.scss";
 
 body {
+  --body-border-side: var(--dp);
+  --body-border-sides: calc(var(--body-border-side) * 2);
+  --body-padding-side: calc(var(--dp) * 2);
+  --body-padding-sides: calc(var(--body-padding-side) * 2);
   height: fit-content;
   margin: 0;
-  padding: var(--dp);
+  padding: var(--dp) var(--body-padding-side);
   overflow-x: hidden;
   overflow-y: auto;
-  width: calc(100vw - (var(--dp) * 2));
+  border-image: linear-gradient(0deg, rgba(var(--col-bg-opposite),0.05),rgba(var(--col-bg-opposite),0), rgba(var(--col-bg-opposite),0));
+  border-image-slice: 1;
+  border-style: solid;
+  border-width: 0 var(--body-border-side); 
+  width: calc(100vw - var(--body-boder-sides) - var(--body-padding-sides));
   @media only screen and (min-width: 600px) {
-    width: calc(100vw - 20%);
-    padding-left: 10%;
-    padding-right: 10%;
+    --body-border-side: 10vw;
   }
   @media only screen and (min-width: 800px) {
-    width: calc(100vw - 30%);
-    padding-left: 15%;
-    padding-right: 15%;
+    --body-border-side: 15vw;
   }
   @media only screen and (min-width: 1000px) {
-    width: calc(100vw - 40%);
-    padding-left: 20%;
-    padding-right: 20%;
+    --body-border-side: 20vw;
   }
   @media only screen and (min-width: 1200px) {
-    width: calc(100vw - 50%);
-    padding-left: 25%;
-    padding-right: 25%;
+    --body-border-side: 25vw;
   }
 }
 

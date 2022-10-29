@@ -1,3 +1,12 @@
+/**
+ * circle-game.mjs
+ * Play a little prank on web surfers with this tricky script.
+ * 1. Load this module onto a page.
+ * 2. Bind an element with the attribute 'circle-game'.
+ * 3. ???
+ * 4. Hehehe
+ */
+
 let circleGamePoints = 0;
 
 (() => {

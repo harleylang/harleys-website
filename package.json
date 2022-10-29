@@ -35,6 +35,7 @@
     "preview": "wds --config ./wds.config.mjs --app-index public/index.html --root-dir public"
   },
   "dependencies": {
+    "@harleys-website/circle-game": "link:../www/js/components/circle-game",
     "@harleys-website/hyperlink-precache": "link:../www/js/modules/hyperlink-precache",
     "@harleys-website/me-carousel": "link:../www/js/components/me-carousel",
     "@harleys-website/me-darkmode-toggle": "link:../www/js/components/me-darkmode-toggle",

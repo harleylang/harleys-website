@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outFile": "dist/circle-game.d.ts",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false
+  }
+}

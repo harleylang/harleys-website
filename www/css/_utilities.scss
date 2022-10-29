@@ -1,11 +1,11 @@
+.hide {
+  display: none !important;
+}
+
 .overflow {
   &-x {
     &--hidden {
       overflow-x: hidden !important;
     }
   }
-}
-
-.hide {
-  display: none !important;
 }

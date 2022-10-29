@@ -1,0 +1,13 @@
+@import './variables';
+
+@mixin alpha {
+  --alpha: 1;
+}
+
+.alpha {
+  @each $i in $percentages {
+    &-#{$i} {
+      --alpha: calc(#{$i} / 100) !important;
+    }
+  } 
+}

@@ -1,0 +1,9 @@
+@import './_alpha';
+@import './shadows';
+
+.card {
+  @include alpha;
+  @include shadow;
+  background: rgba(var(--col-bg-card), var(--alpha));
+  border-radius: 16px;
+}

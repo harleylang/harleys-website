@@ -124,6 +124,22 @@
     cacheScripts({ doc, src });
   }
 
+  // required for build; not sure why this isn't coming from ts
+  type ConnectionType =
+    | "bluetooth"
+    | "cellular"
+    | "ethernet"
+    | "mixed"
+    | "none"
+    | "other"
+    | "unknown"
+    | "wifi";
+
+  // required for build; not sure why this isn't coming from ts
+  interface NetworkInformation extends EventTarget {
+    readonly type: ConnectionType;
+  }
+
   interface INetworkInformation extends NetworkInformation {
     effectiveType?: string;
   }

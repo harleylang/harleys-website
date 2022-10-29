@@ -1,6 +1,3 @@
-<script>
-  var points = 0;
-</script>
 <section>
   <p id="skip">
     <a href="#meat-and-potatoes">Click here to skip to the meat-and-potatoes</a
@@ -11,48 +8,27 @@
       >Last chance, click here NOW to go to the good shit</a
     >.
   </p>
-  <p id="bait">
+  <p id="nerds-only" circle-game>
     ... ok now that the nerds are gone ... this one is for all the online recipe
     fans out there ...
-    <a id="click-bait" href="#">click here to reveal a bonus preface ...</a>
+    <a href="#">click here to reveal a bonus preface ...</a>
   </p>
-  <dialog id="scoreboard"></dialog>
-  <p id="psych" class="hide">
+  <p id="oof" class="hide" circle-game>
     <a href="#">oof, got'ya ... ok for real now, let's skip ahead ...</a>
   </p>
   <script>
     (() => {
-      function baitAndSwitch() {
-        points += 1;
-        const scoreboard = document.getElementById("scoreboard");
-        if (scoreboard) {
-          scoreboard.innerHTML = `👌 psych, harley ${points} - you 0`;
-          if (scoreboard.showModal) {
-            scoreboard.showModal();
-          } else {
-            scoreboard.setAttribute("open", true);
-          }
-        }
+      function showAndHide() {
         const skip = document.getElementById("skip");
-        const bait = document.getElementById("bait");
-        const psych = document.getElementById("psych");
         if (skip) skip.classList.add("hide");
-        if (bait) bait.classList.add("hide");
-        if (psych) psych.classList.remove("hide");
+        const nerds = document.getElementById("nerds-only");
+        if (nerds) nerds.classList.add("hide");
+        const oof = document.getElementById("oof");
+        if (oof) oof.classList.remove("hide");
       }
       function initialise() {
-        const clickBait = document.getElementById("click-bait");
-        clickBait.addEventListener("click", baitAndSwitch, false);
-        const psych = document.getElementById("psych");
-        psych.addEventListener("click", baitAndSwitch, false);
-        const scoreboard = document.getElementById("scoreboard");
-        scoreboard.addEventListener("click", function () {
-          if (scoreboard.close) {
-            scoreboard.close();
-          } else {
-            scoreboard.removeAttribute("open");
-          }
-        });
+        const nerds = document.getElementById('nerds-only');
+        nerds.addEventListener("click", showAndHide, false);
       }
       window.addEventListener("load", initialise, false);
     })();

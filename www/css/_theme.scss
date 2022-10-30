@@ -128,6 +128,12 @@ dialog {
   }
 }
 
+ul {
+  &.no-dots {
+    list-style-type: none;
+  }
+}
+
 summary {
   cursor: pointer;
 }

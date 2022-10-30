@@ -1,0 +1,13 @@
+.transform {
+  &-hover {
+    &--pop-up {
+      transition: transform var(--animation-duration) var(--animation-spring);
+      &:hover {  
+        transform: translateY(-5px);
+        @media (prefers-reduced-motion) {
+          transform: none;
+        }
+      }
+    }
+  }
+}

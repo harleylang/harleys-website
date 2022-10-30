@@ -1,7 +1,15 @@
+@import "./_fonts/_acme.scss";
 @import './_fonts/_fondamento.scss';
+
+/* element defaults */
 
 body {
   font-family: helvetica, sans-serif;
+}
+
+a {
+  @include font-acme;
+  color: rgb(var(--col-fg-secondary));
 }
 
 abbr {
@@ -21,6 +29,14 @@ code {
     color: unset;
   }
 }
+
+header {
+  a {
+    font-size: 24px;
+  }
+}
+
+/* custom classes */
 
 .font-size {
   $sizes: (8, 10, 12, 14, 16, 18, 20, 24, 32);

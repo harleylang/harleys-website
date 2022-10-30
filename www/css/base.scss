@@ -1,7 +1,7 @@
 @import "./_variables.scss";
 @import './_alpha.scss';
 @import './_card.scss';
-@import "./_fonts/_acme.scss";
+@import './_elements.scss';
 @import "./_flex.scss";
 @import "./_keyframes.scss";
 @import './_shadows.scss';
@@ -38,38 +38,4 @@ body {
   @media only screen and (min-width: 1200px) {
     --body-border-side: 25vw;
   }
-}
-
-a {
-  @include font-acme;
-  color: rgb(var(--col-fg-secondary));
-}
-
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  a {
-    font-size: 24px;
-  }
-}
-
-[htmlCommentToggle] {
-  font-weight: bold;
-  font-size: 24px;
-  animation: twitchy var(--animation-twitchy-duration) ease-in-out forwards infinite;
-  &:hover {
-    cursor: context-menu;
-  }
-}
-
-[htmlCommentRevealed] {
-  font-style: italic;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-[htmlCommentRevealed], [htmlCommentToggle] {
-  color: rgb(var(--col-fg-secondary));
 }

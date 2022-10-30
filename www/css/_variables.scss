@@ -45,6 +45,10 @@ body {
   @media (prefers-reduced-motion) {
     --animation-duration--jittery: 30s;
   }
+  --shadow-x: 0px;
+  --shadow-y: 0px;
+  --shadow-blur-radius: 5px;
+  --shadow-spread-radius: 2px;
 }
 
 

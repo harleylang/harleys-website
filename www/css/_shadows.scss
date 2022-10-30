@@ -1,5 +1,5 @@
 @mixin shadow {
-  box-shadow: 0px 0px 5px 2px rgba(var(--col-shadow),0.75);
+  box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur-radius) var(--shadow-spread-radius) rgba(var(--col-shadow),0.75);
 };
 
 .shadow {

@@ -1,4 +1,5 @@
 @import "./_variables.scss";
+@import './_alpha.scss';
 @import './_card.scss';
 @import "./_fonts/_acme.scss";
 @import "./_flex.scss";
@@ -9,6 +10,7 @@
 @import "./_utilities.scss";
 
 body {
+  @include alpha;
   --body-border-side: var(--dp);
   --body-border-sides: calc(var(--body-border-side) * 2);
   --body-padding-side: calc(var(--dp) * 2);

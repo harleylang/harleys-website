@@ -1,9 +1,12 @@
 .transform {
   &-hover {
     &--pop-up {
-      transition: transform var(--animation-duration) var(--animation-spring);
-      &:hover {  
-        transform: translateY(-5px);
+      --direction: 5px;
+      transition: all var(--animation-duration) var(--animation-spring);
+      &:hover {
+        --shadow-y-mod: 3px;
+        --shadow-blur-radius-mod: 3px;
+        transform: translateY(calc(0px - var(--direction)));
         @media (prefers-reduced-motion) {
           transform: none;
         }

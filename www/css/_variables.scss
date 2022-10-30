@@ -46,9 +46,13 @@ body {
     --animation-duration--jittery: 30s;
   }
   --shadow-x: 0px;
+  --shadow-x-mod: 0px;
   --shadow-y: 0px;
+  --shadow-y-mod: 0px;
   --shadow-blur-radius: 5px;
+  --shadow-blur-radius-mod: 0px;
   --shadow-spread-radius: 2px;
+  --shadow-spread-radius-mod: 0px;
 }
 
 

@@ -3,6 +3,7 @@
     &--pop-up {
       --direction: 5px;
       transition: all var(--animation-duration) var(--animation-spring);
+      transition-property: box-shadow, transform;
       &:hover {
         --shadow-y-mod: 3px;
         --shadow-blur-radius-mod: 3px;

@@ -60,7 +60,7 @@ summary {
 [htmlCommentToggle] {
   font-weight: bold;
   font-size: 24px;
-  animation: twitchy var(--animation-twitchy-duration) ease-in-out forwards infinite;
+  animation: twitchy var(--animation-duration--twitchy) ease-in-out forwards infinite;
   &:hover {
     cursor: context-menu;
   }

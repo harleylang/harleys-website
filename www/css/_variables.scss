@@ -38,11 +38,13 @@ body {
     rgb(var(--orange)) 50%,
     rgb(var(--yellow)) 100%
   );
-  --animation-jittery-duration: .5s;
+  --animation-spring: cubic-bezier(0.27, 1.1, 0.25, 1);
+  --animation-duration: 0.5s;
+  --animation-duration--jittery: 0.5s;
+  --animation-duration--twitchy: 10s;
   @media (prefers-reduced-motion) {
-    --animation-jittery-duration: 30s;
+    --animation-duration--jittery: 30s;
   }
-  --animation-twitchy-duration: 10s;
 }
 
 

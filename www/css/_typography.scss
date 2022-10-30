@@ -1,5 +1,5 @@
 @import "./_fonts/_acme.scss";
-@import './_fonts/_fondamento.scss';
+@import "./_fonts/_fondamento.scss";
 
 /* element defaults */
 
@@ -44,7 +44,7 @@ header {
     &-#{$i} {
       font-size: #{$i}px !important;
     }
-  } 
+  }
 }
 
 .extra:first-letter {

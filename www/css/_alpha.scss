@@ -1,4 +1,4 @@
-@import './variables';
+@import "./variables";
 
 @mixin alpha {
   --alpha: 1;
@@ -9,5 +9,5 @@
     &-#{$i} {
       --alpha: calc(#{$i} / 100) !important;
     }
-  } 
+  }
 }

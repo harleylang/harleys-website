@@ -1,9 +1,13 @@
 @function shade($shadeCode, $amount) {
-  @return hsl(var(--#{$shadeCode}_h), var(--#{$shadeCode}_s), calc(#{var(--#{$shadeCode}_l)} + #{$amount}));
+  @return hsl(
+    var(--#{$shadeCode}_h),
+    var(--#{$shadeCode}_s),
+    calc(#{var(--#{$shadeCode}_l)} + #{$amount})
+  );
 }
 
-$percentages: (0,10,20,30,40,50,60,70,80,90,100);
-$spacing: (0,5,8,10,12,15,16,18,20,25,30,35,40,45,50);
+$percentages: (0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
+$spacing: (0, 5, 8, 10, 12, 15, 16, 18, 20, 25, 30, 35, 40, 45, 50);
 
 :host,
 body {
@@ -17,24 +21,24 @@ body {
   --neon-blue: 7, 0, 184;
   --neon-blue_h: 242;
   --neon-blue_s: 100%;
-  --neon-blue_l: 36.1%; 
+  --neon-blue_l: 36.1%;
   --neon-green: 0, 255, 136;
   --light-blue: 237, 253, 253;
   --gradient-neon-blue-green: linear-gradient(
     0deg,
-    #{shade('neon-blue', 25%)} 0%,
+    #{shade("neon-blue", 25%)} 0%,
     rgb(var(--neon-green)) 100%
   );
   --purple: 131, 58, 180;
   --purple_h: 276;
   --purple_s: 51%;
-  --purple_l: 47%; 
+  --purple_l: 47%;
   --orange: 253, 29, 29;
   --light-orange: 254, 240, 239;
   --yellow: 252, 176, 69;
   --gradient-purple-orange: linear-gradient(
     0deg,
-    #{shade('purple', 5%)} 0%,
+    #{shade("purple", 5%)} 0%,
     rgb(var(--orange)) 50%,
     rgb(var(--yellow)) 100%
   );
@@ -54,6 +58,3 @@ body {
   --shadow-spread-radius: 2px;
   --shadow-spread-radius-mod: 0px;
 }
-
-
-

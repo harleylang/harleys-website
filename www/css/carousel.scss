@@ -1,4 +1,4 @@
-@import './shadows';
+@import "./shadows";
 
 form {
   @include shadow;
@@ -44,7 +44,9 @@ form {
       display: none;
     }
     @for $i from 1 through 10 {
-      input#carousel__input--#{$i}:checked ~ .controls label[for="carousel__input--#{$i}"] {
+      input#carousel__input--#{$i}:checked
+        ~ .controls
+        label[for="carousel__input--#{$i}"] {
         background-color: white;
       }
     }
@@ -66,7 +68,8 @@ form {
           object-fit: cover;
           aspect-ratio: 16/9;
         }
-        p, figcaption {
+        p,
+        figcaption {
           color: rgb(var(--black));
         }
         figcaption {

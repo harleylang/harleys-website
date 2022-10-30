@@ -2,10 +2,12 @@
   position: relative;
   width: 100%;
   background: rgb(var(--col-bg-card));
-  p, span {
+  p,
+  span {
     padding: 0px 30px;
   }
-  &:before, &:after {
+  &:before,
+  &:after {
     background: rgb(var(--grey));
     border-radius: 25px;
     display: flex;
@@ -34,22 +36,23 @@
     //  --slide-right-duration: 0s;
     // }
   }
-  &:before, &:after {
-    content: ' ';
+  &:before,
+  &:after {
+    content: " ";
   }
   &-important {
     &:before {
-    content: '!';
+      content: "!";
     }
   }
   &-question {
     &:before {
-    content: '?';
+      content: "?";
     }
   }
   &-info {
     &:before {
-     content: '📓';
+      content: "📓";
     }
   }
 }

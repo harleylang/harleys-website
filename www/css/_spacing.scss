@@ -1,11 +1,11 @@
-@import './_variables.scss';
+@import "./_variables.scss";
 
 .margin {
   @each $i in $spacing {
     &-#{$i} {
       margin: #{$i}px !important;
     }
-  } 
+  }
   $edges: (top, bottom, left, right);
   @each $e in $edges {
     &-#{$e} {
@@ -13,7 +13,7 @@
         &-#{$i} {
           margin-#{$e}: #{$i}px !important;
         }
-      } 
+      }
     }
   }
   &-tb {
@@ -22,7 +22,7 @@
         margin-top: #{$i}px !important;
         margin-bottom: #{$i}px !important;
       }
-    } 
+    }
   }
   &-lr {
     @each $i in $spacing {
@@ -30,7 +30,7 @@
         margin-left: #{$i}px !important;
         margin-right: #{$i}px !important;
       }
-    } 
+    }
   }
 }
 
@@ -39,7 +39,7 @@
     &-#{$i} {
       padding: #{$i}px !important;
     }
-  } 
+  }
   $edges: (top, bottom, left, right);
   @each $e in $edges {
     &-#{$e} {
@@ -47,7 +47,7 @@
         &-#{$i} {
           padding-#{$e}: #{$i}px !important;
         }
-      } 
+      }
     }
   }
   &-tb {
@@ -56,7 +56,7 @@
         padding-top: #{$i}px !important;
         padding-bottom: #{$i}px !important;
       }
-    } 
+    }
   }
   &-lr {
     @each $i in $spacing {
@@ -64,6 +64,6 @@
         padding-left: #{$i}px !important;
         padding-right: #{$i}px !important;
       }
-    } 
+    }
   }
 }

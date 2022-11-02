@@ -21,8 +21,28 @@ let circleGamePoints = 0;
     }
   }
 
-  function gotcha() {
+  function purgeDialog() {
+    const dialog = document.getElementById("circle-game-dialog");
+    const parent = dialog?.parentElement;
+    if (dialog) parent?.removeChild(dialog);
+  }
+
+  function setupDialog(target: HTMLElement) {
+    purgeDialog();
+
+    const dialog = document.createElement("dialog");
+    dialog.id = "circle-game-dialog";
+    dialog.innerHTML = `👌 psych, harley ${circleGamePoints} - you 0`;
+    dialog.addEventListener("click", handleClose);
+
+    const { parentNode } = target;
+    if (parentNode) parentNode.insertBefore(dialog, target);
+  }
+
+  function gotcha({ currentTarget }: Event) {
     circleGamePoints += 1;
+
+    if (currentTarget) setupDialog(currentTarget as HTMLElement);
 
     const dialog = document.getElementById(
       "circle-game-dialog"
@@ -40,12 +60,6 @@ let circleGamePoints = 0;
   }
 
   function initialise() {
-    const dialog = document.createElement("dialog");
-    dialog.id = "circle-game-dialog";
-    dialog.innerHTML = `👌 psych, harley ${circleGamePoints} - you 0`;
-    dialog.addEventListener("click", handleClose);
-    document.body.prepend(dialog);
-
     const baits = document.querySelectorAll("[circle-game]");
     baits.forEach((bait) => {
       bait.addEventListener("click", gotcha, false);

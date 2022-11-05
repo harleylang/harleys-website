@@ -72,18 +72,18 @@ body {
   }
   &:before {
     content: "";
+    width: 100%;
+    height: 75px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
     background: conic-gradient(
       from 180deg at 50% 50%,
       rgb(var(--col-fg-primary)) 0deg,
       rgb(var(--col-bg-highlight)) 180deg
     );
-    width: 100%;
-    height: 75px;
     mix-blend-mode: normal;
-    filter: blur(200px);
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
+    filter: blur(100px);
   }
 }

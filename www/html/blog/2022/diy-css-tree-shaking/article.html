@@ -1,0 +1,48 @@
+<section>
+  <p>
+    CSS frameworks like <a href="https://getbootstrap.com">Bootstrap</a> or
+    <a href="https://tailwindcss.com">Tailwind</a> are excellent off-the-shelf
+    solutions for styling websites.
+  </p>
+  <p>
+    One additional benefit of some CSS frameworks is that you can even reduce
+    the size of your CSS bundle with
+    <u>tree shaking</u>. <em>Tree shaking</em> is a build-time process that
+    optimises your CSS bundles by removing unused styles.
+  </p>
+  <details>
+    <summary>
+      Tailwind is a "utility-first" CSS framework that provides tree shaking out
+      of the box, which helps you develop quickly by avoiding the need to write
+      custom classes.
+    </summary>
+    <p>
+      <u>Utility-first</u> refers to how Tailwind provides CSS utilities (e.g.,
+      <code>text-blue-500</code>) that can be assembled to make a desired design
+      inside of HTML markup, as opposed to writing custom classes with semantic
+      naming like <code>card</code> or <code>banner</code>.
+    </p>
+    <p>
+      <a
+        href="https://github.com/tailwindlabs/tailwindcss/blob/0d9e1907/src/cli/build/plugin.js#L326"
+        >Under the hood</a
+      >, Tailwind uses <a href="https://postcss.org">postcss</a> to filter out
+      styles that you are not using.
+    </p>
+  </details>
+  <p>
+    For my personal website, I have planned to write my own HTML, CSS, and JS as
+    much as possible. What follows is my research and integration of tree
+    shaking tactics into my website's current build system.
+  </p>
+</section>
+<hr />
+<section>
+    - todo:
+    - generate .webp images for thumbnail + computed bundle size screenshots
+    - how to view your bundle size using the 'computed' panel in chrome
+    - current bundle size and why it was that way
+    - how my current build system works
+    - how purgecss works
+    - final product
+</section>

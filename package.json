@@ -41,7 +41,8 @@
     "@harleys-website/me-darkmode-toggle": "link:../www/js/components/me-darkmode-toggle",
     "@harleys-website/show-html-comments": "link:../www/js/components/show-html-comments",
     "@web/rollup-plugin-html": "^1.11.0",
-    "rollup": "^2.79.0"
+    "rollup": "^2.79.0",
+    "purgecss": "^5.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.30.0",

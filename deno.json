@@ -5,6 +5,14 @@
     "strict": true
   },
   "importMap": "import_map.json",
+  "lint": {
+    "files": {
+      "exclude": ["node_modules", "public", "www/js"]
+    },
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
   "tasks": {
     "sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/deno/sass.ts www/css",
     "start": "deno task start:server & deno task start:sass",

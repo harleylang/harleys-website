@@ -1,7 +1,7 @@
-import { serve } from "server";
-import { refresh } from "refresh";
-import { join } from "path";
-import yargs from "yargs";
+import { serve } from 'server';
+import { refresh } from 'refresh';
+import { join } from 'path';
+import yargs from 'yargs';
 
 const __dirname = Deno.cwd();
 const { port: __port = 3000 } = yargs(Deno.args).parse();
@@ -10,32 +10,33 @@ const middleware = refresh();
 
 function composeResponse(req: Request): Response {
   try {
-    const file = req.url.split(`:${__port}/`)[1] ?? "index.html";
-    const filePath = join(__dirname, "www", file);
+    const file = req.url.split(`:${__port}/`)[1] ?? 'index.html';
+    const filePath = join(__dirname, 'www', file);
 
-    let contentType = "";
+    let contentType = '';
     switch (true) {
-      case file.includes(".mjs"):
-      case file.includes(".js"):
-        contentType = "javascript";
+      case file.includes('.mjs'):
+      case file.includes('.js'):
+        contentType = 'javascript';
         break;
-      case file.includes(".css"):
-        contentType = "css";
+      case file.includes('.css'):
+        contentType = 'css';
         break;
       default:
-        contentType = "html";
+        contentType = 'html';
     }
 
     let body = Deno.readTextFileSync(join(filePath));
 
-    if (contentType === "html")
+    if (contentType === 'html') {
       body = body.replace(
-        "<body>",
-        '<body><script src="https://deno.land/x/refresh/client.js"></script>'
+        '<body>',
+        '<body><script src="https://deno.land/x/refresh/client.js"></script>',
       );
+    }
 
     return new Response(body, {
-      headers: { "Content-Type": `text/${contentType}` },
+      headers: { 'Content-Type': `text/${contentType}` },
     });
   } catch (e) {
     console.warn({ req, e });
@@ -52,7 +53,7 @@ serve(
     }
     return composeResponse(req);
   },
-  { port: __port }
+  { port: __port },
 );
 
 console.log(`Development server started...`);

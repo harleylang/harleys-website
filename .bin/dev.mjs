@@ -8,19 +8,19 @@
  * `yarn workspace @harleys-website/X dev`
  */
 
-import chalk from "chalk";
-import fs from "fs";
-import inquirer from "inquirer";
+import chalk from 'chalk';
+import fs from 'fs';
+import inquirer from 'inquirer';
 
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-import { spawn } from "child_process";
+import { spawn } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dir = join(__dirname, "..", "www", "js", "components");
+const dir = join(__dirname, '..', 'www', 'js', 'components');
 
 function getDirectories(path) {
   return fs.readdirSync(path).filter(function (file) {
@@ -34,23 +34,23 @@ console.log(
   chalk.white(`
 SANDBOX DEVELOPMENT ENVIRONMENT for js modules in "www/js/*"\n
 Follow the prompts to proceed or type ctrl+c to escape. \n
-`)
+`),
 );
 
 inquirer
   .prompt({
-    type: "list",
-    name: "module",
-    message: "Which module would you like to run in development mode?",
+    type: 'list',
+    name: 'module',
+    message: 'Which module would you like to run in development mode?',
     choices: files,
   })
   .then((answers) => {
     console.log(
       chalk.green(
-        `\n Starting ${answers.module} development environment ... \n`
-      )
+        `\n Starting ${answers.module} development environment ... \n`,
+      ),
     );
-    spawn("yarn", ["workspace", `@harleys-website/${answers.module}`, "dev"], {
-      stdio: "inherit",
+    spawn('yarn', ['workspace', `@harleys-website/${answers.module}`, 'dev'], {
+      stdio: 'inherit',
     });
   });

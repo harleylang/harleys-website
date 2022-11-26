@@ -10,7 +10,7 @@
  * The template file should include one or more HTML comments with
  * slots defined using the syntax: `<!--ssg:file-name-here.html-->`.
  * For each directory in the base path that includes at least 1 slot,
- * an `index.html` is generated with 
+ * an `index.html` is generated with
  * @example Folder structure:
     blog                     <-- "base" - nested folders are targeted for iteration
     └── index.html           <-- this file is ignored
@@ -20,19 +20,19 @@
     └── article.html         <-- this is the GLOBAL article slot default / fallback
     |                           (global slots are not required; script will fail graciously)
     └── header.html          <-- this is the GLOBAL header slot default / fallback
-    └── 2020/10                
+    └── 2020/10
         └── article.html     <-- this is the LOCAL article slot override
         └── index.html       <-- SSG'd file w/ LOCAL article and GLOBAL header
-    └── 2020/11                
+    └── 2020/11
         └── article.html     <-- this is the LOCAL article slot override
         └── header.html      <-- this is the LOCAL header slot override
         └── index.html       <-- SSG'd file w/ both LOCAL article AND header
  */
 
-import { readFileSync, writeFileSync } from "fs";
-import glob from "glob";
-import { dirname, join } from "path";
-import args from "./args.mjs";
+import { readFileSync, writeFileSync } from 'fs';
+import glob from 'glob';
+import { dirname, join } from 'path';
+import args from './args.mjs';
 
 // setup helper data / fxs
 const ssgSlotSyntax = /(?<=<!--ssg:).*(?=-->)/g;
@@ -41,11 +41,11 @@ function content(slots, __path, content = {}) {
   slots.forEach((slot) => {
     try {
       // if there is content in the taraget directory, use it
-      const __file = readFileSync(join(__path, slot), "utf-8");
+      const __file = readFileSync(join(__path, slot), 'utf-8');
       if (__file) content[slot] = __file;
     } catch {
       // else if no global content, use empty string to clear html comments
-      if (!content[slot]) content[slot] = "";
+      if (!content[slot]) content[slot] = '';
     }
   });
   return content;
@@ -56,10 +56,10 @@ const {
   template = null,
   base: __base = join(process.cwd(), dirname(template)),
   __template = join(process.cwd(), template),
-} = args(["base", "template"], { optional: ["base"] });
+} = args(['base', 'template'], { optional: ['base'] });
 
 // derive ssg slots
-const html = readFileSync(__template, "utf-8");
+const html = readFileSync(__template, 'utf-8');
 const slots = html.match(ssgSlotSyntax);
 
 // gather global slot content from base into obj
@@ -78,22 +78,22 @@ glob(
       const regex = new RegExp(
         Object.keys(localSlotContent)
           .map((key) => `<!--ssg:${key}-->`)
-          .join("|"),
-        "gi"
+          .join('|'),
+        'gi',
       );
       let sscontent = html.replace(
         regex,
-        (matched) => localSlotContent[matched.match(ssgSlotSyntax)]
+        (matched) => localSlotContent[matched.match(ssgSlotSyntax)],
       );
       // update relative paths
       const relativity = (__dir.split(__base)[1].match(/\//g) || []).length + 1;
       const relativePathStr = /(?<=)("\.\.\/)/g;
       sscontent = sscontent.replace(
         relativePathStr,
-        () => `"${"../".repeat(relativity)}`
+        () => `"${'../'.repeat(relativity)}`,
       );
       // write file
       writeFileSync(`${__dir}/index.html`, sscontent);
     });
-  }
+  },
 );

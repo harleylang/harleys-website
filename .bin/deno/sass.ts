@@ -10,9 +10,9 @@
  * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css --watch`
  */
 
-import sass from "sass";
-import { join } from "path";
-import yargs from "yargs";
+import sass from 'sass';
+import { join } from 'path';
+import yargs from 'yargs';
 
 // derive arguments
 const {
@@ -20,15 +20,17 @@ const {
   watch,
 } = yargs(Deno.args).parse();
 
-if (!__target)
+if (!__target) {
   throw new Error(
-    "WHOOPS! Please provide a path to compile when running this script."
+    'WHOOPS! Please provide a path to compile when running this script.',
   );
+}
 
-if (__target.includes("."))
+if (__target.includes('.')) {
   throw new Error(
-    "WHOOPS! Please only provide a directory to target, not a file."
+    'WHOOPS! Please only provide a directory to target, not a file.',
   );
+}
 
 // setup dirname from provided target argument
 const __dirname = join(Deno.cwd(), __target);
@@ -43,8 +45,8 @@ const modules: string[] = [];
 const styles: string[] = [];
 
 function handleDirEntry(dirEntry: Deno.DirEntry, path: string) {
-  if (dirEntry.isFile && dirEntry.name.includes(".scss")) {
-    if (dirEntry.name[0] === "_") {
+  if (dirEntry.isFile && dirEntry.name.includes('.scss')) {
+    if (dirEntry.name[0] === '_') {
       modules.push(join(path, dirEntry.name));
     } else {
       styles.push(join(path, dirEntry.name));
@@ -82,7 +84,7 @@ for (const style of styles) {
 // fx that takes a filename for sass and writes it to the filesystem
 async function compileSassToCss(filename: string) {
   // get the raw scss
-  let raw = "";
+  let raw = '';
   try {
     raw = await Deno.readTextFile(filename);
   } catch {
@@ -94,10 +96,10 @@ async function compileSassToCss(filename: string) {
     // compile to css
     const compiled = await sass.compileStringAsync(parsed, {
       sourceMap: false,
-      style: "compressed",
+      style: 'compressed',
     });
     // write to filesystem
-    filename = filename.replace(".scss", ".css");
+    filename = filename.replace('.scss', '.css');
     await Deno.writeTextFile(filename, compiled.css);
     console.log(`Compiled: ${filename}`);
   }
@@ -114,14 +116,12 @@ function parseAndSubstituteImports(css: string) {
     const filenameRegex = /\/(?:.+)(\.scss)/g;
     const filenameShort = (imported.match(filenameRegex) ?? [])[0];
     // match the path to the corresponding module
-    const filenameLong = modules.find((module) =>
-      module.includes(filenameShort)
-    );
+    const filenameLong = modules.find((module) => module.includes(filenameShort));
     // replace the import statement with the corresponding module's content
     if (filenameLong) {
       css = css.replace(imported, moduleContent[filenameLong]);
     } else {
-      throw new Error("WHOOPS! Undefined file referenced.");
+      throw new Error('WHOOPS! Undefined file referenced.');
     }
   }
   return css;
@@ -142,12 +142,12 @@ if (watch) {
       setTimeout(async () => {
         // Send notification here
         notifiers.delete(dataString);
-        if (["create", "modify"].includes(event.kind)) {
+        if (['create', 'modify'].includes(event.kind)) {
           for (const file of event.paths) {
-            if (file.includes(".scss")) await handleFileChange(file);
+            if (file.includes('.scss')) await handleFileChange(file);
           }
         }
-      }, 200)
+      }, 200),
     );
   }
 }
@@ -156,36 +156,36 @@ async function handleFileChange(filename: string) {
   const filenameShort = filename.split(__dirname)[1];
   console.log(`... detected change in: ${filenameShort}`);
   // identify scss file type
-  const type = filenameShort.includes("_") ? "module" : "style";
+  const type = filenameShort.includes('_') ? 'module' : 'style';
   // if filename is not in relevant data array, push filename to that array
-  if (type === "module" && !modules.includes(filename)) modules.push(filename);
-  if (type === "style" && !styles.includes(filename)) styles.push(filename);
+  if (type === 'module' && !modules.includes(filename)) modules.push(filename);
+  if (type === 'style' && !styles.includes(filename)) styles.push(filename);
   // figure out effected files
   const updates: string[] = [];
   switch (type) {
-    case "module": {
+    case 'module': {
       // update the relevant module's content
       const content = await Deno.readTextFile(filename);
       moduleContent = { ...moduleContent, [filename]: content };
       // check which styles have been updated
       for (const style of styles) {
-        let raw = "";
+        let raw = '';
         try {
           raw = await Deno.readTextFile(style);
         } catch {
           console.warn(
-            `Uhoh, "${style}" does not exist. Aborting compilation.`
+            `Uhoh, "${style}" does not exist. Aborting compilation.`,
           );
         }
         if (raw) {
           // if the stylesheet imports the module, recompiled that stylesheet
-          const importRegex = new RegExp(`@import ".${filenameShort}";`, "gi");
+          const importRegex = new RegExp(`@import ".${filenameShort}";`, 'gi');
           if (raw.match(importRegex)) updates.push(style);
         }
       }
       break;
     }
-    case "style":
+    case 'style':
       updates.push(filename);
       break;
     default: {

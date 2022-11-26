@@ -24,7 +24,7 @@ console.log(
   `watch.mjs watching for changes in "${dir}" and will run "${cmd}" in response \n`
 );
 
-chokidar.watch(dir, { ignoreInitial: true }).on("all", function (event, path) {
+chokidar.watch(dir, { ignoreInitial: true }).on("all", function (_event, path) {
   if (ignored && path.match(ignored)) return; // break infinite loops
   // run the provided command with its args
   const [command, ...args] = cmd.split(" ");

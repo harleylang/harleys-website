@@ -28,7 +28,7 @@ function getDirectories(path) {
   });
 }
 
-var files = getDirectories(dir);
+const files = getDirectories(dir);
 
 console.log(
   chalk.white(`

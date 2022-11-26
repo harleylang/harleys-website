@@ -163,7 +163,11 @@ async function handleFileChange(filename: string) {
   // figure out effected files
   const updates: string[] = [];
   switch (type) {
-    case "module":
+    case "module": {
+      // update the relevant module's content
+      const content = await Deno.readTextFile(filename);
+      moduleContent = { ...moduleContent, [filename]: content };
+      // check which styles have been updated
       for (const style of styles) {
         let raw = "";
         try {
@@ -180,6 +184,7 @@ async function handleFileChange(filename: string) {
         }
       }
       break;
+    }
     case "style":
       updates.push(filename);
       break;

@@ -1,18 +1,14 @@
 import { serve } from "https://deno.land/std@0.119.0/http/server.ts";
-import {
-  dirname,
-  fromFileUrl,
-  join,
-} from "https://deno.land/std@0.119.0/path/mod.ts";
+import { join } from "https://deno.land/std@0.119.0/path/mod.ts";
 import { refresh } from "https://deno.land/x/refresh/mod.ts";
 import yargs from "https://deno.land/x/yargs@v17.6.2-deno/deno.ts";
 
 const __dirname = Deno.cwd();
-const { port: __port = 3000 } = yargs(Deno.args).argv;
+const { port: __port = 3000 } = yargs(Deno.args).parse();
 
 const middleware = refresh();
 
-function composeResponse(req) {
+function composeResponse(req: Request): Response {
   try {
     const file = req.url.split(`:${__port}/`)[1] ?? "index.html";
     const filePath = join(__dirname, "www", file);
@@ -43,6 +39,7 @@ function composeResponse(req) {
     });
   } catch (e) {
     console.warn({ req, e });
+    return undefined as never as Response;
   }
 }
 

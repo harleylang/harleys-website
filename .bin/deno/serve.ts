@@ -1,7 +1,7 @@
-import { serve } from "https://deno.land/std@0.119.0/http/server.ts";
-import { join } from "https://deno.land/std@0.119.0/path/mod.ts";
-import { refresh } from "https://deno.land/x/refresh@1.0.0/mod.ts";
-import yargs from "https://deno.land/x/yargs@v17.6.2-deno/deno.ts";
+import { serve } from "server";
+import { refresh } from "refresh";
+import { join } from "path";
+import yargs from "yargs";
 
 const __dirname = Deno.cwd();
 const { port: __port = 3000 } = yargs(Deno.args).parse();

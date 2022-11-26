@@ -6,7 +6,7 @@ body {
 
 a {
   @include font-acme;
-  color: red; //rgb(var(--col-fg-secondary));
+  color: rgb(var(--col-fg-secondary));
 }
 
 abbr {

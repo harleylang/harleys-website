@@ -3,9 +3,11 @@
  * This file contains deno filesystem bindings for compiling with sass-lang,
  * as well as watching the compiled files for changes.
  * @arg path The directory with *.scss files to compile to *.css.
- * @arg watch Whether or not to watch the provided path for changes.
  * @example Run with the following command:
  * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css`
+ * @arg watch Whether or not to watch the provided path for changes.
+ * @example Run with the following command:
+ * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css --watch`
  */
 
 import sass from "sass";

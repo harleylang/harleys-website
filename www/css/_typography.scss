@@ -1,6 +1,3 @@
-@import "./_fonts/_acme.scss";
-@import "./_fonts/_fondamento.scss";
-
 /* element defaults */
 
 body {
@@ -9,7 +6,7 @@ body {
 
 a {
   @include font-acme;
-  color: rgb(var(--col-fg-secondary));
+  color: red; //rgb(var(--col-fg-secondary));
 }
 
 abbr {

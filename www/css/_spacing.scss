@@ -1,5 +1,3 @@
-@import "./_variables.scss";
-
 .margin {
   @each $i in $spacing {
     &-#{$i} {

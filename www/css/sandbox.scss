@@ -1,7 +1,10 @@
-@import "./keyframes.scss";
-@import "./theme.scss";
-@import "./typography.scss";
-@import "./variables.scss";
+@import "./_variables.scss";
+@import "./_fonts/_acme.scss";
+@import "./_fonts/_fondamento.scss";
+
+@import "./_keyframes.scss";
+@import "./_theme.scss";
+@import "./_typography.scss";
 
 body {
   width: 100vw;

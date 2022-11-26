@@ -46,7 +46,10 @@ function composeResponse(req: Request): Response {
 serve(
   (req: Request) => {
     const res = middleware(req);
-    if (res) return res;
+    if (res) {
+      console.log(`... dev server reloaded`);
+      return res;
+    }
     return composeResponse(req);
   },
   { port: __port }

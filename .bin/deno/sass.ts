@@ -14,6 +14,8 @@ import sass from 'sass';
 import { join } from 'path';
 import yargs from 'yargs';
 
+import filewalker from './filewalker.ts';
+
 // derive arguments
 const {
   _: [__target],
@@ -41,31 +43,9 @@ window.location = {
 } as typeof window.location;
 
 // create array of all *.scss files in the target directory
-const modules: string[] = [];
-const styles: string[] = [];
-
-function handleDirEntry(dirEntry: Deno.DirEntry, path: string) {
-  if (dirEntry.isFile && dirEntry.name.includes('.scss')) {
-    if (dirEntry.name[0] === '_') {
-      modules.push(join(path, dirEntry.name));
-    } else {
-      styles.push(join(path, dirEntry.name));
-    }
-  }
-}
-
-async function walkRecursively(directory: string) {
-  for await (const dirEntry of Deno.readDir(directory)) {
-    if (dirEntry.isDirectory) {
-      await walkRecursively(join(directory, dirEntry.name));
-    }
-    if (dirEntry.isFile) {
-      handleDirEntry(dirEntry, directory);
-    }
-  }
-}
-
-await walkRecursively(__dirname);
+const files = await filewalker({ rootDir: __dirname, pattern: new RegExp('.scss') });
+const modules = files.filter((file) => file.match(/\_(.*)(.scss)/g));
+const styles = files.filter((file) => !file.match(/\_(.*)(.scss)/g));
 
 // create an object of modules and their raw content
 let moduleContent: { [key: string]: string } = {};
@@ -174,7 +154,7 @@ async function handleFileChange(filename: string) {
           raw = await Deno.readTextFile(style);
         } catch {
           console.warn(
-            `Uhoh, "${style}" does not exist. Aborting compilation.`,
+            `Uhoh, "${style}" does not exist. Abandoning compilation.`,
           );
         }
         if (raw) {

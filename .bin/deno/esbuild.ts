@@ -14,6 +14,8 @@ import * as esbuild from 'esbuild';
 import { join } from 'path';
 import yargs from 'yargs';
 
+import filewalker from './filewalker.ts';
+
 // derive arguments
 const {
   _: [__target],
@@ -36,12 +38,7 @@ if (__target.includes('.')) {
 const __dirname = join(Deno.cwd(), __target);
 
 // get all files in the directory
-let files: string[] = [];
-for await (const dirEntry of Deno.readDir(__dirname)) {
-  if (dirEntry.isFile && dirEntry.name.includes('.ts')) {
-    files.push(dirEntry.name);
-  }
-}
+let files = await filewalker({ rootDir: __dirname, pattern: new RegExp('.ts') });
 
 // this plugin will inject css into web-component templates that use
 // the slot syntax `<!--esbuild-inject-css:file.css-->`
@@ -70,10 +67,9 @@ const esbuildInjectCss = (): esbuild.Plugin => {
 
 // build the files
 files.forEach(async (file) => {
-  const target = join(__dirname, file);
-  const outfile = join(__dirname, `${file.replace('.ts', '')}.mjs`);
+  const outfile = `${file.replace('.ts', '')}.mjs`;
   await esbuild.build({
-    entryPoints: [target],
+    entryPoints: [file],
     outfile,
     outExtension: {
       '.js': '.mjs',

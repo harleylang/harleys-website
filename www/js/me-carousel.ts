@@ -1,4 +1,4 @@
-const template = document.createElement("template");
+const template = document.createElement('template');
 
 template.innerHTML = `
 <!--esbuild-inject-css:carousel.css-->
@@ -15,24 +15,24 @@ template.innerHTML = `
 
 function createSlide({ index, children }: { index: number; children: string }) {
   let content: string;
-  if (children.includes("<section")) content = children;
+  if (children.includes('<section')) content = children;
   else content = `<section>${children}</section>`;
 
-  const slide = document.createElement("template");
+  const slide = document.createElement('template');
   slide.innerHTML = `
     <input
       type="radio"
       id="carousel__input--${index}"
       name="radios"
       value="${index}"
-      ${index === 1 ? "checked" : ""}
+      ${index === 1 ? 'checked' : ''}
     />
     <li>
       ${content}
     </li>
   `;
 
-  const label = document.createElement("template");
+  const label = document.createElement('template');
   label.innerHTML = `<label for="carousel__input--${index}"></label>`;
 
   return { slide, label };
@@ -42,26 +42,26 @@ class Carousel extends HTMLElement {
   constructor() {
     super();
     this.loadFonts();
-    this.attachShadow({ mode: "open" });
+    this.attachShadow({ mode: 'open' });
     const shadow = this.shadowRoot;
     if (shadow) {
       shadow.appendChild(template.content.cloneNode(true));
-      const prev = shadow.querySelector(".button--prev");
+      const prev = shadow.querySelector('.button--prev');
       if (prev) {
-        prev.addEventListener("touchend", (event: Event) => {
+        prev.addEventListener('touchend', (event: Event) => {
           event.preventDefault(); // prevent mobile dbl tap zoom
-          const form = shadow.querySelector("form");
+          const form = shadow.querySelector('form');
           if (form && form !== null) {
             const radioChecked = form.querySelector(
-              'input[type="radio"][name="radios"]:checked'
+              'input[type="radio"][name="radios"]:checked',
             ) as HTMLInputElement;
             if (radioChecked) {
               const selected = parseInt(radioChecked.value.toString(), 10);
               const radios = Array.from(form.elements).filter((e) => {
                 const element = e as HTMLElement & { name?: string };
                 return (
-                  typeof element.name !== "undefined" &&
-                  element.name === "radios"
+                  typeof element.name !== 'undefined' &&
+                  element.name === 'radios'
                 );
               }) as HTMLInputElement[];
               const next = selected - 1;
@@ -70,30 +70,30 @@ class Carousel extends HTMLElement {
             }
           }
         });
-        prev.addEventListener("click", () => {
-          const form = shadow.querySelector("form");
+        prev.addEventListener('click', () => {
+          const form = shadow.querySelector('form');
           if (form && form !== null) {
             const radioChecked = form.querySelector(
-              'input[type="radio"][name="radios"]:checked'
+              'input[type="radio"][name="radios"]:checked',
             ) as HTMLInputElement;
             if (radioChecked) {
               const selected = parseInt(radioChecked.value.toString(), 10);
               const next = selected - 1;
-              if (next === 0)
+              if (next === 0) {
                 form.radios[form.radios.length - 1].checked = true;
-              else form.radios[next - 1].checked = true;
+              } else form.radios[next - 1].checked = true;
             }
           }
         });
       }
-      const next = shadow.querySelector(".button--next");
+      const next = shadow.querySelector('.button--next');
       if (next) {
-        next.addEventListener("touchend", (event: Event) => {
+        next.addEventListener('touchend', (event: Event) => {
           event.preventDefault(); // prevent mobile dbl tap zoom
-          const form = shadow.querySelector("form");
+          const form = shadow.querySelector('form');
           if (form && form !== null) {
             const radioChecked = form.querySelector(
-              'input[type="radio"][name="radios"]:checked'
+              'input[type="radio"][name="radios"]:checked',
             ) as HTMLInputElement;
             if (radioChecked) {
               const selected = parseInt(radioChecked.value.toString(), 10);
@@ -101,8 +101,8 @@ class Carousel extends HTMLElement {
               const radios = Array.from(form.elements).filter((e) => {
                 const element = e as HTMLElement & { name?: string };
                 return (
-                  typeof element.name !== "undefined" &&
-                  element.name === "radios"
+                  typeof element.name !== 'undefined' &&
+                  element.name === 'radios'
                 );
               }) as HTMLInputElement[];
               if (nextone === radios.length + 1) radios[0].checked = true;
@@ -110,18 +110,18 @@ class Carousel extends HTMLElement {
             }
           }
         });
-        next.addEventListener("click", () => {
-          const form = shadow.querySelector("form");
+        next.addEventListener('click', () => {
+          const form = shadow.querySelector('form');
           if (form && form !== null) {
             const radioChecked = form.querySelector(
-              'input[type="radio"][name="radios"]:checked'
+              'input[type="radio"][name="radios"]:checked',
             ) as HTMLInputElement;
             if (radioChecked) {
               const selected = parseInt(radioChecked.value.toString(), 10);
               const nextone = selected + 1;
-              if (nextone === form.radios.length + 1)
+              if (nextone === form.radios.length + 1) {
                 form.radios[0].checked = true;
-              else form.radios[nextone - 1].checked = true;
+              } else form.radios[nextone - 1].checked = true;
             }
           }
         });
@@ -134,22 +134,21 @@ class Carousel extends HTMLElement {
   // eslint-disable-next-line class-methods-use-this
   loadFonts() {
     const fonts = [
-      "https://fonts.googleapis.com/css?family=Permanent Marker&display=swap",
-      "https://fonts.googleapis.com/css2?family=Chewy&display=swap",
+      'https://fonts.googleapis.com/css?family=Permanent Marker&display=swap',
+      'https://fonts.googleapis.com/css2?family=Chewy&display=swap',
     ];
     const linksInHead = Array.from(document.head.children)
       .filter(
-        (e) =>
-          e.nodeName === "LINK" && !fonts.includes((e as HTMLLinkElement).href)
+        (e) => e.nodeName === 'LINK' && !fonts.includes((e as HTMLLinkElement).href),
       )
       .map((e) => (e as HTMLLinkElement).href);
 
     for (let f = 0; f < fonts.length; f += 1) {
       const font = fonts[f];
       if (!linksInHead.includes(font)) {
-        const link = document.createElement("link");
+        const link = document.createElement('link');
         link.href = font;
-        link.rel = "stylesheet";
+        link.rel = 'stylesheet';
         document.head.appendChild(link);
       }
     }
@@ -175,20 +174,21 @@ class Carousel extends HTMLElement {
         children: node.outerHTML,
       });
       if (shadow) {
-        const slidesNode = shadow.querySelector("#slides");
-        const controlsNode = shadow.querySelector("#controls");
+        const slidesNode = shadow.querySelector('#slides');
+        const controlsNode = shadow.querySelector('#controls');
         if (slidesNode && controlsNode) {
           slidesNode.insertBefore(
             metaElements.slide.content.cloneNode(true),
-            controlsNode
+            controlsNode,
           );
         }
-        const labelsNode = shadow.querySelector("#labels");
-        if (labelsNode)
+        const labelsNode = shadow.querySelector('#labels');
+        if (labelsNode) {
           labelsNode.appendChild(metaElements.label.content.cloneNode(true));
+        }
       }
     }
   }
 }
 
-window.customElements.define("me-carousel", Carousel);
+window.customElements.define('me-carousel', Carousel);

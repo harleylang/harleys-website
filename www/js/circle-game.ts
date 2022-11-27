@@ -12,17 +12,17 @@ let circleGamePoints = 0;
 ((window, document) => {
   function handleClose() {
     const dialog = document.getElementById(
-      "circle-game-dialog"
+      'circle-game-dialog',
     ) as HTMLDialogElement;
     if (dialog.close) {
       dialog.close();
     } else {
-      dialog.removeAttribute("open");
+      dialog.removeAttribute('open');
     }
   }
 
   function purgeDialog() {
-    const dialog = document.getElementById("circle-game-dialog");
+    const dialog = document.getElementById('circle-game-dialog');
     const parent = dialog?.parentElement;
     if (dialog) parent?.removeChild(dialog);
   }
@@ -30,10 +30,10 @@ let circleGamePoints = 0;
   function setupDialog(target: HTMLElement) {
     purgeDialog();
 
-    const dialog = document.createElement("dialog");
-    dialog.id = "circle-game-dialog";
+    const dialog = document.createElement('dialog');
+    dialog.id = 'circle-game-dialog';
     dialog.innerHTML = `👌 psych, harley ${circleGamePoints} - you 0`;
-    dialog.addEventListener("click", handleClose);
+    dialog.addEventListener('click', handleClose);
 
     const { parentNode } = target;
     if (parentNode) parentNode.insertBefore(dialog, target);
@@ -45,7 +45,7 @@ let circleGamePoints = 0;
     if (currentTarget) setupDialog(currentTarget as HTMLElement);
 
     const dialog = document.getElementById(
-      "circle-game-dialog"
+      'circle-game-dialog',
     ) as HTMLDialogElement;
 
     if (dialog) {
@@ -55,17 +55,17 @@ let circleGamePoints = 0;
     if (dialog.showModal) {
       dialog.showModal();
     } else {
-      dialog.setAttribute("open", "true");
+      dialog.setAttribute('open', 'true');
     }
   }
 
   function initialise() {
-    const baits = document.querySelectorAll("[circle-game]");
+    const baits = document.querySelectorAll('[circle-game]');
     baits.forEach((bait) => {
-      bait.addEventListener("click", gotcha, false);
+      bait.addEventListener('click', gotcha, false);
     });
   }
 
-  console.log('dfkdj')
-  window.addEventListener("load", initialise, false);
+  console.log('dfkdj');
+  window.addEventListener('load', initialise, false);
 })(window, document);

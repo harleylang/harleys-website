@@ -15,12 +15,27 @@ async function treeShakeCSS() {
     pattern: new RegExp('index.html'),
   });
   const rawHTML = await raw(filesHTML);
-  const content = Object.values(rawHTML).map((raw) => {
-    return {
-      extension: 'html',
-      raw: raw,
-    };
+  // get raw js
+  const filesJS = await filewalker({
+    rootDir: join(Deno.cwd(), 'public/assets/js'),
+    pattern: new RegExp('.js'),
   });
+  const rawJS = await raw(filesJS);
+  // array of content that could have classes defined within it
+  const content = [
+    ...Object.values(rawHTML).map((raw) => {
+      return {
+        extension: 'html',
+        raw: raw,
+      };
+    }),
+    ...Object.values(rawJS).map((raw) => {
+      return {
+        extension: 'js',
+        raw: raw,
+      };
+    }),
+  ];
   // get raw css
   const filesCSS = await filewalker({
     rootDir: join(Deno.cwd(), 'public/assets/css'),

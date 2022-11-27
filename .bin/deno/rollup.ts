@@ -12,13 +12,13 @@ async function treeShakeCSS() {
   // get raw html
   const filesHTML = await filewalker({
     rootDir: join(Deno.cwd(), 'public'),
-    pattern: new RegExp('index.html'),
+    pattern: new RegExp(/index.html/),
   });
   const rawHTML = await raw(filesHTML);
   // get raw js
   const filesJS = await filewalker({
     rootDir: join(Deno.cwd(), 'public/assets/js'),
-    pattern: new RegExp('.js'),
+    pattern: new RegExp(/\.js/),
   });
   const rawJS = await raw(filesJS);
   // array of content that could have classes defined within it
@@ -39,7 +39,7 @@ async function treeShakeCSS() {
   // get raw css
   const filesCSS = await filewalker({
     rootDir: join(Deno.cwd(), 'public/assets/css'),
-    pattern: new RegExp('.css'),
+    pattern: new RegExp(/\.css/),
   });
   const rawCSS = await raw(filesCSS);
   const css = Object.keys(rawCSS).map((name) => {
@@ -94,7 +94,7 @@ const config: RollupOptions & { output: OutputOptions } = {
       input: [
         ...await filewalker({
           rootDir: join(Deno.cwd(), 'www/html'),
-          pattern: new RegExp('index.html'),
+          pattern: new RegExp(/index.html/),
         }),
       ],
       rootDir: __dirname,

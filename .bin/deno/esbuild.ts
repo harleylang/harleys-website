@@ -38,7 +38,7 @@ if (__target.includes('.')) {
 const __dirname = join(Deno.cwd(), __target);
 
 // get all files in the directory
-let files = await filewalker({ rootDir: __dirname, pattern: new RegExp('.ts') });
+let files = await filewalker({ rootDir: __dirname, pattern: new RegExp(/\.ts/) });
 
 // this plugin will inject css into web-component templates that use
 // the slot syntax `<!--esbuild-inject-css:file.css-->`

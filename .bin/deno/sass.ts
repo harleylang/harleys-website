@@ -43,7 +43,7 @@ window.location = {
 } as typeof window.location;
 
 // create array of all *.scss files in the target directory
-const files = await filewalker({ rootDir: __dirname, pattern: new RegExp('.scss') });
+const files = await filewalker({ rootDir: __dirname, pattern: new RegExp(/\.scss/) });
 const modules = files.filter((file) => file.match(/\_(.*)(.scss)/g));
 const styles = files.filter((file) => !file.match(/\_(.*)(.scss)/g));
 

@@ -1,5 +1,6 @@
 {
   "imports": {
+    "esbuild": "https://deno.land/x/esbuild@v0.15.15/mod.js",
     "path": "https://deno.land/std@0.119.0/path/mod.ts",
     "sass": "https://esm.sh/sass@1.56.1",
     "server": "https://deno.land/std@0.119.0/http/server.ts",

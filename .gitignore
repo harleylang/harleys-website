@@ -1,10 +1,14 @@
 node_modules
 dist
 public
+# remove next line after deno migration completes, just for testing for now
+public-node
 assets
 .turbo
 *.log
 # rendered css files
 www/css/**/*.css*
+# rendered mjs files
+www/js/**/*.mjs
 # ssg'd html files
 www/html/blog/**/index.html

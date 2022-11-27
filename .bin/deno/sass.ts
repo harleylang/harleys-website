@@ -1,6 +1,6 @@
 /**
  * sass.ts
- * This file contains deno filesystem bindings for compiling with sass-lang,
+ * This script provides deno filesystem bindings for compiling with sass-lang,
  * as well as watching the compiled files for changes.
  * @arg path The directory with *.scss files to compile to *.css.
  * @example Run with the following command:
@@ -88,7 +88,7 @@ async function compileSassToCss(filename: string) {
   try {
     raw = await Deno.readTextFile(filename);
   } catch {
-    console.warn(`Uhoh, "${filename}" does not exist. Aborting compilation.`);
+    console.warn(`Uhoh, "${filename}" does not exist. Abandoning compilation.`);
   }
   if (raw) {
     // parse and replace imported modules with their raw sass content

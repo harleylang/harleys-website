@@ -1,10 +1,7 @@
-// eslint-disable-next-line import/no-relative-packages
-import carouselBase from "../../../../css/carousel.css";
-
 const template = document.createElement("template");
 
 template.innerHTML = `
-<style>${carouselBase}</style>
+<!--esbuild-inject-css:carousel.css-->
 <form name="carousel">
   <ol id="slides">
     <li id="controls" class="controls">

@@ -1,15 +1,8 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["deno.window"],
+    "lib": ["dom", "dom.iterable", "deno.window"],
     "strict": true,
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "noEmit": true,
     "include": [
       "www/**/*",
       "./bin/**/*"
@@ -36,9 +29,14 @@
     }
   },
   "tasks": {
-    "sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/deno/sass.ts www/css",
-    "start": "deno task start:server & deno task start:sass",
-    "start:server": "deno run --allow-net --allow-run --allow-read .bin/deno/serve.ts",
-    "start:sass": "deno task sass --watch"
+    "bin:esbuild": "deno run --allow-all .bin/deno/esbuild.ts www/js",
+    "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/deno/sass.ts www/css",
+    "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/deno/serve.ts",
+    "build": "deno task bin:sass && deno task bin:esbuild",
+    "start": "deno task build && deno task start:hmr",
+    "start:hmr": "deno task start:hmr:html & deno task start:hmr:css & deno task start:hmr:js",
+    "start:hmr:html": "deno task bin:serve",
+    "start:hmr:css": "deno task bin:sass --watch",
+    "start:hmr:js": "deno task bin:esbuild --watch"
   }
 }

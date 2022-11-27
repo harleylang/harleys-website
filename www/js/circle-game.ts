@@ -9,7 +9,7 @@
 
 let circleGamePoints = 0;
 
-(() => {
+((window, document) => {
   function handleClose() {
     const dialog = document.getElementById(
       "circle-game-dialog"
@@ -65,5 +65,7 @@ let circleGamePoints = 0;
       bait.addEventListener("click", gotcha, false);
     });
   }
+
+  console.log('dfkdj')
   window.addEventListener("load", initialise, false);
-})();
+})(window, document);

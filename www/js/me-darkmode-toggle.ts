@@ -1,9 +1,7 @@
-import css from "./index.css";
-
 const template = document.createElement("template");
 
 template.innerHTML = `
-  <style>${css}</style>
+  <!--esbuild-inject-css:darkmode-toggle.css-->
   <div class="switch">
     <label for="DarkmodeToggle__input" id="DarkmodeToggle__label">
       a darkmode label

@@ -4,14 +4,26 @@ import { join } from 'path';
 import yargs from 'yargs';
 
 const __dirname = Deno.cwd();
-const { port: __port = 3000 } = yargs(Deno.args).parse();
+const { port: __port = 3000, _: [__target] } = yargs(Deno.args).parse();
+
+if (!__target) {
+  throw new Error(
+    'WHOOPS! Please provide a path to compile when running this script.',
+  );
+}
+
+if (__target.includes('.')) {
+  throw new Error(
+    'WHOOPS! Please only provide a directory to target, not a file.',
+  );
+}
 
 const middleware = refresh();
 
 function composeResponse(req: Request): Response {
   try {
     const file = req.url.split(`:${__port}/`)[1] ?? 'index.html';
-    const filePath = join(__dirname, 'www', file);
+    const filePath = join(__dirname, __target, file);
 
     let contentType = '';
     switch (true) {

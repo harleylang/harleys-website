@@ -106,3 +106,4 @@ const config: RollupOptions & { output: OutputOptions } = {
 // initiate build
 const build = await rollup(config);
 await build.write(config.output);
+console.log('Production build complete.');

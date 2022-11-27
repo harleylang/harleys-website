@@ -2,6 +2,9 @@
   "imports": {
     "esbuild": "https://deno.land/x/esbuild@v0.15.15/mod.js",
     "path": "https://deno.land/std@0.119.0/path/mod.ts",
+    "purgecss": "https://esm.sh/purgecss@5.0.0",
+    "rollup": "https://esm.sh/rollup@3.5.0",
+    "rollup-plugin-html": "https://esm.sh/@web/rollup-plugin-html@1.11.0",
     "sass": "https://esm.sh/sass@1.56.1",
     "server": "https://deno.land/std@0.119.0/http/server.ts",
     "refresh": "https://deno.land/x/refresh@1.0.0/mod.ts",

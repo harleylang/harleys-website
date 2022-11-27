@@ -29,10 +29,10 @@
     }
   },
   "tasks": {
-    "bin:esbuild": "deno run --allow-all .bin/deno/esbuild.ts www/js",
-    "bin:rollup": "deno run --allow-all .bin/deno/rollup.ts",
-    "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/deno/sass.ts www/css",
-    "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/deno/serve.ts www",
+    "bin:esbuild": "deno run --allow-all .bin/esbuild.ts www/js",
+    "bin:rollup": "deno run --allow-all .bin/rollup.ts",
+    "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts www/css",
+    "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts www",
     "build": "deno task setup && deno task bin:rollup",
     "setup": "deno task bin:sass && deno task bin:esbuild",
     "start": "deno task setup && deno task start:hmr",
@@ -40,6 +40,6 @@
     "start:hmr:html": "deno task bin:serve",
     "start:hmr:css": "deno task bin:sass --watch",
     "start:hmr:js": "deno task bin:esbuild --watch",
-    "preview": "deno run --allow-net --allow-run --allow-read .bin/deno/serve.ts public"
+    "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts public"
   }
 }

@@ -34,6 +34,7 @@
     "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts www/css",
     "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts www",
     "build": "deno task setup && deno task bin:rollup",
+    "clean": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
     "setup": "deno task bin:sass && deno task bin:esbuild",
     "start": "deno task setup && deno task start:hmr",
     "start:hmr": "deno task start:hmr:html & deno task start:hmr:css & deno task start:hmr:js",

@@ -2,9 +2,12 @@
  * sass.ts
  * This script provides deno filesystem bindings for compiling with sass-lang,
  * as well as watching the compiled files for changes.
- * @arg path The directory with *.scss files to compile to *.css.
+ * @arg target The directory with *.scss files to compile to *.css.
  * @example Run with the following command:
  * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css`
+ * @arg outdir The directory to compile *.css files to. Defaults to `${target}/dist`.
+ * @example Run with the following command:
+ * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css dist`
  * @arg watch Whether or not to watch the provided path for changes.
  * @example Run with the following command:
  * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css --watch`
@@ -18,7 +21,7 @@ import filewalker from './filewalker.ts';
 
 // derive arguments
 const {
-  _: [__target],
+  _: [__target, __outdir],
   watch,
 } = yargs(Deno.args).parse();
 
@@ -36,6 +39,9 @@ if (__target.includes('.')) {
 
 // setup dirname from provided target argument
 const __dirname = join(Deno.cwd(), __target);
+
+// setup dist out
+const __dirout = __outdir ? __outdir : join(__dirname, 'dist');
 
 // overwrite location for sass to run in an expected way
 window.location = {
@@ -78,8 +84,15 @@ async function compileSassToCss(filename: string) {
       sourceMap: false,
       style: 'compressed',
     });
+    // prepare out dir
+    try {
+      await Deno.stat(__dirout);
+    } catch {
+      await Deno.mkdir(__dirout);
+    }
     // write to filesystem
     filename = filename.replace('.scss', '.css');
+    filename = filename.replace(__dirname, __dirout);
     await Deno.writeTextFile(filename, compiled.css);
     console.log(`Compiled: ${filename}`);
   }

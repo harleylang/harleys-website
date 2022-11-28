@@ -52,7 +52,7 @@ const esbuildInjectCss = (): esbuild.Plugin => {
         const cssSlotSyntax = /(?<=<!--esbuild-inject-css:).*(?=-->)/g;
         const slots = contents.match(cssSlotSyntax) ?? [];
         for (const filename of slots) {
-          const css = await Deno.readTextFile(join(Deno.cwd(), 'www/css', filename));
+          const css = await Deno.readTextFile(join(Deno.cwd(), 'www/css/dist', filename));
           const slotRegex = new RegExp(`<!--esbuild-inject-css:${filename}-->`, 'gi');
           contents = contents.replace(slotRegex, `<style>${css}</style>`);
         }

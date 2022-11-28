@@ -18,7 +18,7 @@ import filewalker from './filewalker.ts';
 
 // derive arguments
 const {
-  _: [__target],
+  _: [__target, __outdir],
   watch,
 } = yargs(Deno.args).parse();
 
@@ -36,6 +36,9 @@ if (__target.includes('.')) {
 
 // setup dirname from provided target argument
 const __dirname = join(Deno.cwd(), __target);
+
+// setup dist out
+const __dirout = __outdir ? __outdir : join(__dirname, 'dist');
 
 // get all files in the directory
 let files = await filewalker({ rootDir: __dirname, pattern: new RegExp(/\.ts/) });
@@ -67,7 +70,7 @@ const esbuildInjectCss = (): esbuild.Plugin => {
 
 // build the files
 files.forEach(async (file) => {
-  const outfile = `${file.replace('.ts', '')}.mjs`;
+  const outfile = `${file.replace(__dirname, __dirout).replace('.ts', '')}.mjs`;
   await esbuild.build({
     entryPoints: [file],
     outfile,

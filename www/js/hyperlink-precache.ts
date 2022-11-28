@@ -76,18 +76,21 @@
     const scripts = doc.querySelectorAll('script');
     for (let i = 0; i < scripts.length; i += 1) {
       const script = scripts[i];
-      const scriptSrc = script.getAttribute('src') ?? '';
-      const preloadLink = document.createElement('link');
-      const target = scriptSrc.includes('http') ? scriptSrc : parseRelativePath({
-        src,
-        target: scriptSrc,
-      });
-      // eslint-disable-next-line no-continue
-      if (target.includes('__web-dev-server')) continue;
-      preloadLink.href = target;
-      preloadLink.rel = 'prefetch';
-      preloadLink.as = 'script';
-      document.head.appendChild(preloadLink);
+      const scriptSrc = script.getAttribute('src');
+      // only prefetch linked scripts, not inline scripts
+      if (scriptSrc) {
+        const preloadLink = document.createElement('link');
+        const target = scriptSrc.includes('http') ? scriptSrc : parseRelativePath({
+          src,
+          target: scriptSrc,
+        });
+        // eslint-disable-next-line no-continue
+        if (target.includes('__web-dev-server')) continue;
+        preloadLink.href = target;
+        preloadLink.rel = 'prefetch';
+        preloadLink.as = 'script';
+        document.head.appendChild(preloadLink);
+      }
     }
   }
 

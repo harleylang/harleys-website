@@ -106,4 +106,9 @@ const config: RollupOptions & { output: OutputOptions } = {
 // initiate build
 const build = await rollup(config);
 await build.write(config.output);
+
+// write robots.txt
+Deno.writeTextFile('public/robots.txt', 'User-agent: *\nAllow: /\n');
+
+// success message
 console.log('Production build complete.');

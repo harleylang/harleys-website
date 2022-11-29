@@ -90,10 +90,9 @@ for (const __dir of __directories) {
   // update relative paths
   const relativity = (__dir.split(__base)[1].match(/\//g) || []).length + 1;
   const relativePathStr = /(?<=)("\.\.\/)/g;
-  sscontent = sscontent.replace(
-    relativePathStr,
-    () => `"${'../'.repeat(relativity)}`,
-  );
+  sscontent = sscontent.replace(relativePathStr, () => `"${'../'.repeat(relativity)}`);
   // write file
   await Deno.writeTextFile(`${__dir}/index.html`, sscontent);
 }
+
+console.log(`Generated static content for: ${__base}`);

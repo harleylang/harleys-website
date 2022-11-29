@@ -63,7 +63,7 @@ const {
   __template = join(Deno.cwd(), template),
 } = yargs(Deno.args).parse();
 
-async function staticGeneration() {
+async function staticGeneration(filename?: string) {
   // derive ssg slots
   const html = await Deno.readTextFile(__template);
   const slots = html.match(ssgSlotSyntax) ?? [];
@@ -97,9 +97,9 @@ async function staticGeneration() {
     sscontent = sscontent.replace(relativePathStr, () => `"${'../'.repeat(relativity)}`);
     // write file
     await Deno.writeTextFile(`${__dir}/index.html`, sscontent);
+    if (!watch && !filename) console.log(`Generated static content for: ${__base}/${__dir}`);
   }
-
-  console.log(`Generated static content for: ${__base}`);
+  if (watch && filename) console.log(`Generated static content for: ${__base}`);
 }
 
 await staticGeneration();

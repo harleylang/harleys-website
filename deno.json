@@ -37,12 +37,13 @@
     "build:ssg": "deno task build:ssg:blog",
     "build:ssg:blog": "deno run --allow-all .bin/ssg.ts --template www/html/blog/template.html",
     "clean": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
-    "setup": "deno task bin:sass && deno task bin:esbuild",
+    "setup": "deno task bin:sass && deno task bin:esbuild && deno task build:ssg",
     "start": "deno task setup && deno task start:hmr",
-    "start:hmr": "deno task start:hmr:html & deno task start:hmr:css & deno task start:hmr:js",
+    "start:hmr": "deno task start:hmr:html & deno task start:hmr:css & deno task start:hmr:js & deno task start:hmr:ssg",
     "start:hmr:html": "deno task bin:serve",
     "start:hmr:css": "deno task bin:sass --watch",
     "start:hmr:js": "deno task bin:esbuild --watch",
+    "start:hmr:ssg": "deno task build:ssg --watch",
     "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts public"
   }
 }

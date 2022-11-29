@@ -97,7 +97,7 @@ async function compileSassToCss(filename: string) {
     filename = filename.replace('.scss', '.css');
     filename = filename.replace(__dirname, __dirout);
     await Deno.writeTextFile(filename, compiled.css);
-    console.log(`Compiled: ${filename}`);
+    if (!watch) console.log(`Compiled: ${filename}`);
   }
 }
 
@@ -175,5 +175,6 @@ async function handleFileChange(filename: string) {
   // compile the files
   for (const update of updates) {
     await compileSassToCss(update);
+    console.log(`Compiled: ${filename}`);
   }
 }

@@ -1,8 +1,6 @@
 node_modules
 dist
 public
-# remove next line after deno migration completes, just for testing for now
-public-node
 assets
 .turbo
 *.log

@@ -23,7 +23,7 @@
  * - https://github.com/GoogleChromeLabs/quicklink/
  */
 
-(() => {
+((window, document) => {
   function parseRelativePath({ src, target }: { src: string; target: string }) {
     const pathLevelsSrc = src.split('./')[1].split('/').length - 1;
     const relativeLevelsSrc = src.split('../').length - 1;
@@ -193,4 +193,4 @@
   }
 
   window.addEventListener('load', initialize, false);
-})();
+})(window, document);

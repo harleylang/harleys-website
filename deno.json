@@ -1,14 +1,49 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "lib": ["deno.window"],
-    "strict": true
+    "lib": ["dom", "dom.iterable", "deno.window"],
+    "strict": true,
+    "include": [
+      "www/**/*",
+      "./bin/**/*"
+    ]
   },
   "importMap": "import_map.json",
+  "fmt": {
+    "files": {
+      "exclude": ["public", "www/js/dist", "www/css/dist"]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 100,
+      "indentWidth": 2,
+      "singleQuote": true
+    }
+  },
+  "lint": {
+    "files": {
+      "exclude": ["public", "www/js/dist", "www/css/dist"]
+    },
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
   "tasks": {
-    "sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/deno/sass.ts www/css",
-    "start": "deno task start:server & deno task start:sass",
-    "start:server": "deno run --allow-net --allow-run --allow-read .bin/deno/serve.ts",
-    "start:sass": "deno task sass --watch"
+    "bin:esbuild": "deno run --allow-all .bin/esbuild.ts www/js",
+    "bin:rollup": "deno run --allow-all .bin/rollup.ts",
+    "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts www/css",
+    "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts www",
+    "build": "rm -rf public && deno task setup && deno task build:ssg && deno task bin:rollup",
+    "build:ssg": "deno task build:ssg:blog",
+    "build:ssg:blog": "deno run --allow-all .bin/ssg.ts --template www/html/blog/template.html",
+    "clean": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
+    "setup": "deno task bin:sass && deno task bin:esbuild && deno task build:ssg",
+    "start": "deno task setup && deno task start:hmr",
+    "start:hmr": "deno task start:hmr:html & deno task start:hmr:css & deno task start:hmr:js & deno task start:hmr:ssg",
+    "start:hmr:html": "deno task bin:serve",
+    "start:hmr:css": "deno task bin:sass --watch",
+    "start:hmr:js": "deno task bin:esbuild --watch",
+    "start:hmr:ssg": "deno task build:ssg --watch",
+    "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts public"
   }
 }

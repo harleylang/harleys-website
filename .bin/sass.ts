@@ -1,35 +1,50 @@
 /**
  * sass.ts
- * This file contains deno filesystem bindings for compiling with sass-lang,
+ * This script provides deno filesystem bindings for compiling with sass-lang,
  * as well as watching the compiled files for changes.
- * @arg path The directory with *.scss files to compile to *.css.
- * @arg watch Whether or not to watch the provided path for changes.
+ * @arg target The directory with *.scss files to compile to *.css.
  * @example Run with the following command:
  * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css`
+ * @arg outdir The directory to compile *.css files to. Defaults to `${target}/dist`.
+ * @example Run with the following command:
+ * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css dist`
+ * @arg watch Whether or not to watch the provided path for changes.
+ * @example Run with the following command:
+ * `deno run --allow-read --allow-write --allow-env='SASS_PATH' sass.ts www/css --watch`
  */
 
-import sass from "sass";
-import { join } from "path";
-import yargs from "yargs";
+import sass from 'sass';
+import { join } from 'path';
+import yargs from 'yargs';
+
+import filewalker from './filewalker.ts';
+import filewatcher from './filewatcher.ts';
 
 // derive arguments
 const {
-  _: [__target],
+  _: [__target, __outdir],
   watch,
 } = yargs(Deno.args).parse();
 
-if (!__target)
+if (!__target) {
   throw new Error(
-    "WHOOPS! Please provide a path to compile when running this script."
+    'WHOOPS! Please provide a path to compile when running this script.',
   );
+}
 
-if (__target.includes("."))
+if (__target.includes('.')) {
   throw new Error(
-    "WHOOPS! Please only provide a directory to target, not a file."
+    'WHOOPS! Please only provide a directory to target, not a file.',
   );
+}
+
+const patternSCSS = new RegExp(/\.scss/);
 
 // setup dirname from provided target argument
 const __dirname = join(Deno.cwd(), __target);
+
+// setup dist out
+const __dirout = __outdir ? __outdir : join(__dirname, 'dist');
 
 // overwrite location for sass to run in an expected way
 window.location = {
@@ -37,31 +52,9 @@ window.location = {
 } as typeof window.location;
 
 // create array of all *.scss files in the target directory
-const modules: string[] = [];
-const styles: string[] = [];
-
-function handleDirEntry(dirEntry: Deno.DirEntry, path: string) {
-  if (dirEntry.isFile && dirEntry.name.includes(".scss")) {
-    if (dirEntry.name[0] === "_") {
-      modules.push(join(path, dirEntry.name));
-    } else {
-      styles.push(join(path, dirEntry.name));
-    }
-  }
-}
-
-async function walkRecursively(directory: string) {
-  for await (const dirEntry of Deno.readDir(directory)) {
-    if (dirEntry.isDirectory) {
-      await walkRecursively(join(directory, dirEntry.name));
-    }
-    if (dirEntry.isFile) {
-      handleDirEntry(dirEntry, directory);
-    }
-  }
-}
-
-await walkRecursively(__dirname);
+const files = await filewalker({ rootDir: __dirname, pattern: patternSCSS });
+const modules = files.filter((file) => file.match(/\_(.*)(.scss)/g));
+const styles = files.filter((file) => !file.match(/\_(.*)(.scss)/g));
 
 // create an object of modules and their raw content
 let moduleContent: { [key: string]: string } = {};
@@ -80,11 +73,11 @@ for (const style of styles) {
 // fx that takes a filename for sass and writes it to the filesystem
 async function compileSassToCss(filename: string) {
   // get the raw scss
-  let raw = "";
+  let raw = '';
   try {
     raw = await Deno.readTextFile(filename);
   } catch {
-    console.warn(`Uhoh, "${filename}" does not exist. Aborting compilation.`);
+    console.warn(`Uhoh, "${filename}" does not exist. Abandoning compilation.`);
   }
   if (raw) {
     // parse and replace imported modules with their raw sass content
@@ -92,12 +85,19 @@ async function compileSassToCss(filename: string) {
     // compile to css
     const compiled = await sass.compileStringAsync(parsed, {
       sourceMap: false,
-      style: "compressed",
+      style: 'compressed',
     });
+    // prepare out dir
+    try {
+      await Deno.stat(__dirout);
+    } catch {
+      await Deno.mkdir(__dirout);
+    }
     // write to filesystem
-    filename = filename.replace(".scss", ".css");
+    filename = filename.replace('.scss', '.css');
+    filename = filename.replace(__dirname, __dirout);
     await Deno.writeTextFile(filename, compiled.css);
-    console.log(`Compiled: ${filename}`);
+    if (!watch) console.log(`Compiled: ${filename}`);
   }
 }
 
@@ -112,73 +112,59 @@ function parseAndSubstituteImports(css: string) {
     const filenameRegex = /\/(?:.+)(\.scss)/g;
     const filenameShort = (imported.match(filenameRegex) ?? [])[0];
     // match the path to the corresponding module
-    const filenameLong = modules.find((module) =>
-      module.includes(filenameShort)
-    );
+    const filenameLong = modules.find((module) => module.includes(filenameShort));
     // replace the import statement with the corresponding module's content
     if (filenameLong) {
       css = css.replace(imported, moduleContent[filenameLong]);
     } else {
-      throw new Error("WHOOPS! Undefined file referenced.");
+      throw new Error('WHOOPS! Undefined file referenced.');
     }
   }
   return css;
 }
 
 if (watch) {
-  const watcher = Deno.watchFs(__dirname, { recursive: true });
-  const notifiers = new Map<string, number>();
-  for await (const event of watcher) {
-    const dataString = JSON.stringify(event);
-    if (notifiers.has(dataString)) {
-      clearTimeout(notifiers.get(dataString));
-      notifiers.delete(dataString);
-    }
-
-    notifiers.set(
-      dataString,
-      setTimeout(async () => {
-        // Send notification here
-        notifiers.delete(dataString);
-        if (["create", "modify"].includes(event.kind)) {
-          for (const file of event.paths) {
-            if (file.includes(".scss")) await handleFileChange(file);
-          }
-        }
-      }, 200)
-    );
-  }
+  await filewatcher({
+    directory: __dirname,
+    pattern: patternSCSS,
+    callback: handleFileChange,
+  });
 }
 
 async function handleFileChange(filename: string) {
   const filenameShort = filename.split(__dirname)[1];
   console.log(`... detected change in: ${filenameShort}`);
   // identify scss file type
-  const type = filenameShort.includes("_") ? "module" : "style";
+  const type = filenameShort.includes('_') ? 'module' : 'style';
   // if filename is not in relevant data array, push filename to that array
-  if (type === "module" && !modules.includes(filename)) modules.push(filename);
-  if (type === "style" && !styles.includes(filename)) styles.push(filename);
+  if (type === 'module' && !modules.includes(filename)) modules.push(filename);
+  if (type === 'style' && !styles.includes(filename)) styles.push(filename);
   // figure out effected files
   const updates: string[] = [];
   switch (type) {
-    case "module":
+    case 'module': {
+      // update the relevant module's content
+      const content = await Deno.readTextFile(filename);
+      moduleContent = { ...moduleContent, [filename]: content };
+      // check which styles have been updated
       for (const style of styles) {
-        let raw = "";
+        let raw = '';
         try {
           raw = await Deno.readTextFile(style);
         } catch {
           console.warn(
-            `Uhoh, "${style}" does not exist. Aborting compilation.`
+            `Uhoh, "${style}" does not exist. Abandoning compilation.`,
           );
         }
         if (raw) {
           // if the stylesheet imports the module, recompiled that stylesheet
-          const importRegex = new RegExp(`@import ".${filenameShort}";`, "gi");
+          const importRegex = new RegExp(`@import ".${filenameShort}";`, 'gi');
           if (raw.match(importRegex)) updates.push(style);
         }
       }
       break;
-    case "style":
+    }
+    case 'style':
       updates.push(filename);
       break;
     default: {
@@ -189,5 +175,6 @@ async function handleFileChange(filename: string) {
   // compile the files
   for (const update of updates) {
     await compileSassToCss(update);
+    console.log(`Compiled: ${filename}`);
   }
 }

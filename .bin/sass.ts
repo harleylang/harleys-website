@@ -124,7 +124,7 @@ function parseAndSubstituteImports(css: string) {
 }
 
 if (watch) {
-  await filewatcher({ // TODO! test that this works
+  await filewatcher({
     directory: __dirname,
     pattern: patternSCSS,
     callback: handleFileChange,

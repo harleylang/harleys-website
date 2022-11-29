@@ -74,7 +74,7 @@ const __directories = [...new Set(files.map((file) => dirname(file)))].filter((d
   dir !== __base
 );
 
-__directories.forEach(async (__dir) => {
+for (const __dir of __directories) {
   // update slots
   const localSlotContent = await content(slots, __dir, globalSlotContent);
   const regex = new RegExp(
@@ -96,4 +96,4 @@ __directories.forEach(async (__dir) => {
   );
   // write file
   await Deno.writeTextFile(`${__dir}/index.html`, sscontent);
-});
+}

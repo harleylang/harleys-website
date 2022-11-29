@@ -11,7 +11,7 @@
   "importMap": "import_map.json",
   "fmt": {
     "files": {
-      "exclude": ["node_modules", "public", "public-node", "www/js"]
+      "exclude": ["public", "www/js/dist", "www/css/dist"]
     },
     "options": {
       "useTabs": false,
@@ -22,7 +22,7 @@
   },
   "lint": {
     "files": {
-      "exclude": ["node_modules", "public", "public-node", "www/js"]
+      "exclude": ["public", "www/js/dist", "www/css/dist"]
     },
     "rules": {
       "tags": ["recommended"]

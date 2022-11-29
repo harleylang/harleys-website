@@ -18,6 +18,7 @@ import { join } from 'path';
 import yargs from 'yargs';
 
 import filewalker from './filewalker.ts';
+import filewatcher from './filewatcher.ts';
 
 // derive arguments
 const {
@@ -37,6 +38,8 @@ if (__target.includes('.')) {
   );
 }
 
+const patternSCSS = new RegExp(/\.scss/);
+
 // setup dirname from provided target argument
 const __dirname = join(Deno.cwd(), __target);
 
@@ -49,7 +52,7 @@ window.location = {
 } as typeof window.location;
 
 // create array of all *.scss files in the target directory
-const files = await filewalker({ rootDir: __dirname, pattern: new RegExp(/\.scss/) });
+const files = await filewalker({ rootDir: __dirname, pattern: patternSCSS });
 const modules = files.filter((file) => file.match(/\_(.*)(.scss)/g));
 const styles = files.filter((file) => !file.match(/\_(.*)(.scss)/g));
 
@@ -121,28 +124,11 @@ function parseAndSubstituteImports(css: string) {
 }
 
 if (watch) {
-  const watcher = Deno.watchFs(__dirname, { recursive: true });
-  const notifiers = new Map<string, number>();
-  for await (const event of watcher) {
-    const dataString = JSON.stringify(event);
-    if (notifiers.has(dataString)) {
-      clearTimeout(notifiers.get(dataString));
-      notifiers.delete(dataString);
-    }
-
-    notifiers.set(
-      dataString,
-      setTimeout(async () => {
-        // Send notification here
-        notifiers.delete(dataString);
-        if (['create', 'modify'].includes(event.kind)) {
-          for (const file of event.paths) {
-            if (file.includes('.scss')) await handleFileChange(file);
-          }
-        }
-      }, 200),
-    );
-  }
+  await filewatcher({ // TODO! test that this works
+    directory: __dirname,
+    pattern: patternSCSS,
+    callback: handleFileChange,
+  });
 }
 
 async function handleFileChange(filename: string) {

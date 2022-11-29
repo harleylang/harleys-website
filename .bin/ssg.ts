@@ -30,7 +30,9 @@
  */
 import { dirname, join } from 'path';
 import yargs from 'yargs';
+
 import filewalker from './filewalker.ts';
+import filewatcher from './filewatcher.ts';
 
 // setup helper data / fxs
 const ssgSlotSyntax = /(?<=<!--ssg:).*(?=-->)/g;
@@ -56,43 +58,56 @@ async function content(
 // destructure script args
 const {
   template = null,
+  watch,
   base: __base = join(Deno.cwd(), dirname(template)),
   __template = join(Deno.cwd(), template),
 } = yargs(Deno.args).parse();
 
-// derive ssg slots
-const html = await Deno.readTextFile(__template);
-const slots = html.match(ssgSlotSyntax) ?? [];
+async function staticGeneration() {
+  // derive ssg slots
+  const html = await Deno.readTextFile(__template);
+  const slots = html.match(ssgSlotSyntax) ?? [];
 
-// gather global slot content from base into obj
-// keys are file names for the content, values are the content within that file
-const globalSlotContent = await content(slots, __base);
+  // gather global slot content from base into obj
+  // keys are file names for the content, values are the content within that file
+  const globalSlotContent = await content(slots, __base);
 
-// iterate over relevant nested files from the base directory
-const files = await filewalker({ rootDir: __base, pattern: /(.*)(.html)/g });
-const __directories = [...new Set(files.map((file) => dirname(file)))].filter((dir) =>
-  dir !== __base
-);
-
-for (const __dir of __directories) {
-  // update slots
-  const localSlotContent = await content(slots, __dir, globalSlotContent);
-  const regex = new RegExp(
-    Object.keys(localSlotContent)
-      .map((key) => `<!--ssg:${key}-->`)
-      .join('|'),
-    'gi',
+  // iterate over relevant nested files from the base directory
+  const files = await filewalker({ rootDir: __base, pattern: /(.*)(.html)/g });
+  const __directories = [...new Set(files.map((file) => dirname(file)))].filter((dir) =>
+    dir !== __base
   );
-  let sscontent = html.replace(
-    regex,
-    (matched) => localSlotContent[matched.match(ssgSlotSyntax) as unknown as string],
-  );
-  // update relative paths
-  const relativity = (__dir.split(__base)[1].match(/\//g) || []).length + 1;
-  const relativePathStr = /(?<=)("\.\.\/)/g;
-  sscontent = sscontent.replace(relativePathStr, () => `"${'../'.repeat(relativity)}`);
-  // write file
-  await Deno.writeTextFile(`${__dir}/index.html`, sscontent);
+
+  for (const __dir of __directories) {
+    // update slots
+    const localSlotContent = await content(slots, __dir, globalSlotContent);
+    const regex = new RegExp(
+      Object.keys(localSlotContent)
+        .map((key) => `<!--ssg:${key}-->`)
+        .join('|'),
+      'gi',
+    );
+    let sscontent = html.replace(
+      regex,
+      (matched) => localSlotContent[matched.match(ssgSlotSyntax) as unknown as string],
+    );
+    // update relative paths
+    const relativity = (__dir.split(__base)[1].match(/\//g) || []).length + 1;
+    const relativePathStr = /(?<=)("\.\.\/)/g;
+    sscontent = sscontent.replace(relativePathStr, () => `"${'../'.repeat(relativity)}`);
+    // write file
+    await Deno.writeTextFile(`${__dir}/index.html`, sscontent);
+  }
+
+  console.log(`Generated static content for: ${__base}`);
 }
 
-console.log(`Generated static content for: ${__base}`);
+await staticGeneration();
+
+if (watch) {
+  await filewatcher({
+    directory: __base,
+    pattern: new RegExp(/(?![index])(\w+)\.html/),
+    callback: staticGeneration,
+  });
+}

@@ -29,7 +29,7 @@
    * @see https://stackoverflow.com/a/6028120/14198287
    */
   function findCommentNodes(el: Document | HTMLElement | ChildNode) {
-    // eslint-disable-next-line no-var
+    // deno-lint-ignore no-var
     var arr: ChildNode[] = [];
     const nodes = Array.from(el.childNodes);
     nodes.forEach((node) => {

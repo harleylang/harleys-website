@@ -16,7 +16,7 @@ interface IFilewalker {
  * @returns {string[]}
  * An array of file paths that match the provided directory and pattern.
  */
-async function filewalker({ rootDir, pattern, recursive = true }: IFilewalker) {
+export default async function filewalker({ rootDir, pattern, recursive = true }: IFilewalker) {
   let files: string[] = [];
   for await (const dirEntry of Deno.readDir(rootDir)) {
     if (dirEntry.isDirectory && recursive) {
@@ -28,5 +28,3 @@ async function filewalker({ rootDir, pattern, recursive = true }: IFilewalker) {
   }
   return files;
 }
-
-export default filewalker;

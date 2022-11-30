@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 
 template.innerHTML = `
-<!--esbuild-inject-css:carousel.css-->
+<!--esbuild-inject-css:me-carousel.css-->
 <form name="carousel">
   <ol id="slides">
     <li id="controls" class="controls">

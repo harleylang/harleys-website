@@ -29,20 +29,20 @@
     }
   },
   "tasks": {
-    "bin:esbuild": "deno run --allow-all .bin/esbuild.ts www/js",
+    "bin:esbuild": "deno run --allow-all .bin/esbuild.ts",
     "bin:rollup": "deno run --allow-all .bin/rollup.ts",
-    "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts www/css",
-    "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts www",
+    "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts",
+    "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts",
     "build": "rm -rf public && deno task setup && deno task bin:rollup",
     "build:ssg": "deno task build:ssg:blog",
     "build:ssg:blog": "deno run --allow-all .bin/ssg.ts --template www/html/blog/template.html",
     "clean": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
-    "setup": "deno task bin:sass && deno task bin:esbuild && deno task build:ssg",
+    "setup": "deno task bin:sass www/css && deno task bin:esbuild www/js && deno task build:ssg",
     "start": "deno task setup && deno task start:hmr",
     "start:hmr": "deno task start:hmr:html & deno task start:hmr:css & deno task start:hmr:js & deno task start:hmr:ssg",
-    "start:hmr:html": "deno task bin:serve",
-    "start:hmr:css": "deno task bin:sass --watch",
-    "start:hmr:js": "deno task bin:esbuild --watch",
+    "start:hmr:html": "deno task bin:serve www",
+    "start:hmr:css": "deno task bin:sass www/css --watch",
+    "start:hmr:js": "deno task bin:esbuild www/js --watch",
     "start:hmr:ssg": "deno task build:ssg --watch",
     "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts public"
   }

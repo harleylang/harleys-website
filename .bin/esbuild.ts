@@ -11,7 +11,7 @@
  */
 
 import * as esbuild from 'esbuild';
-import { join } from 'path';
+import { dirname, join } from 'path';
 import yargs from 'yargs';
 
 import filewalker from './filewalker.ts';
@@ -24,24 +24,25 @@ const {
 
 if (!__target) {
   throw new Error(
-    'WHOOPS! Please provide a path to compile when running this script.',
-  );
-}
-
-if (__target.includes('.')) {
-  throw new Error(
-    'WHOOPS! Please only provide a directory to target, not a file.',
+    'WHOOPS! Please provide a path or file to compile when running this script.',
   );
 }
 
 // setup dirname from provided target argument
-const __dirname = join(Deno.cwd(), __target);
+const __dirname = join(Deno.cwd(), __target.includes('.') ? dirname(__target) : __target);
 
 // setup dist out
 const __dirout = __outdir ? __outdir : join(__dirname, 'dist');
 
 // get all files in the directory
-let files = await filewalker({ rootDir: __dirname, pattern: new RegExp(/\.ts/) });
+let files: string[];
+if (__target.includes('.')) {
+  // if target is a file, just use that
+  files = [__target.replace(dirname(__target), __dirname)];
+} else {
+  // if __dirname is a directory, get all nested files
+  files = await filewalker({ rootDir: __dirname, pattern: new RegExp(/\.ts/) });
+}
 
 // this plugin will inject css into web-component templates that use
 // the slot syntax `<!--esbuild-inject-css:file.css-->`

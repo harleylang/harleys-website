@@ -29,7 +29,10 @@ if (!__target) {
 }
 
 // setup dirname from provided target argument
-const __dirname = join(Deno.cwd(), __target.includes('.') ? dirname(__target) : __target);
+const __dirname = join(
+  __target[0] === '/' ? '' : Deno.cwd(),
+  __target.includes('.') ? dirname(__target) : __target,
+);
 
 // setup dist out
 const __dirout = __outdir ? __outdir : join(__dirname, 'dist');
@@ -56,8 +59,13 @@ const esbuildInjectCss = (): esbuild.Plugin => {
         const cssSlotSyntax = /(?<=<!--esbuild-inject-css:).*(?=-->)/g;
         const slots = contents.match(cssSlotSyntax) ?? [];
         for (const filename of slots) {
-          const css = await Deno.readTextFile(join(Deno.cwd(), 'www/css/dist', filename));
-          const slotRegex = new RegExp(`<!--esbuild-inject-css:${filename}-->`, 'gi');
+          const css = await Deno.readTextFile(
+            join(Deno.cwd(), 'www/css/dist', filename),
+          );
+          const slotRegex = new RegExp(
+            `<!--esbuild-inject-css:${filename}-->`,
+            'gi',
+          );
           contents = contents.replace(slotRegex, `<style>${css}</style>`);
         }
         return {

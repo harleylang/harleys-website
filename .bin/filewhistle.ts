@@ -39,10 +39,8 @@ await filewatcher({
 
 async function handleWhistle(filename: string) {
   console.log(filename);
-  const cmd = ['bash', '.bin/hmr:me-components.sh'];
-  const p = Deno.run({ cmd, stdout: 'piped' });
-  const { code } = await p.status();
-  const rawOutput = await p.output();
-
-  console.log(await Deno.stdout.write(rawOutput));
+  // TODO:
+  // parse file name to me-component.ts
+  // trigger esbuild via fx (means esbuild needs to become function)
+  //
 }

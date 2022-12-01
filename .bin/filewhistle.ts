@@ -32,10 +32,6 @@ if (__path.includes('.')) {
   );
 }
 
-function delay(time: number) {
-  return;
-}
-
 await new Promise(function (resolve) {
   setTimeout(resolve, 3000);
 });

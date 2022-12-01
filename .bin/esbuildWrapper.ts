@@ -87,8 +87,6 @@ export default async function esbuildWrapper({
     outdir = __outdir ? __outdir as string : join(__dirname, 'dist');
   }
 
-  console.log(outdir);
-
   if (!watch) {
     watch = __watch;
   }

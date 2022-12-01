@@ -13,7 +13,6 @@ import esbuildWrapper from './esbuildWrapper.ts';
  */
 export default async function hmrComponents(filename: string) {
   if (filename.match(/me-(.*)(\.css)/g)) {
-    console.log(filename);
     const target = filename
       .replace('/css', '/js')
       .replace('/dist', '')

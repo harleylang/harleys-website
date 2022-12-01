@@ -66,6 +66,5 @@ let circleGamePoints = 0;
     });
   }
 
-  console.log('dfkdj');
   window.addEventListener('load', initialise, false);
 })(window, document);

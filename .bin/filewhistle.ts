@@ -13,10 +13,11 @@ import yargs from 'yargs';
 
 import filewatcher from './filewatcher.ts';
 
+import hmrComponents from './hmr:components.ts';
+
 // derive arguments
 const {
   _: [__path],
-  pattern,
 } = yargs(Deno.args).parse();
 
 if (!__path) {
@@ -31,16 +32,13 @@ if (__path.includes('.')) {
   );
 }
 
+console.log('🔔 Whistler activated');
+
 await filewatcher({
   directory: __path,
-  pattern: new RegExp(pattern),
   callback: handleWhistle,
 });
 
 async function handleWhistle(filename: string) {
-  console.log(filename);
-  // TODO:
-  // parse file name to me-component.ts
-  // trigger esbuild via fx (means esbuild needs to become function)
-  //
+  await hmrComponents(filename);
 }

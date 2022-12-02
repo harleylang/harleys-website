@@ -17,16 +17,16 @@ import whistleJs from './whistle:js.ts';
 
 // derive arguments
 const {
-  _: [__path],
+  target,
 } = yargs(Deno.args).parse();
 
-if (!__path) {
+if (!target) {
   throw new Error(
-    'WHOOPS! Please provide a path to compile when running this script.',
+    'WHOOPS! Please provide a target to compile when running this script.',
   );
 }
 
-if (__path.includes('.')) {
+if (target.includes('.')) {
   throw new Error(
     'WHOOPS! Please only provide a directory to target, not a file.',
   );
@@ -35,7 +35,7 @@ if (__path.includes('.')) {
 console.log('🔔 Whistler activated');
 
 await filewatcher({
-  directory: __path,
+  directory: target,
   callback: handleWhistle,
 });
 

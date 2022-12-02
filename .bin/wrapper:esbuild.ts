@@ -7,7 +7,6 @@ import filewalker from './filewalker.ts';
 interface IEsbuild {
   target?: string;
   outdir?: string;
-  watch?: boolean;
 }
 
 // this plugin will inject css into web-component templates that use
@@ -59,13 +58,11 @@ const esbuildInjectCss = (): esbuild.Plugin => {
 export default async function esbuildWrapper({
   target,
   outdir,
-  watch,
 }: IEsbuild = {}) {
   // derive arguments if called by command line
   // note how if esbuildWrapper is called as a function, those args take precidence
   const {
     _: [__target, __outdir],
-    watch: __watch,
   } = yargs(Deno.args).parse();
 
   if (!__target) {
@@ -85,10 +82,6 @@ export default async function esbuildWrapper({
 
   if (!outdir) {
     outdir = __outdir ? __outdir as string : join(__dirname, 'dist');
-  }
-
-  if (!watch) {
-    watch = __watch;
   }
 
   // get all files in the directory
@@ -113,27 +106,17 @@ export default async function esbuildWrapper({
       format: 'esm',
       bundle: true,
       minify: true,
-      watch: watch
-        ? {
-          onRebuild(error, _result) {
-            if (error) console.error('... build failed:', error);
-            else console.log('... rebuilding:', outfile);
-          },
-        }
-        : undefined,
       plugins: [
         esbuildInjectCss(),
       ],
     }).then(() => {
       console.log(`Built: ${outfile}`);
       // if not watching for changes, then clean-up the build processes
-      if (!watch) {
-        if (files.includes(file)) {
-          files = files.filter((f) => f !== file);
-        }
-        if (files.length === 0) {
-          esbuild.stop();
-        }
+      if (files.includes(file)) {
+        files = files.filter((f) => f !== file);
+      }
+      if (files.length === 0) {
+        esbuild.stop();
       }
     });
   });

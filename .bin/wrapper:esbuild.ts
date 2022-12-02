@@ -62,7 +62,8 @@ export default async function esbuildWrapper({
   // derive arguments if called by command line
   // note how if esbuildWrapper is called as a function, those args take precidence
   const {
-    _: [__target, __outdir],
+    target: __target,
+    outdir: __outdir,
   } = yargs(Deno.args).parse();
 
   if (!__target) {

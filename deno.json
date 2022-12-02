@@ -38,7 +38,7 @@
     "build:ssg": "deno task build:ssg:blog",
     "build:ssg:blog": "deno run --allow-all .bin/ssg.ts --template www/html/blog/template.html",
     "clean": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
-    "setup": "deno task bin:sass www/css && deno task bin:esbuild www/js && deno task build:ssg",
+    "setup": "deno task bin:sass --target www/css && deno task bin:esbuild --target www/js && deno task build:ssg",
     "start": "deno task setup && deno task start:hmr",
     "start:hmr": "deno task start:hmr:server & deno task start:hmr:ssg & deno task start:hmr:whistle",
     "start:hmr:server": "deno task bin:serve --target www",

@@ -14,6 +14,7 @@ import filewatcher from './filewatcher.ts';
 
 import whistleComponents from './whistle:components.ts';
 import whistleJs from './whistle:js.ts';
+import whistleScss from './whistle.scss.ts';
 
 // derive arguments
 const {
@@ -43,6 +44,7 @@ async function handleWhistle(filename: string) {
   const whistles: IWhistleEffect[] = [
     whistleComponents,
     whistleJs,
+    whistleScss,
   ];
   for (const whistle of whistles) {
     const result = await whistle(filename);

@@ -7,7 +7,7 @@ interface IWatch {
 }
 
 /**
- * watch()
+ * filewatcher()
  * This function uses the Deno.watchFs() method + debouncing
  * to re-rerun a provided function.
  * @param {string} directory The target directory to watch.

@@ -97,7 +97,7 @@ async function compileSassToCss(filename: string) {
     filename = filename.replace('.scss', '.css');
     filename = filename.replace(__dirname, __dirout);
     await Deno.writeTextFile(filename, compiled.css);
-    if (!watch) console.log(`Compiled: ${filename}`);
+    console.log(`Compiled: ${filename}`);
   }
 }
 

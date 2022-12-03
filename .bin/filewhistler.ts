@@ -12,9 +12,7 @@ import yargs from 'yargs';
 
 import filewatcher from './filewatcher.ts';
 
-import whistleComponents from './whistle:components.ts';
-import whistleJs from './whistle:js.ts';
-import whistleScss from './whistle.scss.ts';
+import whistles from './whistle:all.ts';
 
 // derive arguments
 const {
@@ -41,11 +39,6 @@ await filewatcher({
 });
 
 async function handleWhistle(filename: string) {
-  const whistles: IWhistleEffect[] = [
-    whistleComponents,
-    whistleJs,
-    whistleScss,
-  ];
   for (const whistle of whistles) {
     const result = await whistle(filename);
     if (result) {

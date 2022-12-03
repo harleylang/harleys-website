@@ -29,8 +29,8 @@
     }
   },
   "tasks": {
-    "bin:esbuild": "deno run --allow-all .bin/esbuild.ts",
-    "bin:rollup": "deno run --allow-all .bin/rollup.ts",
+    "bin:esbuild": "deno run --allow-read --allow-write --allow-run --allow-env='ESBUILD_BINARY_PATH,XDG_CACHE_HOME,HOME' .bin/esbuild.ts",
+    "bin:rollup": "deno run --allow-read --allow-write --allow-net --allow-env='NO_COLOR,FORCE_COLOR,TERM,CI' --allow-sys='uid' .bin/rollup.ts",
     "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts",
     "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts",
     "bin:whistler": "deno run --allow-all .bin/filewhistler.ts",

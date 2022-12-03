@@ -34,16 +34,17 @@
     "bin:sass": "deno run --allow-read --allow-write --allow-env='SASS_PATH' .bin/sass.ts",
     "bin:serve": "deno run --allow-net --allow-run --allow-read .bin/serve.ts",
     "bin:whistler": "deno run --allow-all .bin/filewhistler.ts",
-    "build": "rm -rf public && deno task setup && deno task bin:rollup",
+    "build": "deno task clean && deno task setup && deno task bin:rollup",
     "build:ssg": "deno task build:ssg:blog",
     "build:ssg:blog": "deno run --allow-all .bin/ssg.ts --template www/html/blog/template.html",
-    "clean": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
+    "clean": "deno task clean:dist && deno task clean:public",
+    "clean:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
+    "clean:public": "rm -rf public",
     "setup": "deno task bin:sass --target www/css && deno task bin:esbuild --target www/js && deno task build:ssg",
     "start": "deno task setup && deno task start:hmr",
-    "start:hmr": "deno task start:hmr:server & deno task start:hmr:ssg & deno task start:hmr:whistle",
+    "start:hmr": "deno task start:hmr:server & deno task start:hmr:whistler",
     "start:hmr:server": "deno task bin:serve --target www",
-    "start:hmr:ssg": "deno task build:ssg --watch",
-    "start:hmr:whistle": "deno task bin:whistler --target www",
+    "start:hmr:whistler": "deno task bin:whistler --target www",
     "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts public"
   }
 }

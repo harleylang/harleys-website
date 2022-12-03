@@ -68,5 +68,7 @@ serve(
   { port: __port },
 );
 
-console.log(`Development server started...`);
-console.log(`Listening on http://localhost:${__port}`);
+console.clear();
+console.log('\n');
+console.log(`📯 Development server started...\n`);
+console.log(`👂 Listening on http://localhost:${__port}\n`);

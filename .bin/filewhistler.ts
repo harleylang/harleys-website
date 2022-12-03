@@ -33,7 +33,7 @@ if (target.includes('.')) {
   );
 }
 
-console.log('🔔 Whistler activated');
+console.log('🔔 Whistler activated\n');
 
 await filewatcher({
   directory: target,

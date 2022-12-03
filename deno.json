@@ -8,7 +8,7 @@
       "./bin/**/*"
     ]
   },
-  "importMap": "import_map.json",
+  "importMap": "deno.imports.json",
   "fmt": {
     "files": {
       "exclude": ["public", "www/js/dist", "www/css/dist"]

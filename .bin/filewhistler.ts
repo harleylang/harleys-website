@@ -12,7 +12,7 @@ import yargs from 'yargs';
 
 import filewatcher from './filewatcher.ts';
 
-import whistles from './whistle:all.ts';
+import plugins from './filewhistler.plugins.ts';
 
 // derive arguments
 const {
@@ -39,8 +39,8 @@ await filewatcher({
 });
 
 async function handleWhistle(filename: string) {
-  for (const whistle of whistles) {
-    const result = await whistle(filename);
+  for (const plugin of plugins) {
+    const result = await plugin(filename);
     if (result) {
       console.log(`🔔 Whistler event: ${filename}`);
     }
@@ -48,13 +48,13 @@ async function handleWhistle(filename: string) {
 }
 
 /**
- * IWhistleEffect
+ * IWhistlePlugin
  * A function that takes a filename and runs a side-effect script.
  * @param {string} filename
  * @returns {string | null}
  * Filename as string if the whistle triggered; null if not.
  */
-interface IWhistleEffect {
+interface IWhistlePlugin {
   (filename: string): Promise<string | null>;
 }
-export type { IWhistleEffect };
+export type { IWhistlePlugin };

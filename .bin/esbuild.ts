@@ -1,2 +1,2 @@
-import esbuildWrapper from './wrapper:esbuild.ts';
+import esbuildWrapper from './esbuild.wrapper.ts';
 await esbuildWrapper();

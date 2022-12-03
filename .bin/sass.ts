@@ -1,2 +1,2 @@
-import sassWrapper from './wrapper:sass.ts';
+import sassWrapper from './sass.wrapper.ts';
 await sassWrapper();

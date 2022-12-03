@@ -1,2 +1,2 @@
-import ssgWrapper from './wrapper:ssg.ts';
+import ssgWrapper from './ssg.wrapper.ts';
 await ssgWrapper();

@@ -111,4 +111,4 @@ await build.write(config.output);
 Deno.writeTextFile('public/robots.txt', 'User-agent: *\nAllow: /\n');
 
 // success message
-console.log('Production build complete.');
+console.log('🎁 Production build complete.');

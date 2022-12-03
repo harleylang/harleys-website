@@ -9,41 +9,6 @@ interface IEsbuild {
   outdir?: string;
 }
 
-// this plugin will inject css into web-component templates that use
-// the slot syntax `<!--esbuild-inject-css:file.css-->`
-// this helps improve page performance
-const esbuildInjectCss = (): esbuild.Plugin => {
-  return {
-    name: 'esbuildInjectCss',
-    setup(build) {
-      build.onLoad({ filter: /\.ts$/ }, async (args) => {
-        let contents = await Deno.readTextFile(args.path);
-        const cssSlotSyntax = /(?<=<!--esbuild-inject-css:).*(?=-->)/g;
-        const slots = contents.match(cssSlotSyntax) ?? [];
-        for (const filename of slots) {
-          let css;
-          try {
-            css = await Deno.readTextFile(
-              join(Deno.cwd(), 'www/css/dist', filename),
-            );
-          } catch {
-            throw new Error('WHOOPS! Do not forget to run `deno task bin:sass` beforehand ;)');
-          }
-          const slotRegex = new RegExp(
-            `<!--esbuild-inject-css:${filename}-->`,
-            'gi',
-          );
-          contents = contents.replace(slotRegex, `<style>${css}</style>`);
-        }
-        return {
-          contents,
-          loader: 'ts',
-        };
-      });
-    },
-  };
-};
-
 /**
  * esbuildWrapper()
  * This script provides deno filesystem bindings for building typescript files.
@@ -120,3 +85,38 @@ export default async function esbuildWrapper({
     });
   });
 }
+
+// this plugin will inject css into web-component templates that use
+// the slot syntax `<!--esbuild-inject-css:file.css-->`
+// this helps improve page performance
+const esbuildInjectCss = (): esbuild.Plugin => {
+  return {
+    name: 'esbuildInjectCss',
+    setup(build) {
+      build.onLoad({ filter: /\.ts$/ }, async (args) => {
+        let contents = await Deno.readTextFile(args.path);
+        const cssSlotSyntax = /(?<=<!--esbuild-inject-css:).*(?=-->)/g;
+        const slots = contents.match(cssSlotSyntax) ?? [];
+        for (const filename of slots) {
+          let css;
+          try {
+            css = await Deno.readTextFile(
+              join(Deno.cwd(), 'www/css/dist', filename),
+            );
+          } catch {
+            throw new Error('WHOOPS! Do not forget to run `deno task bin:sass` beforehand ;)');
+          }
+          const slotRegex = new RegExp(
+            `<!--esbuild-inject-css:${filename}-->`,
+            'gi',
+          );
+          contents = contents.replace(slotRegex, `<style>${css}</style>`);
+        }
+        return {
+          contents,
+          loader: 'ts',
+        };
+      });
+    },
+  };
+};

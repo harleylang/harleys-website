@@ -111,7 +111,7 @@ export default async function esbuildWrapper({
         esbuildInjectCss(),
       ],
     }).then(() => {
-      console.log(`Built: ${outfile}`);
+      console.log(`🔨 Built: ${outfile}`);
       // if not watching for changes, then clean-up the build processes
       if (files.includes(file)) {
         files = files.filter((f) => f !== file);

@@ -27,7 +27,7 @@ export default async function sassWrapper({
 
   if (!target && !__target) {
     throw new Error(
-      'WHOOPS! Please provide a path to compile when running this script.',
+      'WHOOPS! Please provide a path or file to compile when running this script.',
     );
   }
 
@@ -43,8 +43,6 @@ export default async function sassWrapper({
   window.location = {
     href: target,
   } as typeof window.location;
-
-  console.log(target);
 
   // create array of all *.scss files in the target directory
   const files = await filewalker({
@@ -139,7 +137,7 @@ async function compileSassToCss({ filename, outdir, modules, moduleContent }: IC
     filename = filename.replace('.scss', '.css');
     filename = filename.replace(dirname(filename), outdir);
     await Deno.writeTextFile(filename, compiled.css);
-    console.log(`Compiled: ${filename}`);
+    console.log(`🔨 Built: ${filename}`);
   }
 }
 

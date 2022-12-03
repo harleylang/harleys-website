@@ -49,7 +49,7 @@ async function handleWhistle(filename: string) {
   for (const whistle of whistles) {
     const result = await whistle(filename);
     if (result) {
-      console.log(`🔔 Whistler rebuild: ${filename}`);
+      console.log(`🔔 Whistler event: ${filename}`);
     }
   }
 }

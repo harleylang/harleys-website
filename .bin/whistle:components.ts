@@ -17,7 +17,6 @@ const whistleComponents: IWhistleEffect = async function hmrComponents(filename:
       .replace('/dist', '')
       .replace('.css', '.ts');
     await esbuildWrapper({ target, outdir: 'www/js/dist' });
-    console.log(`🔔 Whistler rebuild: ${target}`);
     return target;
   }
   return null;

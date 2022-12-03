@@ -12,7 +12,7 @@ async function treeShakeCSS() {
   // get raw html
   const filesHTML = await filewalker({
     rootDir: join(Deno.cwd(), 'public'),
-    pattern: new RegExp(/index.html/),
+    pattern: new RegExp(/index\.html/),
   });
   const rawHTML = await raw(filesHTML);
   // get raw js

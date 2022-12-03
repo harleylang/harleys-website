@@ -46,14 +46,13 @@ const esbuildInjectCss = (): esbuild.Plugin => {
 
 /**
  * esbuildWrapper()
- * This script provides deno filesystem bindings for building typescript files
- * with esbuild, as well as watching the files for changes.
- * @arg path The directory with *.ts files to compile to *.js.
+ * This script provides deno filesystem bindings for building typescript files.
+ * @arg target The file or directory with *.ts files to compile to *.js.
  * @example Run with the following command:
- * `deno run --allow-all esbuild.ts www/js`
- * @arg watch Whether or not to watch the provided path for changes.
+ * `deno run --allow-all esbuild.ts --target www/js`
+ * @arg outdir The directory to compile *.mjs files.
  * @example Run with the following command:
- * `deno run --allow-all esbuild.ts www/js --watch`
+ * `deno run --allow-all esbuild.ts www/js --target www/js --outdir www/js/dist`
  */
 export default async function esbuildWrapper({
   target = '',

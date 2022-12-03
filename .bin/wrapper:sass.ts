@@ -10,10 +10,17 @@ interface ISass {
 }
 
 /**
- * @param {string} target
+ * sassWrapper()
+ * This script provides deno filesystem bindings for building sass files.
+ * @arg target The file or directory with *.scss files to compile to *.css.
  * If a directory, all styles are built.
  * If a module, all dependent stylesheets.
  * If a stylesheet, only that file.
+ * @example Run with the following command:
+ * `deno run --allow-all esbuild.ts --target www/css`
+ * @arg outdir The directory to compile *.css files.
+ * @example Run with the following command:
+ * `deno run --allow-all esbuild.ts www/css --target www/js --outdir www/css/dist`
  */
 export default async function sassWrapper({
   target = '',

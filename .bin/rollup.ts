@@ -87,7 +87,7 @@ const config: RollupOptions & { output: OutputOptions } = {
       return `assets/${extType}/[name]-[hash][extname]`;
     },
     entryFileNames: 'assets/js/[name]-[hash].js',
-    // plugins: [treeShakeCSSOutput],
+    plugins: [treeShakeCSSOutput],
   },
   plugins: [
     html({

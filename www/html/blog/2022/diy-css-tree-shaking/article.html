@@ -41,9 +41,10 @@
   <p>
     To start, the bundled size of stylesheets can be inspected using the <em>Network</em>
     tab in a chromium-based browser. Type <code>ctrl+shift+i</code> and click on the tab
-    named "Network". Next type <code>ctrl+shift+p</code> to open the command input box. Type
-    "computed" and select the first option. In the below screenshot, I also filted by "assets"
-    so that I could inspect just the styles deployed on my website:
+    named "Network". Next we need to open the <em>Coverage</em> drawer which will show
+    information about code usage. Type <code>ctrl+shift+p</code> to open the command 
+    input box. Type "coverage" and select the first option. In the below screenshot, 
+    I also filted by "assets" so that I could inspect just the styles deployed on my website:
   </p>
   <p>
     TODO: image here.
@@ -53,7 +54,7 @@
   </p>
   <ol>    
     <li>
-      <u>Unused styles</u>: The <em>computed</em> tab shows how much of each 
+      <u>Unused styles</u>: The <em>coverage</em> tab shows how much of each 
       resource is used on the current page. Notice how the "base" stylesheet has a high percentage of
       unused styles. 
     </li>
@@ -85,10 +86,10 @@
           Stylesheet
         </td>
         <td>
-          Before 
+          Before 🌳 
         </td>
         <td>
-          After
+          After 🍃
         </td>
         <td>
           Difference

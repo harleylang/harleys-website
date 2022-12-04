@@ -31,15 +31,130 @@
     </p>
   </details>
   <p>
-    For my personal website, I have planned to write my own HTML, CSS, and JS as
+    For my personal website, I plan to write my own HTML, CSS, and JS as
     much as possible. What follows is my research and integration of tree
     shaking tactics into my website's current build system.
   </p>
 </section>
 <hr />
 <section>
+  <p>
+    To start, the bundled size of stylesheets can be inspected using the <em>Network</em>
+    tab in a chromium-based browser. Type <code>ctrl+shift+i</code> and click on the tab
+    named "Network". Next type <code>ctrl+shift+p</code> to open the command input box. Type
+    "computed" and select the first option. In the below screenshot, I also filted by "assets"
+    so that I could inspect just the styles deployed on my website:
+  </p>
+  <p>
+    TODO: image here.
+  </p>
+  <p>
+    A few notable observations:
+  </p>
+  <ol>    
+    <li>
+      <u>Unused styles</u>: The <em>computed</em> tab shows how much of each 
+      resource is used on the current page. Notice how the "base" stylesheet has a high percentage of
+      unused styles. 
+    </li>
+    <li>
+      <u>Bundle size</u>: Both the <em>network</em> and <em>computed</em> tab show 
+      the size for each resource delivered. 
+    </li>
+  </ol>
+  <p>
+    The high percentage of unused styles in the "base" stylesheet should be expected. This is
+    because my base stylesheet provides common utilities and style modules that are used 
+    across the site. 
+  </p>
+  <p>
+    One way to reduce base stylesheets is to identify classes or utilities that exist on only 
+    one page and move those classes to a unique stylesheet for that page. 
+  </p>
+  <p>
+    However in this blog post, I am not concerned about the unused style percentage,
+    as by it's nature "base" styles will have some unused styles on any given page. Instead, 
+    my current goal is to reduce the size of the bundle, as there are likely classes that can 
+    be removed that are not used on any page at all. So bundle size will be my benchmark to 
+    measure tree-shaking tools against in the remainder of this blog post.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <td>
+          Stylesheet
+        </td>
+        <td>
+          Before 
+        </td>
+        <td>
+          After
+        </td>
+        <td>
+          Difference
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          base.scss
+        </th>
+        <td>
+          20,780
+        </td>
+        <td>
+          ---
+        </td>
+        <td>
+          ---
+        </td>
+      </tr>
+      <tr>
+        <th>
+          blog.scss
+        </th>
+        <td>
+          712 b
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <th>
+          index.scss
+        </th>
+        <td>
+          227 b
+        </td>
+        <td>
+          ---
+        </td>
+        <td>
+          ---
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>
+          TOTAL:
+        </th>
+        <td>
+          21,719 b
+        </td>
+        <td>
+          ---
+        </td>
+        <td>
+          ---
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</section>
+<section>
   - todo: - generate .webp images for thumbnail + computed bundle size
-  screenshots - how to view your bundle size using the 'computed' panel in
-  chrome - current bundle size and why it was that way - how my current build
+  screenshots - current bundle size and why it was that way - how my current build
   system works - how purgecss works - final product
 </section>

@@ -46,9 +46,30 @@
     input box. Type "coverage" and select the first option. In the below screenshot, 
     I also filted by "assets" so that I could inspect just the styles deployed on my website:
   </p>
-  <p>
-    TODO: image here.
-  </p>
+  <div class="card">
+    <picture>
+      <source
+        media="(max-width: 500px)"
+        srcset="https://i.postimg.cc/DfBxK8kn/blog-tree-shaking-before-s.webp"
+      />
+      <source
+        media="(max-width: 900px)"
+        srcset="https://i.postimg.cc/SNPVJ3xP/blog-tree-shaking-before-m.webp"
+      />
+      <source
+        media="(max-width: 1399px)"
+        srcset="https://i.postimg.cc/7YhmPww7/blog-tree-shaking-before-l.webp"
+      />
+      <source
+        media="(min-width: 1400px)"
+        srcset="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
+      />
+      <img
+        src="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
+        alt="Browser screenshot of stylesheet bundle size before tree shaking."
+      />
+    </picture>
+  </div>
   <p>
     A few notable observations:
   </p>
@@ -82,80 +103,125 @@
   <table>
     <thead>
       <tr>
-        <td>
-          Stylesheet
-        </td>
-        <td>
-          Before 🌳 
-        </td>
-        <td>
-          After 🍃
-        </td>
-        <td>
-          Difference
-        </td>
+        <td></td>
+        <td>Before 🌳</td>
+        <td>After 🍃</td>
+        <td>Difference</td>
+      </tr>
+      <tr>
+        <td>Stylesheet</td>
+        <td>(Bytes)</td>
+        <td>(Bytes)</td>
+        <td>(Bytes)</td>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>
-          base.scss
-        </th>
-        <td>
-          20,780
-        </td>
-        <td>
-          ---
-        </td>
-        <td>
-          ---
-        </td>
+        <th>base.scss</th>
+        <td>20,780</td>
+        <td>---</td>
+        <td>---</td>
       </tr>
       <tr>
-        <th>
-          blog.scss
-        </th>
-        <td>
-          712 b
-        </td>
-        <td></td>
-        <td></td>
+        <th>blog.scss</th>
+        <td>712</td>
+        <td>---</td>
+        <td>---</td>
       </tr>
       <tr>
-        <th>
-          index.scss
-        </th>
-        <td>
-          227 b
-        </td>
-        <td>
-          ---
-        </td>
-        <td>
-          ---
-        </td>
+        <th>index.scss</th>
+        <td>227</td>
+        <td>---</td>
+        <td>---</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <th>
-          TOTAL:
-        </th>
-        <td>
-          21,719 b
-        </td>
-        <td>
-          ---
-        </td>
-        <td>
-          ---
-        </td>
+        <th>TOTAL:</th>
+        <td>21,719</td>
+        <td>---</td>
+        <td>---</td>
       </tr>
     </tfoot>
   </table>
 </section>
 <section>
-  - todo: - generate .webp images for thumbnail + computed bundle size
-  screenshots - current bundle size and why it was that way - how my current build
-  system works - how purgecss works - final product
+  - TODO:
+  - current bundle size and why it was that way 
+  - how my current build system works 
+  - how purgecss works 
+  - final product
 </section>
+<section>
+  <div class="card">
+    <picture>
+      <source
+        media="(max-width: 500px)"
+        srcset="https://i.postimg.cc/Rhsd1bQN/blog-tree-shaking-after-s.webp"
+      />
+      <source
+        media="(max-width: 900px)"
+        srcset="https://i.postimg.cc/nrcTDtmy/blog-tree-shaking-after-m.webp"
+      />
+      <source
+        media="(max-width: 1399px)"
+        srcset="https://i.postimg.cc/C14m5KRC/blog-tree-shaking-after-l.webp"
+      />
+      <source
+        media="(min-width: 1400px)"
+        srcset="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp"
+      />
+      <img
+        src="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp"
+        alt="Browser screenshot of stylesheet bundle size after tree shaking."
+      />
+    </picture>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <td>Before </td>
+        <td>After 🍃</td>
+        <td>Difference</td>
+      </tr>
+      <tr>
+        <td>Stylesheet</td>
+        <td>(Bytes)</td>
+        <td>(Bytes)</td>
+        <td>(Bytes)</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>base.scss</th>
+        <td>20,780</td>
+        <td>9,615 </td>
+        <td>11,165 (53.7%)</td>
+      </tr>
+      <tr>
+        <th>
+          blog.scss
+        </th>
+        <td>712</td>
+        <td>638</td>
+        <td>74 (10.3%)</td>
+      </tr>
+      <tr>
+        <th>index.scss</th>
+        <td>227</td>
+        <td>227</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>TOTAL:</th>
+        <td>21,719</td>
+        <td>10,480</td>
+        <td>11,239 (51.7%)</td>
+      </tr>
+    </tfoot>
+  </table>
+</section>
+

@@ -1,5 +1,5 @@
 /**
- * show-html-comments.mjs
+ * show-html-comments.ts
  * @description
  * This module will find all elements that have the "htmlCommentToggle"
  * attribute, attach an event listener that fires on click. The event

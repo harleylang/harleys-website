@@ -1,5 +1,5 @@
 /**
- * circle-game.mjs
+ * circle-game.ts
  * Play a little prank on web surfers with this tricky script.
  * 1. Load this module onto a page.
  * 2. Bind an element with the attribute 'circle-game'.

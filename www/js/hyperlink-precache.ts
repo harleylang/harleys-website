@@ -1,5 +1,5 @@
 /**
- * hyperlink-precache.mjs
+ * hyperlink-precache.ts
  * @description
  * Looks for anchor tags with the attribute `precache`.
  * Each matching anchor tag's href is fetched. Then, the received

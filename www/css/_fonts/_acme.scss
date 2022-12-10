@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Acme&display=optional");
+@import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
 
 @mixin font-acme {
   font-family: "Acme", serif;
   font-size: 16px;
-  font-display: optional;
+  font-display: swap;
 }
 
 .acme {

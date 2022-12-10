@@ -71,5 +71,28 @@
     &-#{$i} {
       height: #{$i}px !important;
     }
+    @for $i from 55 through 500 {
+      $rounded: floor(calc($i / 5)) * 5;
+      @if $rounded == $i {
+        &-#{$rounded} {
+          height: #{$rounded}px !important;
+        }
+      }
+    }
+  }
+  &-min {
+    @each $i in $spacing {
+      &-#{$i} {
+        min-height: #{$i}px !important;
+      }
+    }
+    @for $i from 55 through 500 {
+      $rounded: floor(calc($i / 5)) * 5;
+      @if $rounded == $i {
+        &-#{$rounded} {
+          min-height: #{$rounded}px !important;
+        }
+      }
+    }
   }
 }

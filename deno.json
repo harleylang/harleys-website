@@ -45,6 +45,6 @@
     "start:hmr": "deno task start:hmr:server & deno task start:hmr:whistler",
     "start:hmr:server": "deno task bin:serve --target www",
     "start:hmr:whistler": "deno task bin:whistler --target www",
-    "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts public"
+    "preview": "deno run --allow-net --allow-run --allow-read .bin/serve.ts --target public"
   }
 }

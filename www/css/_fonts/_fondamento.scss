@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Fondamento&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Fondamento&display=optional");
 
 @mixin font-fondamento {
   font-family: "Fondamento", sans-serif;
   font-size: 16px;
-  font-display: swap;
+  font-display: optional;
 }
 
 .fondamento {

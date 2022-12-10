@@ -45,14 +45,18 @@ dialog {
   }
 }
 
-ul {
-  &.no-dots {
-    list-style-type: none;
-  }
+header {
+  height: 34px;
 }
 
 summary {
   cursor: pointer;
+}
+
+ul {
+  &.no-dots {
+    list-style-type: none;
+  }
 }
 
 /* custom elements */

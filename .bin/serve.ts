@@ -18,7 +18,7 @@ if (target.includes('.')) {
   );
 }
 
-const middleware = refresh({ recursive: true });
+const middleware = refresh({ debounce: 200, paths: join(__dirname, target), recursive: true });
 
 function composeResponse(req: Request): Response {
   try {

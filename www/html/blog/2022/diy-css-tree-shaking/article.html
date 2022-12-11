@@ -5,20 +5,19 @@
     solutions for styling websites.
   </p>
   <p>
-    One additional benefit of some CSS frameworks is that you can even reduce
-    the size of your CSS bundle with
+    Some CSS frameworks can even reduce the size of your CSS bundle with
     <u>tree shaking</u>. <em>Tree shaking</em> is a build-time process that
     optimises your CSS bundles by removing unused styles.
   </p>
   <details>
     <summary>
-      Tailwind is a "utility-first" CSS framework that provides tree shaking out
-      of the box, which helps you develop quickly by avoiding the need to write
-      custom classes.
+      Tailwind, a "utility-first" CSS framework, provides tree shaking 
+      out-of-the-box. This feature helps developers move quickly by avoiding 
+      the need to write custom classes for each element.
     </summary>
     <p>
       <u>Utility-first</u> refers to how Tailwind provides CSS utilities (e.g.,
-      <code>text-blue-500</code>) that can be assembled to make a desired design
+      <code>text-blue-500</code>) that can be assembled to render a design
       inside of HTML markup, as opposed to writing custom classes with semantic
       naming like <code>card</code> or <code>banner</code>.
     </p>
@@ -31,15 +30,20 @@
     </p>
   </details>
   <p>
-    For my personal website, I plan to write my own HTML, CSS, and JS as
-    much as possible. What follows is my research and integration of tree
-    shaking tactics into my website's current build system.
+    Where possible, I have planned to write my own HTML, CSS, and JS for my personal
+    website. What follows is my research and integration of tree shaking tactics 
+    and how I integrated this tactic into my website's build system.
   </p>
 </section>
 <hr />
 <section>
+  <h2>Benchmarking</h2>
   <p>
-    To start, the bundled size of stylesheets can be inspected using the <em>Network</em>
+    The browser provides a few ways to evaluate the bundled size of stylesheets. In my case,
+    I used these features as a means to benchmark against tree shaking.
+  </p>
+  <p>
+    The bundled size of stylesheets can be inspected using the <em>Network</em>
     tab in a chromium-based browser. Type <code>ctrl+shift+i</code> and click on the tab
     named "Network". Next we need to open the <em>Coverage</em> drawer which will show
     information about code usage. Type <code>ctrl+shift+p</code> to open the command 
@@ -47,28 +51,30 @@
     I also filted by "assets" so that I could inspect just the styles deployed on my website:
   </p>
   <div class="card">
-    <picture>
-      <source
-        media="(max-width: 500px)"
-        srcset="https://i.postimg.cc/DfBxK8kn/blog-tree-shaking-before-s.webp"
-      />
-      <source
-        media="(max-width: 900px)"
-        srcset="https://i.postimg.cc/SNPVJ3xP/blog-tree-shaking-before-m.webp"
-      />
-      <source
-        media="(max-width: 1399px)"
-        srcset="https://i.postimg.cc/7YhmPww7/blog-tree-shaking-before-l.webp"
-      />
-      <source
-        media="(min-width: 1400px)"
-        srcset="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
-      />
-      <img
-        src="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
-        alt="Browser screenshot of stylesheet bundle size before tree shaking."
-      />
-    </picture>
+    <a href="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp">
+      <picture>
+        <source
+          media="(max-width: 500px)"
+          srcset="https://i.postimg.cc/DfBxK8kn/blog-tree-shaking-before-s.webp"
+        />
+        <source
+          media="(max-width: 900px)"
+          srcset="https://i.postimg.cc/SNPVJ3xP/blog-tree-shaking-before-m.webp"
+        />
+        <source
+          media="(max-width: 1399px)"
+          srcset="https://i.postimg.cc/7YhmPww7/blog-tree-shaking-before-l.webp"
+        />
+        <source
+          media="(min-width: 1400px)"
+          srcset="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
+        />
+        <img
+          src="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
+          alt="Browser screenshot of stylesheet bundle size before tree shaking."
+        />
+      </picture>
+    </a>
   </div>
   <p>
     A few notable observations:
@@ -94,11 +100,11 @@
     one page and move those classes to a unique stylesheet for that page. 
   </p>
   <p>
-    However in this blog post, I am not concerned about the unused style percentage,
-    as by it's nature "base" styles will have some unused styles on any given page. Instead, 
-    my current goal is to reduce the size of the bundle, as there are likely classes that can 
-    be removed that are not used on any page at all. So bundle size will be my benchmark to 
-    measure tree-shaking tools against in the remainder of this blog post.
+    However in this blog post, I am not concerned about the unused style percentage; it is OK
+    to have some unused styles in the base stylesheet because not every page will use that
+    entire stylesheet. Instead my goal is to reduce the size of the bundle, as there are 
+    likely classes that can be removed that are not used on any page at all. So bundle size 
+    will be my benchmark to measure tree-shaking tools against in the remainder of this blog post.
   </p>
   <table>
     <thead>
@@ -146,37 +152,46 @@
   </table>
 </section>
 <section>
-  - TODO:
-  - current bundle size and why it was that way 
+  <h2>Sources of Bloat</h2>
+  TODO: 
+  - describe current bundle size and why it was that way 
   - how my current build system works 
-  - how to write a simple plugin for roll-up
-  - how purgecss works 
-  - final product
 </section>
 <section>
+  <h2>Rollup to the Rescue</h2>
+  TODO:
+  - how to write a simple plugin for roll-up
+  - how purgecss works 
+</section>
+<section>
+  <h2>Results</h2>
+  TODO:
+  - Describe the wins here
   <div class="card">
-    <picture>
-      <source
-        media="(max-width: 500px)"
-        srcset="https://i.postimg.cc/Rhsd1bQN/blog-tree-shaking-after-s.webp"
-      />
-      <source
-        media="(max-width: 900px)"
-        srcset="https://i.postimg.cc/nrcTDtmy/blog-tree-shaking-after-m.webp"
-      />
-      <source
-        media="(max-width: 1399px)"
-        srcset="https://i.postimg.cc/C14m5KRC/blog-tree-shaking-after-l.webp"
-      />
-      <source
-        media="(min-width: 1400px)"
-        srcset="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp"
-      />
-      <img
-        src="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp"
-        alt="Browser screenshot of stylesheet bundle size after tree shaking."
-      />
-    </picture>
+    <a href="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp">
+      <picture>
+        <source
+          media="(max-width: 500px)"
+          srcset="https://i.postimg.cc/Rhsd1bQN/blog-tree-shaking-after-s.webp"
+        />
+        <source
+          media="(max-width: 900px)"
+          srcset="https://i.postimg.cc/nrcTDtmy/blog-tree-shaking-after-m.webp"
+        />
+        <source
+          media="(max-width: 1399px)"
+          srcset="https://i.postimg.cc/C14m5KRC/blog-tree-shaking-after-l.webp"
+        />
+        <source
+          media="(min-width: 1400px)"
+          srcset="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp"
+        />
+        <img
+          src="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp"
+          alt="Browser screenshot of stylesheet bundle size after tree shaking."
+        />
+      </picture>
+    </a>
   </div>
   <table>
     <thead>
@@ -225,4 +240,8 @@
     </tfoot>
   </table>
 </section>
-
+<section>
+  <h2>Wrapping Up</h2>
+  TODO:
+  - Note lessons-learned
+</section>

@@ -18,7 +18,7 @@ if (target.includes('.')) {
   );
 }
 
-const middleware = refresh();
+const middleware = refresh({ recursive: true });
 
 function composeResponse(req: Request): Response {
   try {

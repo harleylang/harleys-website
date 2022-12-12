@@ -153,15 +153,77 @@
 </section>
 <section>
   <h2>Sources of Bloat</h2>
-  TODO: 
-  - describe current bundle size and why it was that way 
-  - how my current build system works 
+  <p>
+    The biggest source of the unused styles are due to custom utility functions. For example, 
+    consider the below 
+    <a href="https://github.com/harleylang/harleys-website/blob/f2e626a876bba3477f9a593f80e32b258472493e/www/css/_spacing.scss">
+      sass function from my codebase:
+    </a>
+  </p>
+  <pre><code class="language-javascript">
+.margin {
+  @each $i in $spacing {
+    &-#{$i} {
+      margin: #{$i}px !important;
+    }
+  }
+  $edges: (top, bottom, left, right);
+  @each $e in $edges {
+    &-#{$e} {
+      @each $i in $spacing {
+        &-#{$i} {
+          margin-#{$e}: #{$i}px !important;
+        }
+      }
+    }
+  }
+  &-tb {
+    @each $i in $spacing {
+      &-#{$i} {
+        margin-top: #{$i}px !important;
+        margin-bottom: #{$i}px !important;
+      }
+    }
+  }
+  &-lr {
+    @each $i in $spacing {
+      &-#{$i} {
+        margin-left: #{$i}px !important;
+        margin-right: #{$i}px !important;
+      }
+    }
+  }
+}
+  </code></pre>
+  <p>This function will generate the following styles at build time:</p>
+  <pre><code class="language-javascript">
+.margin-0{margin:0px !important}.margin-5{margin:5px !important}.margin-8{margin:8px !important}.margin-10{margin:10px !important}.margin-12{margin:12px !important}.margin-15{margin:15px !important}.margin-16{margin:16px !important}.margin-18{margin:18px !important}.margin-20{margin:20px !important}.margin-25{margin:25px !important}.margin-30{margin:30px !important}.margin-35{margin:35px !important}.margin-40{margin:40px !important}.margin-45{margin:45px !important}.margin-50{margin:50px !important}.margin-top-0{margin-top:0px !important}.margin-top-5{margin-top:5px !important}.margin-top-8{margin-top:8px !important}.margin-top-10{margin-top:10px !important}.margin-top-12{margin-top:12px !important}.margin-top-15{margin-top:15px !important}.margin-top-16{margin-top:16px !important}.margin-top-18{margin-top:18px !important}.margin-top-20{margin-top:20px !important}.margin-top-25{margin-top:25px !important}.margin-top-30{margin-top:30px !important}.margin-top-35{margin-top:35px !important}.margin-top-40{margin-top:40px !important}.margin-top-45{margin-top:45px !important}.margin-top-50{margin-top:50px !important}.margin-bottom-0{margin-bottom:0px !important}.margin-bottom-5{margin-bottom:5px !important}.margin-bottom-8{margin-bottom:8px !important}.margin-bottom-10{margin-bottom:10px !important}.margin-bottom-12{margin-bottom:12px !important}.margin-bottom-15{margin-bottom:15px !important}.margin-bottom-16{margin-bottom:16px !important}.margin-bottom-18{margin-bottom:18px !important}.margin-bottom-20{margin-bottom:20px !important}.margin-bottom-25{margin-bottom:25px !important}.margin-bottom-30{margin-bottom:30px !important}.margin-bottom-35{margin-bottom:35px !important}.margin-bottom-40{margin-bottom:40px !important}.margin-bottom-45{margin-bottom:45px !important}.margin-bottom-50{margin-bottom:50px !important}.margin-left-0{margin-left:0px !important}.margin-left-5{margin-left:5px !important}.margin-left-8{margin-left:8px !important}.margin-left-10{margin-left:10px !important}.margin-left-12{margin-left:12px !important}.margin-left-15{margin-left:15px !important}.margin-left-16{margin-left:16px !important}.margin-left-18{margin-left:18px !important}.margin-left-20{margin-left:20px !important}.margin-left-25{margin-left:25px !important}.margin-left-30{margin-left:30px !important}.margin-left-35{margin-left:35px !important}.margin-left-40{margin-left:40px !important}.margin-left-45{margin-left:45px !important}.margin-left-50{margin-left:50px !important}.margin-right-0{margin-right:0px !important}.margin-right-5{margin-right:5px !important}.margin-right-8{margin-right:8px !important}.margin-right-10{margin-right:10px !important}.margin-right-12{margin-right:12px !important}.margin-right-15{margin-right:15px !important}.margin-right-16{margin-right:16px !important}.margin-right-18{margin-right:18px !important}.margin-right-20{margin-right:20px !important}.margin-right-25{margin-right:25px !important}.margin-right-30{margin-right:30px !important}.margin-right-35{margin-right:35px !important}.margin-right-40{margin-right:40px !important}.margin-right-45{margin-right:45px !important}.margin-right-50{margin-right:50px !important}.margin-tb-0{margin-top:0px !important;margin-bottom:0px !important}.margin-tb-5{margin-top:5px !important;margin-bottom:5px !important}.margin-tb-8{margin-top:8px !important;margin-bottom:8px !important}.margin-tb-10{margin-top:10px !important;margin-bottom:10px !important}.margin-tb-12{margin-top:12px !important;margin-bottom:12px !important}.margin-tb-15{margin-top:15px !important;margin-bottom:15px !important}.margin-tb-16{margin-top:16px !important;margin-bottom:16px !important}.margin-tb-18{margin-top:18px !important;margin-bottom:18px !important}.margin-tb-20{margin-top:20px !important;margin-bottom:20px !important}.margin-tb-25{margin-top:25px !important;margin-bottom:25px !important}.margin-tb-30{margin-top:30px !important;margin-bottom:30px !important}.margin-tb-35{margin-top:35px !important;margin-bottom:35px !important}.margin-tb-40{margin-top:40px !important;margin-bottom:40px !important}.margin-tb-45{margin-top:45px !important;margin-bottom:45px !important}.margin-tb-50{margin-top:50px !important;margin-bottom:50px !important}.margin-lr-0{margin-left:0px !important;margin-right:0px !important}.margin-lr-5{margin-left:5px !important;margin-right:5px !important}.margin-lr-8{margin-left:8px !important;margin-right:8px !important}.margin-lr-10{margin-left:10px !important;margin-right:10px !important}.margin-lr-12{margin-left:12px !important;margin-right:12px !important}.margin-lr-15{margin-left:15px !important;margin-right:15px !important}.margin-lr-16{margin-left:16px !important;margin-right:16px !important}.margin-lr-18{margin-left:18px !important;margin-right:18px !important}.margin-lr-20{margin-left:20px !important;margin-right:20px !important}.margin-lr-25{margin-left:25px !important;margin-right:25px !important}.margin-lr-30{margin-left:30px !important;margin-right:30px !important}.margin-lr-35{margin-left:35px !important;margin-right:35px !important}.margin-lr-40{margin-left:40px !important;margin-right:40px !important}.margin-lr-45{margin-left:45px !important;margin-right:45px !important}.margin-lr-50{margin-left:50px !important;margin-right:50px !important}
+  </code></pre>
+  <p>
+    Some of these styles are used but many are probably never used in my website's codebase.
+  </p>
+  <p>
+    Searching for each class manually would be a huge effort that would require repeating 
+    each time I update any page. Alternatively, tree-shaking tools will do this automatically. 
+  </p>
+  <p>
+    <a href="https://purgecss.com">Purgecss</a> was the tree-shaking library that I selected 
+    for my site. It is a javascript library that takes two inputs, stylesheets and HTML files, 
+    and outputs each stylesheet with only the styles detected in the provided HTML files.
+  </p>
+  <p>
+    
+  </p>
 </section>
 <section>
   <h2>Rollup to the Rescue</h2>
+  <p>
+    To ensure tree shaking occurs automatically each time we deploy to production, we need to 
+    add purgecss as a build step. One way to do this is to write a rollup plugin that will
+    fire after the production stylesheets are bundled.
+  </p>
   TODO:
   - how to write a simple plugin for roll-up
-  - how purgecss works 
 </section>
 <section>
   <h2>Results</h2>
@@ -244,4 +306,6 @@
   <h2>Wrapping Up</h2>
   TODO:
   - Note lessons-learned
+  - How to handle dynamic sites (end-point that provides all output, 
+  generate a file with that as a build step?)
 </section>

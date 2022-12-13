@@ -222,8 +222,97 @@
     add purgecss as a build step. One way to do this is to write a rollup plugin that will
     fire after the production stylesheets are bundled.
   </p>
-  TODO:
-  - how to write a simple plugin for roll-up
+  <pre><code>
+    async function treeShakeCSS() {
+      // get raw html
+      const filesHTML = await filewalker({
+        rootDir: join(Deno.cwd(), 'public'),
+        pattern: new RegExp(/index\.html/),
+      });
+      const rawHTML = await raw(filesHTML);
+      // get raw js
+      const filesJS = await filewalker({
+        rootDir: join(Deno.cwd(), 'public/assets/js'),
+        pattern: new RegExp(/\.js/),
+      });
+      const rawJS = await raw(filesJS);
+      // array of content that could have classes defined within it
+      const content = [
+        ...Object.values(rawHTML).map((raw) => {
+          return {
+            extension: 'html',
+            raw: raw,
+          };
+        }),
+        ...Object.values(rawJS).map((raw) => {
+          return {
+            extension: 'js',
+            raw: raw,
+          };
+        }),
+      ];
+      // get raw css
+      const filesCSS = await filewalker({
+        rootDir: join(Deno.cwd(), 'public/assets/css'),
+        pattern: new RegExp(/\.css/),
+      });
+      const rawCSS = await raw(filesCSS);
+      const css = Object.keys(rawCSS).map((name) => {
+        return {
+          name,
+          raw: rawCSS[name],
+        };
+      });
+      // purge
+      const result = await new PurgeCSS().purge({
+        css,
+        content,
+      });
+      // write
+      await result.forEach(async (r) => {
+        if (r.file) {
+          await Deno.writeTextFile(r.file, r.css);
+        }
+      });
+    }
+
+    const treeShakeCSSOutput = {
+      // using the rollup output lifecycle hook "writeBundle",
+      // we can look at the outputted css in 'public/assets/css',
+      // then run the PurgeCSS function to treeshake those bundles,
+      // finally we save the purged output to the same bundle location
+      name: 'treeShakeCSSOutpue',
+      writeBundle() {
+        return treeShakeCSS();
+      },
+    };
+  </code></pre>
+  <p>
+    The plugin above runs when rollups <a href=""><code>writeBundle</code></a> lifecycle
+    hook is triggered. At this point the site's stylesheets are bundled and written to the
+    filesystem but they still contain unused styles. The plugin does the following:
+  </p>
+  <ol>
+    <li>
+      First, we gather the outputted bundled stylesheets, javascript, and HTML files.
+      Javascript files are included because sometimes classes are added dynamically
+      by functions or bundled into web components.
+    </li>
+    <li>
+      Next, we gather the raw content of each of those files using the runtime filesystem
+      functions. My site uses Deno but where relevant, filesystem functions can be substituted
+      with those provided by node or other javascript runtimes.
+    </li>
+    <li>
+      Then we give <code>purgecss</code> an array of the raw stylesheets and content that
+      could potentially contain styles defined in those stylesheets. The output of this
+      function is an object that contains a filename and the treeshaken stylesheet.
+    </li>
+    <li>
+      Finally we overwrite each of the bundled stylesheets with the treeshaken content
+      returned by purgecss.
+    </li>
+  </ol>
 </section>
 <section>
   <h2>Results</h2>

@@ -222,7 +222,7 @@
     add purgecss as a build step. One way to do this is to write a rollup plugin that will
     fire after the production stylesheets are bundled.
   </p>
-  <pre><code>
+  <pre><code class="language-javascript">
     async function treeShakeCSS() {
       // get raw html
       const filesHTML = await filewalker({
@@ -288,9 +288,12 @@
     };
   </code></pre>
   <p>
-    The plugin above runs when rollups <a href=""><code>writeBundle</code></a> lifecycle
-    hook is triggered. At this point the site's stylesheets are bundled and written to the
-    filesystem but they still contain unused styles. The plugin does the following:
+    The plugin above runs when rollups 
+    <a href="https://rollupjs.org/guide/en/#using-output-plugins">
+      <code>writeBundle</code>
+    </a> lifecycle hook is triggered. At this point the site's stylesheets are bundled and 
+    written to the filesystem but they still contain unused styles. The plugin does the 
+    following:
   </p>
   <ol>
     <li>
@@ -313,12 +316,29 @@
       returned by purgecss.
     </li>
   </ol>
+  <p>
+    Then attach the plugin to the <code>output</code> options in your rollup config:
+  </p>
+  <pre><code class="language-javascript">
+    // RollupOptions { //... 
+    output: {
+      // output stuff here
+      plugins: [treeShakeCSSOutput],
+    },
+    plugins: [
+      // DO NOT attach the plugin here because the plugin needs to run following output
+    ]
+  </code></pre>
 </section>
 <section>
   <h2>Results</h2>
-  TODO:
-  - Describe the wins here
-  <div class="card">
+  <p>
+    Below is a screenshot of my network calls after attaching and pushing my new rollup
+    config to production. Over 50% decrease in my total bundled stylesheet size. But 
+    perhaps the best result is that lighthouse will no longer provide a warning about
+    unused styles.  
+  </p>
+  <div class="card margin-bottom-20">
     <a href="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp">
       <picture>
         <source
@@ -393,8 +413,18 @@
 </section>
 <section>
   <h2>Wrapping Up</h2>
-  TODO:
-  - Note lessons-learned
-  - How to handle dynamic sites (end-point that provides all output, 
-  generate a file with that as a build step?)
+  <p>
+    Tree shaking is an effective way to optimize CSS bundles and improve the performance 
+    of websites. There are ways to get this optimisation out-of-the-box, but in this article
+    I have shared one way to make use of tree shaking in the context of my personal website, 
+    including benchmarking and integration into my build system. By implementing tree shaking, 
+    bundled styles decreased by over 50%.
+  </p>
+  <p>
+    One potential downfall of this solution is that it does not provide a way to integrate 
+    content that is generated dynamically on the server-side. One way to possibly include 
+    dynamically-generated content in a tree-shaking system is to create an endpoint that will
+    output the templates and content generated for a production environment. Once that content
+    is captured (e.g., perhaps in a pre-build step), it can be included in the purge plugin.
+  </p>
 </section>

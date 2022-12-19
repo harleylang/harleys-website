@@ -11,9 +11,9 @@
   </p>
   <details>
     <summary>
-      Tailwind, a "utility-first" CSS framework, provides tree shaking 
-      out-of-the-box. This feature helps developers move quickly by avoiding 
-      the need to write custom classes for each element.
+      Tailwind, a "utility-first" CSS framework, provides tree shaking
+      out-of-the-box. This feature helps developers move quickly by avoiding the
+      need to write custom classes for each element.
     </summary>
     <p>
       <u>Utility-first</u> refers to how Tailwind provides CSS utilities (e.g.,
@@ -30,25 +30,29 @@
     </p>
   </details>
   <p>
-    Where possible, I have planned to write my own HTML, CSS, and JS for my personal
-    website. What follows is my research and integration of tree shaking tactics 
-    and how I integrated this tactic into my website's build system.
+    Where possible, I have planned to write my own HTML, CSS, and JS for my
+    personal website. What follows is my research and integration of tree
+    shaking tactics and how I integrated this tactic into my website's build
+    system.
   </p>
 </section>
 <hr />
 <section>
   <h2>Benchmarking</h2>
   <p>
-    The browser provides a few ways to evaluate the bundled size of stylesheets. In my case,
-    I used these features as a means to benchmark against tree shaking.
+    The browser provides a few ways to evaluate the bundled size of stylesheets.
+    In my case, I used these features as a means to benchmark against tree
+    shaking.
   </p>
   <p>
-    The bundled size of stylesheets can be inspected using the <em>Network</em>
-    tab in a chromium-based browser. Type <code>ctrl+shift+i</code> and click on the tab
-    named "Network". Next we need to open the <em>Coverage</em> drawer which will show
-    information about code usage. Type <code>ctrl+shift+p</code> to open the command 
-    input box. Type "coverage" and select the first option. In the below screenshot, 
-    I also filted by "assets" so that I could inspect just the styles deployed on my website:
+    The bundled size of stylesheets can be inspected using the
+    <em>Network</em> tab in a chromium-based browser. Type
+    <code>ctrl+shift+i</code> and click on the tab named "Network". Next we need
+    to open the <em>Coverage</em> drawer which will show information about code
+    usage. Type <code>ctrl+shift+p</code> to open the command input box. Type
+    "coverage" and select the first option. In the below screenshot, I also
+    filted by "assets" so that I could inspect just the styles deployed on my
+    website:
   </p>
   <div class="card">
     <a href="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp">
@@ -67,7 +71,9 @@
         />
         <source
           media="(min-width: 1400px)"
-          srcset="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
+          srcset="
+            https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp
+          "
         />
         <img
           src="https://i.postimg.cc/j5v4Kk1Z/blog-tree-shaking-before-og.webp"
@@ -76,35 +82,36 @@
       </picture>
     </a>
   </div>
-  <p>
-    A few notable observations:
-  </p>
-  <ol>    
+  <p>A few notable observations:</p>
+  <ol>
     <li>
-      <u>Unused styles</u>: The <em>coverage</em> tab shows how much of each 
-      resource is used on the current page. Notice how the "base" stylesheet has a high percentage of
-      unused styles. 
+      <u>Unused styles</u>: The <em>coverage</em> tab shows how much of each
+      resource is used on the current page. Notice how the "base" stylesheet has
+      a high percentage of unused styles.
     </li>
     <li>
-      <u>Bundle size</u>: Both the <em>network</em> and <em>computed</em> tab show 
-      the size for each resource delivered. 
+      <u>Bundle size</u>: Both the <em>network</em> and <em>computed</em> tab
+      show the size for each resource delivered.
     </li>
   </ol>
   <p>
-    The high percentage of unused styles in the "base" stylesheet should be expected. This is
-    because my base stylesheet provides common utilities and style modules that are used 
-    across the site. 
+    The high percentage of unused styles in the "base" stylesheet should be
+    expected. This is because my base stylesheet provides common utilities and
+    style modules that are used across the site.
   </p>
   <p>
-    One way to reduce base stylesheets is to identify classes or utilities that exist on only 
-    one page and move those classes to a unique stylesheet for that page. 
+    One way to reduce base stylesheets is to identify classes or utilities that
+    exist on only one page and move those classes to a unique stylesheet for
+    that page.
   </p>
   <p>
-    However in this blog post, I am not concerned about the unused style percentage; it is OK
-    to have some unused styles in the base stylesheet because not every page will use that
-    entire stylesheet. Instead my goal is to reduce the size of the bundle, as there are 
-    likely classes that can be removed that are not used on any page at all. So bundle size 
-    will be my benchmark to measure tree-shaking tools against in the remainder of this blog post.
+    However in this blog post, I am not concerned about the unused style
+    percentage; it is OK to have some unused styles in the base stylesheet
+    because not every page will use that entire stylesheet. Instead my goal is
+    to reduce the size of the bundle, as there are likely classes that can be
+    removed that are not used on any page at all. So bundle size will be my
+    benchmark to measure tree-shaking tools against in the remainder of this
+    blog post.
   </p>
   <table>
     <thead>
@@ -154,9 +161,11 @@
 <section>
   <h2>Sources of Bloat</h2>
   <p>
-    The biggest source of the unused styles are due to custom utility functions. For example, 
-    consider the below 
-    <a href="https://github.com/harleylang/harleys-website/blob/f2e626a876bba3477f9a593f80e32b258472493e/www/css/_spacing.scss">
+    The biggest source of the unused styles are due to custom utility functions.
+    For example, consider the below
+    <a
+      href="https://github.com/harleylang/harleys-website/blob/f2e626a876bba3477f9a593f80e32b258472493e/www/css/_spacing.scss"
+    >
       sass function from my codebase:
     </a>
   </p>
@@ -200,27 +209,29 @@
 .margin-0{margin:0px !important}.margin-5{margin:5px !important}.margin-8{margin:8px !important}.margin-10{margin:10px !important}.margin-12{margin:12px !important}.margin-15{margin:15px !important}.margin-16{margin:16px !important}.margin-18{margin:18px !important}.margin-20{margin:20px !important}.margin-25{margin:25px !important}.margin-30{margin:30px !important}.margin-35{margin:35px !important}.margin-40{margin:40px !important}.margin-45{margin:45px !important}.margin-50{margin:50px !important}.margin-top-0{margin-top:0px !important}.margin-top-5{margin-top:5px !important}.margin-top-8{margin-top:8px !important}.margin-top-10{margin-top:10px !important}.margin-top-12{margin-top:12px !important}.margin-top-15{margin-top:15px !important}.margin-top-16{margin-top:16px !important}.margin-top-18{margin-top:18px !important}.margin-top-20{margin-top:20px !important}.margin-top-25{margin-top:25px !important}.margin-top-30{margin-top:30px !important}.margin-top-35{margin-top:35px !important}.margin-top-40{margin-top:40px !important}.margin-top-45{margin-top:45px !important}.margin-top-50{margin-top:50px !important}.margin-bottom-0{margin-bottom:0px !important}.margin-bottom-5{margin-bottom:5px !important}.margin-bottom-8{margin-bottom:8px !important}.margin-bottom-10{margin-bottom:10px !important}.margin-bottom-12{margin-bottom:12px !important}.margin-bottom-15{margin-bottom:15px !important}.margin-bottom-16{margin-bottom:16px !important}.margin-bottom-18{margin-bottom:18px !important}.margin-bottom-20{margin-bottom:20px !important}.margin-bottom-25{margin-bottom:25px !important}.margin-bottom-30{margin-bottom:30px !important}.margin-bottom-35{margin-bottom:35px !important}.margin-bottom-40{margin-bottom:40px !important}.margin-bottom-45{margin-bottom:45px !important}.margin-bottom-50{margin-bottom:50px !important}.margin-left-0{margin-left:0px !important}.margin-left-5{margin-left:5px !important}.margin-left-8{margin-left:8px !important}.margin-left-10{margin-left:10px !important}.margin-left-12{margin-left:12px !important}.margin-left-15{margin-left:15px !important}.margin-left-16{margin-left:16px !important}.margin-left-18{margin-left:18px !important}.margin-left-20{margin-left:20px !important}.margin-left-25{margin-left:25px !important}.margin-left-30{margin-left:30px !important}.margin-left-35{margin-left:35px !important}.margin-left-40{margin-left:40px !important}.margin-left-45{margin-left:45px !important}.margin-left-50{margin-left:50px !important}.margin-right-0{margin-right:0px !important}.margin-right-5{margin-right:5px !important}.margin-right-8{margin-right:8px !important}.margin-right-10{margin-right:10px !important}.margin-right-12{margin-right:12px !important}.margin-right-15{margin-right:15px !important}.margin-right-16{margin-right:16px !important}.margin-right-18{margin-right:18px !important}.margin-right-20{margin-right:20px !important}.margin-right-25{margin-right:25px !important}.margin-right-30{margin-right:30px !important}.margin-right-35{margin-right:35px !important}.margin-right-40{margin-right:40px !important}.margin-right-45{margin-right:45px !important}.margin-right-50{margin-right:50px !important}.margin-tb-0{margin-top:0px !important;margin-bottom:0px !important}.margin-tb-5{margin-top:5px !important;margin-bottom:5px !important}.margin-tb-8{margin-top:8px !important;margin-bottom:8px !important}.margin-tb-10{margin-top:10px !important;margin-bottom:10px !important}.margin-tb-12{margin-top:12px !important;margin-bottom:12px !important}.margin-tb-15{margin-top:15px !important;margin-bottom:15px !important}.margin-tb-16{margin-top:16px !important;margin-bottom:16px !important}.margin-tb-18{margin-top:18px !important;margin-bottom:18px !important}.margin-tb-20{margin-top:20px !important;margin-bottom:20px !important}.margin-tb-25{margin-top:25px !important;margin-bottom:25px !important}.margin-tb-30{margin-top:30px !important;margin-bottom:30px !important}.margin-tb-35{margin-top:35px !important;margin-bottom:35px !important}.margin-tb-40{margin-top:40px !important;margin-bottom:40px !important}.margin-tb-45{margin-top:45px !important;margin-bottom:45px !important}.margin-tb-50{margin-top:50px !important;margin-bottom:50px !important}.margin-lr-0{margin-left:0px !important;margin-right:0px !important}.margin-lr-5{margin-left:5px !important;margin-right:5px !important}.margin-lr-8{margin-left:8px !important;margin-right:8px !important}.margin-lr-10{margin-left:10px !important;margin-right:10px !important}.margin-lr-12{margin-left:12px !important;margin-right:12px !important}.margin-lr-15{margin-left:15px !important;margin-right:15px !important}.margin-lr-16{margin-left:16px !important;margin-right:16px !important}.margin-lr-18{margin-left:18px !important;margin-right:18px !important}.margin-lr-20{margin-left:20px !important;margin-right:20px !important}.margin-lr-25{margin-left:25px !important;margin-right:25px !important}.margin-lr-30{margin-left:30px !important;margin-right:30px !important}.margin-lr-35{margin-left:35px !important;margin-right:35px !important}.margin-lr-40{margin-left:40px !important;margin-right:40px !important}.margin-lr-45{margin-left:45px !important;margin-right:45px !important}.margin-lr-50{margin-left:50px !important;margin-right:50px !important}
   </code></pre>
   <p>
-    Some of these styles are used but many are probably never used in my website's codebase.
+    Some of these styles are used but many are probably never used in my
+    website's codebase.
   </p>
   <p>
-    Searching for each class manually would be a huge effort that would require repeating 
-    each time I update any page. Alternatively, tree-shaking tools will do this automatically. 
+    Searching for each class manually would be a huge effort that would require
+    repeating each time I update any page. Alternatively, tree-shaking tools
+    will do this automatically.
   </p>
   <p>
-    <a href="https://purgecss.com">Purgecss</a> was the tree-shaking library that I selected 
-    for my site. It is a javascript library that takes two inputs, stylesheets and HTML files, 
-    and outputs each stylesheet with only the styles detected in the provided HTML files.
+    <a href="https://purgecss.com">Purgecss</a> was the tree-shaking library
+    that I selected for my site. It is a javascript library that takes two
+    inputs, stylesheets and HTML files, and outputs each stylesheet with only
+    the styles detected in the provided HTML files.
   </p>
-  <p>
-    
-  </p>
+  <p></p>
 </section>
 <section>
   <h2>Rollup to the Rescue</h2>
   <p>
-    To ensure tree shaking occurs automatically each time we deploy to production, we need to 
-    add purgecss as a build step. One way to do this is to write a rollup plugin that will
-    fire after the production stylesheets are bundled.
+    To ensure tree shaking occurs automatically each time we deploy to
+    production, we need to add purgecss as a build step. One way to do this is
+    to write a rollup plugin that will fire after the production stylesheets are
+    bundled.
   </p>
   <pre><code class="language-javascript">
     async function treeShakeCSS() {
@@ -288,36 +299,40 @@
     };
   </code></pre>
   <p>
-    The plugin above runs when rollups 
+    The plugin above runs when rollups
     <a href="https://rollupjs.org/guide/en/#using-output-plugins">
       <code>writeBundle</code>
-    </a> lifecycle hook is triggered. At this point the site's stylesheets are bundled and 
-    written to the filesystem but they still contain unused styles. The plugin does the 
-    following:
+    </a>
+    lifecycle hook is triggered. At this point the site's stylesheets are
+    bundled and written to the filesystem but they still contain unused styles.
+    The plugin does the following:
   </p>
   <ol>
     <li>
-      First, we gather the outputted bundled stylesheets, javascript, and HTML files.
-      Javascript files are included because sometimes classes are added dynamically
-      by functions or bundled into web components.
+      First, we gather the outputted bundled stylesheets, javascript, and HTML
+      files. Javascript files are included because sometimes classes are added
+      dynamically by functions or bundled into web components.
     </li>
     <li>
-      Next, we gather the raw content of each of those files using the runtime filesystem
-      functions. My site uses Deno but where relevant, filesystem functions can be substituted
-      with those provided by node or other javascript runtimes.
+      Next, we gather the raw content of each of those files using the runtime
+      filesystem functions. My site uses Deno but where relevant, filesystem
+      functions can be substituted with those provided by node or other
+      javascript runtimes.
     </li>
     <li>
-      Then we give <code>purgecss</code> an array of the raw stylesheets and content that
-      could potentially contain styles defined in those stylesheets. The output of this
-      function is an object that contains a filename and the treeshaken stylesheet.
+      Then we give <code>purgecss</code> an array of the raw stylesheets and
+      content that could potentially contain styles defined in those
+      stylesheets. The output of this function is an object that contains a
+      filename and the treeshaken stylesheet.
     </li>
     <li>
-      Finally we overwrite each of the bundled stylesheets with the treeshaken content
-      returned by purgecss.
+      Finally we overwrite each of the bundled stylesheets with the treeshaken
+      content returned by purgecss.
     </li>
   </ol>
   <p>
-    Then attach the plugin to the <code>output</code> options in your rollup config:
+    Then attach the plugin to the <code>output</code> options in your rollup
+    config:
   </p>
   <pre><code class="language-javascript">
     // RollupOptions { //... 
@@ -333,10 +348,10 @@
 <section>
   <h2>Results</h2>
   <p>
-    Below is a screenshot of my network calls after attaching and pushing my new rollup
-    config to production. Over 50% decrease in my total bundled stylesheet size. But 
-    perhaps the best result is that lighthouse will no longer provide a warning about
-    unused styles.  
+    Below is a screenshot of my network calls after attaching and pushing my new
+    rollup config to production. Over 50% decrease in my total bundled
+    stylesheet size. But perhaps the best result is that lighthouse will no
+    longer provide a warning about unused styles.
   </p>
   <div class="card margin-bottom-20">
     <a href="https://i.postimg.cc/CKG4rKsy/blog-tree-shaking-after-og.webp">
@@ -368,7 +383,7 @@
     <thead>
       <tr>
         <td></td>
-        <td>Before </td>
+        <td>Before</td>
         <td>After 🍃</td>
         <td>Difference</td>
       </tr>
@@ -383,13 +398,11 @@
       <tr>
         <th>base.scss</th>
         <td>20,780</td>
-        <td>9,615 </td>
+        <td>9,615</td>
         <td>11,165 (53.7%)</td>
       </tr>
       <tr>
-        <th>
-          blog.scss
-        </th>
+        <th>blog.scss</th>
         <td>712</td>
         <td>638</td>
         <td>74 (10.3%)</td>
@@ -414,17 +427,19 @@
 <section>
   <h2>Wrapping Up</h2>
   <p>
-    Tree shaking is an effective way to optimize CSS bundles and improve the performance 
-    of websites. There are ways to get this optimisation out-of-the-box, but in this article
-    I have shared one way to make use of tree shaking in the context of my personal website, 
-    including benchmarking and integration into my build system. By implementing tree shaking, 
-    bundled styles decreased by over 50%.
+    Tree shaking is an effective way to optimize CSS bundles and improve the
+    performance of websites. There are ways to get this optimisation
+    out-of-the-box, but in this article I have shared one way to make use of
+    tree shaking in the context of my personal website, including benchmarking
+    and integration into my build system. By implementing tree shaking, bundled
+    styles decreased by over 50%.
   </p>
   <p>
-    One potential downfall of this solution is that it does not provide a way to integrate 
-    content that is generated dynamically on the server-side. One way to possibly include 
-    dynamically-generated content in a tree-shaking system is to create an endpoint that will
-    output the templates and content generated for a production environment. Once that content
-    is captured (e.g., perhaps in a pre-build step), it can be included in the purge plugin.
+    One potential downfall of this solution is that it does not provide a way to
+    integrate content that is generated dynamically on the server-side. One way
+    to possibly include dynamically-generated content in a tree-shaking system
+    is to create an endpoint that will output the templates and content
+    generated for a production environment. Once that content is captured (e.g.,
+    perhaps in a pre-build step), it can be included in the purge plugin.
   </p>
 </section>

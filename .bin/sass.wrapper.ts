@@ -168,7 +168,7 @@ function parseAndSubstituteImports(
     if (filenameLong) {
       css = css.replace(imported, moduleContent[filenameLong]);
     } else {
-      throw new Error('WHOOPS! Undefined file referenced.');
+      throw new Error(`WHOOPS! Undefined file referenced: ${imported}.`);
     }
   }
   return css;

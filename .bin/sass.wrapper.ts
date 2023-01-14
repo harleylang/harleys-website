@@ -5,6 +5,7 @@ import yargs from 'yargs';
 import filewalker from './filewalker.ts';
 
 interface ISass {
+  rootdir?: string;
   target?: string;
   outdir?: string;
 }
@@ -23,11 +24,13 @@ interface ISass {
  * `deno run --allow-all esbuild.ts www/css --target www/js --outdir www/css/dist`
  */
 export default async function sassWrapper({
+  rootdir = '',
   target = '',
   outdir = '',
 }: ISass = {}) {
   // derive arguments
   const {
+    rootdir: __rootdir,
     target: __target,
     outdir: __outdir,
   } = yargs(Deno.args).parse();
@@ -39,6 +42,7 @@ export default async function sassWrapper({
   }
 
   if (!target) target = __target ?? '.';
+  if (!rootdir) rootdir = __rootdir ?? target.includes('.') ? dirname(target) : target;
   if (!outdir) outdir = __outdir ?? join(target.includes('.') ? dirname(target) : target, '/dist');
 
   target = join(target[0] !== '/' ? Deno.cwd() : '', target);
@@ -53,7 +57,7 @@ export default async function sassWrapper({
 
   // create array of all *.scss files in the target directory
   const files = await filewalker({
-    rootDir: target.includes('.') ? dirname(target) : target,
+    rootDir: rootdir,
     pattern: patternSCSS,
   });
   const modules = files.filter((file) => file.match(/\_(.*)(.scss)/g));

@@ -35,7 +35,7 @@ const whistleJs: IWhistlePlugin = async function whistleJs(filename: string) {
 
 const whistleScss: IWhistlePlugin = async function whistleScss(filename: string) {
   if (filename.match(/(\.scss)/g)) {
-    await sassWrapper({ target: filename, outdir: 'www/css/dist' });
+    await sassWrapper({ target: filename, outdir: 'www/css/pages/dist' });
     return filename;
   }
   return null;

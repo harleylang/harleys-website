@@ -1,4 +1,5 @@
-@import "./_shadows.scss";
+@import "./abstracts/_variables.scss";
+@import "./abstracts/_utilities.scss";
 
 form {
   @include shadow;

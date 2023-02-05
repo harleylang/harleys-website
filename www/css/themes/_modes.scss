@@ -59,29 +59,3 @@ body.dark-mode {
     --col-fg-secondary: var(--neon-green);
   }
 }
-
-body {
-  min-height: calc(100vh - calc(var(--dp) * 2));
-  position: relative;
-  background-color: rgba(var(--col-bg-default));
-  color: rgba(var(--col-fg-default));
-  &.background-transition {
-    transition: background-color 0.5s ease;
-  }
-  &:before {
-    content: "";
-    width: 100%;
-    height: 75px;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    background: conic-gradient(
-      from 180deg at 50% 50%,
-      rgb(var(--col-fg-primary)) 0deg,
-      rgb(var(--col-bg-highlight)) 180deg
-    );
-    mix-blend-mode: normal;
-    filter: blur(100px);
-  }
-}

@@ -1,0 +1,173 @@
+/* default html tag styles go in here */
+
+a {
+  @include font-acme;
+  color: rgb(var(--col-fg-secondary));
+}
+
+abbr {
+  text-decoration: unset;
+}
+
+body {
+  @include alpha;
+
+  --body-border-side: var(--dp);
+  --body-border-sides: calc(var(--body-border-side) * 2);
+  --body-padding-side: calc(var(--dp) * 2);
+  --body-padding-sides: calc(var(--body-padding-side) * 2);
+
+  background-color: rgba(var(--col-bg-default));
+  border-image: linear-gradient(
+    0deg,
+    rgba(var(--col-bg-opposite), 0.05),
+    rgba(var(--col-bg-opposite), 0),
+    rgba(var(--col-bg-opposite), 0)
+  );
+  border-image-slice: 1;
+  border-style: solid;
+  border-width: 0 var(--body-border-side);
+  color: rgba(var(--col-fg-default));
+  font-family: helvetica, sans-serif;
+  height: fit-content;
+  margin: 0;
+  min-height: calc(100vh - calc(var(--dp) * 2));
+  padding: var(--dp) var(--body-padding-side);
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: calc(100vw - var(--body-boder-sides) - var(--body-padding-sides));
+
+  &.background-transition {
+    transition: background-color 0.5s ease;
+  }
+
+  &:before {
+    content: "";
+    width: 100%;
+    height: 75px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgb(var(--col-fg-primary)) 0deg,
+      rgb(var(--col-bg-highlight)) 180deg
+    );
+    mix-blend-mode: normal;
+    filter: blur(100px);
+  }
+
+  @media only screen and (min-width: 600px) {
+    --body-border-side: 10vw;
+  }
+  @media only screen and (min-width: 800px) {
+    --body-border-side: 15vw;
+  }
+  @media only screen and (min-width: 1000px) {
+    --body-border-side: 20vw;
+  }
+  @media only screen and (min-width: 1200px) {
+    --body-border-side: 25vw;
+  }
+}
+
+
+
+blockquote {
+  font-style: italic;
+  
+  &:before {
+    position: relative;
+    left: -25px;
+    top: 15px;
+    content: open-quote;
+    font-size: 3.5em;
+    line-height: 0;
+    display: block;
+    width: 30px;
+  }
+
+  &:after {
+    position: relative;
+    left: calc(100% - 5px);
+    content: close-quote;
+    font-size: 3.5em;
+    line-height: 0;
+    display: block;
+    width: 30px;
+  }
+
+  &:hover:before,
+  &:hover:after {
+    animation-name: spin-with-skip;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+  }
+}
+
+code {
+  font-family: monospace !important;
+  font-size: 16px;
+  * {
+    // within highlight js, unset so classes will be visible
+    font-family: monospace !important;
+    color: unset;
+  }
+}
+
+dialog {
+  width: 500px;
+  max-width: 100%;
+  &::backdrop {
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(3px);
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+header {
+  height: 34px;
+}
+
+summary {
+  cursor: pointer;
+}
+
+ul {
+  &.no-dots {
+    list-style-type: none;
+  }
+}
+
+/* custom elements */
+
+[htmlCommentToggle] {
+  font-weight: bold;
+  font-size: 24px;
+  animation: twitchy var(--animation-duration--twitchy) ease-in-out forwards
+    infinite;
+  &:hover {
+    cursor: context-menu;
+  }
+}
+
+[htmlCommentRevealed] {
+  font-style: italic;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+[htmlCommentRevealed],
+[htmlCommentToggle] {
+  color: rgb(var(--col-fg-secondary));
+}

@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Fondamento&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rampart+One&display=swap");
+
+@mixin font-acme {
+  font-family: "Acme", serif;
+  font-size: 16px;
+  font-display: swap;
+}
+
+@mixin font-bubblegum {
+  font-family: "Bubblegum Sans", sans-serif;
+  font-size: 16px;
+  font-display: swap;
+  line-height: 1;
+}
+
+@mixin font-fondamento {
+  font-family: "Fondamento", sans-serif;
+  font-size: 16px;
+  font-display: swap;
+}
+
+@mixin font-lucky {
+  font-family: "Luckiest Guy", serif;
+  font-size: 16px;
+  font-display: swap;
+}
+
+@mixin font-pacifico {
+  font-family: "Pacifico", serif;
+  font-size: 16px;
+  font-display: swap;
+}
+
+@mixin font-rampart-one {
+  font-family: "Rampart One", serif;
+  font-size: 16px;
+  font-display: swap;
+}
+
+.acme {
+  @include font-acme;
+}
+
+.bubblegum {
+  @include font-bubblegum();
+}
+
+.fondamento {
+  @include font-fondamento;
+}
+
+.lucky {
+  @include font-lucky;
+}
+
+.pacifico {
+  @include font-pacifico;
+}
+
+.rampart {
+  @include font-rampart-one;
+}

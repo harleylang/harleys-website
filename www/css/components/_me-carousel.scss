@@ -1,7 +1,13 @@
-@import "./abstracts/_variables.scss";
-@import "./abstracts/_utilities.scss";
+.carousel__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  me-carousel {
+    max-width: 100%;
+  }
+}
 
-form {
+.me-carousel {
   @include shadow;
   position: relative;
   width: 600px;

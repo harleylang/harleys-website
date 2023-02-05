@@ -52,6 +52,9 @@ async function treeShakeCSS() {
   const result = await new PurgeCSS().purge({
     css,
     content,
+    safelist: {
+      deep: [/^me-/],
+    },
   });
   // write
   await result.forEach(async (r) => {

@@ -73,11 +73,9 @@ body {
   }
 }
 
-
-
 blockquote {
   font-style: italic;
-  
+
   &:before {
     position: relative;
     left: -25px;

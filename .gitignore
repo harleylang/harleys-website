@@ -2,6 +2,7 @@ node_modules
 dist
 public
 assets
+deno.lock
 .turbo
 *.log
 # rendered css files

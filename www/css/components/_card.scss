@@ -1,15 +1,17 @@
 .card {
   background: rgba(var(--col-bg-card), var(--alpha));
   border-radius: 16px;
-  picture {
+
+  &__image-container {
     width: 100%;
     aspect-ratio: 16/9;
     overflow-y: hidden;
     display: flex;
-    img {
-      height: auto;
-      width: 100%;
-      object-fit: cover;
-    }
+  }
+
+  &__image {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
   }
 }

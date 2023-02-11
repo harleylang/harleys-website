@@ -50,7 +50,8 @@
   @include font-bubblegum();
 }
 
-.fondamento {
+.fondamento,
+.silly {
   @include font-fondamento;
 }
 
@@ -64,4 +65,22 @@
 
 .rampart {
   @include font-rampart-one;
+}
+
+// typography classes
+
+.extra {
+  &:first-letter {
+    font-size: 175%;
+  }
+}
+
+.gradient {
+  background-color: var(--col-gradient-fallback);
+  background: var(--col-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
 }

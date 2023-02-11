@@ -2,14 +2,12 @@
   position: relative;
   width: 100%;
   background: rgb(var(--col-bg-card));
-  p,
-  span {
-    padding: 0px 30px;
-  }
+
   &:before,
   &:after {
     background: rgb(var(--grey));
     border-radius: 25px;
+    content: " ";
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,9 +18,11 @@
     top: -10%;
     z-index: 1;
   }
+
   &:before {
     left: 0;
   }
+
   &:after {
     background: rgb(var(--grey));
     right: 0;
@@ -36,21 +36,20 @@
     //  --slide-right-duration: 0s;
     // }
   }
-  &:before,
-  &:after {
-    content: " ";
-  }
-  &-important {
+
+  &--important {
     &:before {
       content: "!";
     }
   }
-  &-question {
+
+  &--question {
     &:before {
       content: "?";
     }
   }
-  &-info {
+
+  &--info {
     &:before {
       content: "📓";
     }

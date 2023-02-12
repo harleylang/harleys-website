@@ -2,12 +2,19 @@ const template = document.createElement('template');
 
 template.innerHTML = `
   <div class="me-darkmode-toggle">
-    <div class="switch">
-      <label for="DarkmodeToggle__input" id="DarkmodeToggle__label">
+    <div class="me-darkmode-toggle__inner-wrapper">
+      <label 
+        for="me-darkmode-toggle__input" 
+        id="me-darkmode-toggle__label"
+        class="me-darkmode-toggle__label">
         a darkmode label
       </label>
-      <input type="checkbox" id="DarkmodeToggle__input" aria-labelledby="DarkmodeToggle__label">
-      <span class="slider round"></span>
+      <input 
+        id="me-darkmode-toggle__input" 
+        class="me-darkmode-toggle__input"
+        type="checkbox" 
+        aria-labelledby="me-darkmode-toggle__label">
+      <span class="me-darkmode-toggle__slider me-darkmode-toggle__slider--round"></span>
     </div>
   </div>
 `;

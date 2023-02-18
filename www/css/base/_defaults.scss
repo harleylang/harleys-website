@@ -53,6 +53,7 @@ body {
     );
     mix-blend-mode: normal;
     filter: blur(100px);
+    transition: background-color 0.5s ease;
   }
 
   &:after {
@@ -64,6 +65,7 @@ body {
     z-index: -2;
     top: 0;
     left: -2.5%;
+    transition: background-color 0.5s ease;
   }
 
   @media only screen and (min-width: 864px) {

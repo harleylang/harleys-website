@@ -8,20 +8,22 @@
 }
 
 .me-carousel {
+  $self: &;
+
   @include shadow;
   position: relative;
   width: 600px;
   max-width: 100%;
   height: fit-content;
   background: white;
-  img {
-    filter: var(--col-img-filter);
-    transition: all 0.35s;
+
+  &:hover {
+    #{ $self}__slide-image {
+      filter: none;
+    }
   }
-  &:hover img {
-    filter: none;
-  }
-  ol {
+
+  &__slides {
     width: 100%;
     height: fit-content;
     padding: 0;
@@ -29,54 +31,144 @@
     flex-direction: row;
     justify-content: center;
     list-style: none;
-    input {
-      display: none;
+  }
+
+  &__input {
+    display: none;
+
+    &:not(:checked) {
+      + #{ $self }__slide #{ $self }__slide-content {
+        display: none;
+      }
     }
-    input:checked + li {
-      width: 100%;
-    }
-    input:checked + li section img {
-      opacity: 1;
-      animation: fade 0.5s forwards;
-      @keyframes fade {
-        0% {
-          opacity: 0.9;
-        }
-        100% {
+
+    &:checked {
+      + #{ $self }__slide {
+        width: 100%;
+
+        #{ $self }__slide-image {
           opacity: 1;
+          animation: fade 2s forwards;
+
+          @keyframes fade {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
         }
       }
     }
-    input:not(:checked) + li section {
-      display: none;
-    }
+
     @for $i from 1 through 10 {
-      input#carousel__input--#{$i}:checked
-        ~ .controls
-        label[for="carousel__input--#{$i}"] {
+      &#{
+        $self
+        }__input--#{$i}:checked
+        ~ #{
+        $self
+        }__controls
+        #{
+        $self
+        }__control-dot--#{$i} {
         background-color: white;
       }
     }
-    li:not(.controls) {
-      height: fit-content;
-      background: white;
-      aspect-ratio: 16/13.5;
-      &::marker {
-        display: none;
-        content: "";
-        position: absolute;
+  }
+
+  &__slide {
+    height: fit-content;
+    background: white;
+    aspect-ratio: 16/13.5;
+    &::marker {
+      display: none;
+      content: "";
+      position: absolute;
+    }
+
+    &-content {
+      border: 10px solid white;
+      width: calc(100% - 20px - 32px);
+      padding: 16px;
+    }
+
+    &-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 16/9;
+      filter: var(--col-img-filter);
+      transition: all 0.35s;
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  &__control-button {
+    font-family: "Permanent Marker";
+    font-size: 40px;
+    font-display: swap;
+    padding: 0;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: rgb(var(--white));
+    border: 2px outset;
+    border-color: rgba(var(--white), 40%);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    color: rgb(var(--black));
+    &:active {
+      border: 2px inset;
+      border-color: rgb(var(--white), 40%);
+    }
+    &--prev {
+      margin-left: 48px;
+    }
+    &--next {
+      margin-right: 48px;
+      right: 0;
+      #{ $self }__control-button-text {
+        right: -3px;
       }
-      section {
-        border: 10px solid white;
-        width: calc(100% - 20px - 32px);
-        padding: 16px;
-        img {
-          width: 100%;
-          height: auto;
-          object-fit: cover;
-          aspect-ratio: 16/9;
-        }
-        p,
+    }
+    &-text {
+      position: relative;
+      bottom: 16px;
+    }
+  }
+
+  &__control-dots {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 2px;
+    height: 40px;
+  }
+
+  &__control-dot {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-color: #111;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+/* .me-carousel {
+
         figcaption {
           color: rgb(var(--black));
         }
@@ -93,67 +185,5 @@
           font-family: "Chewy";
           font-display: swap;
         }
-      }
-    }
-    .controls {
-      position: absolute;
-      width: 100%;
-      aspect-ratio: 16/9;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-end;
-      > * {
-        margin-bottom: 16px;
-      }
-      .labels {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 2px;
-        height: 40px;
-        label {
-          display: block;
-          width: 1rem;
-          height: 1rem;
-          background-color: #111;
-          border-radius: 50%;
-          cursor: pointer;
-        }
-      }
-      button {
-        font-family: "Permanent Marker";
-        font-size: 40px;
-        font-display: swap;
-        padding: 0;
-        border-radius: 50%;
-        background: rgb(var(--white));
-        border: 2px outset;
-        border-color: rgba(var(--white), 40%);
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        color: rgb(var(--black));
-        &:active {
-          border: 2px inset;
-          border-color: rgb(var(--white), 40%);
-        }
-        span {
-          position: relative;
-          bottom: 16px;
-        }
-        &.button--prev {
-          margin-left: 48px;
-        }
-        &.button--next {
-          margin-right: 48px;
-          right: 0;
-          span {
-            right: -3px;
-          }
-        }
-      }
-    }
-  }
-}
+
+} */

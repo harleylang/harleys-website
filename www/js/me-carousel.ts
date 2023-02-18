@@ -1,51 +1,59 @@
 const template = document.createElement('template');
 
 template.innerHTML = `
-<form name="carousel" class="me-carousel">
-  <ol id="slides">
-    <li id="controls" class="controls">
-      <button class="button--prev" type="button"><span>&lt</span></button>
-      <div id="labels" class="labels"></div>
-      <button class="button--next" type="button"><span>&gt</span></button>
-    </li>
-  </ol>
-</form>
+  <form class="me-carousel" name="carousel">
+    <ol class="me-carousel__slides">
+      <li class="me-carousel__controls">
+        <button class="me-carousel__control-button me-carousel__control-button--prev" type="button">
+          <span class="me-carousel__control-button-text">&lt</span>
+        </button>
+        <div class="me-carousel__control-dots"></div>
+        <button class="me-carousel__control-button me-carousel__control-button--next" type="button">
+          <span class="me-carousel__control-button-text">&gt</span>
+        </button>
+      </li>
+    </ol>
+  </form>
 `;
 
 function createSlide({ index, children }: { index: number; children: string }) {
   let content: string;
   if (children.includes('<section')) content = children;
-  else content = `<section>${children}</section>`;
+  else content = `<section class="me-carousel__slide-content">${children}</section>`;
 
   const slide = document.createElement('template');
   slide.innerHTML = `
     <input
-      type="radio"
-      id="carousel__input--${index}"
-      name="radios"
+      class="me-carousel__input me-carousel__input--${index}"
+      id="me-carousel__input--${index}"
       value="${index}"
+      name="radios"
+      type="radio"
       ${index === 1 ? 'checked' : ''}
     />
-    <li>
+    <li class="me-carousel__slide">
       ${content}
     </li>
   `;
 
   const label = document.createElement('template');
-  label.innerHTML = `<label for="carousel__input--${index}"></label>`;
+  label.innerHTML =
+    `<label class="me-carousel__control-dot me-carousel__control-dot--${index}" for="me-carousel__input--${index}"></label>`;
 
   return { slide, label };
 }
 
 class Carousel extends HTMLElement {
+  #children: Element[] = [];
+
   constructor() {
     super();
     // initialise variables
-    const children = [...this.children];
+    this.#children = [...this.children];
     this.innerHTML = '';
     this.loadFonts();
     this.appendChild(template.content.cloneNode(true));
-    const prev = this.querySelector('.button--prev');
+    const prev = this.querySelector('.me-carousel__control-button--prev');
     if (prev) {
       prev.addEventListener('touchend', (event: Event) => {
         event.preventDefault(); // prevent mobile dbl tap zoom
@@ -85,7 +93,7 @@ class Carousel extends HTMLElement {
         }
       });
     }
-    const next = this.querySelector('.button--next');
+    const next = this.querySelector('.me-carousel__control-button--next');
     if (next) {
       next.addEventListener('touchend', (event: Event) => {
         event.preventDefault(); // prevent mobile dbl tap zoom
@@ -126,7 +134,7 @@ class Carousel extends HTMLElement {
       });
     }
     // setup initial children
-    this.setupSlides(children as unknown as NodeList);
+    this.setupSlides(this.#children as never as NodeList);
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -165,20 +173,23 @@ class Carousel extends HTMLElement {
   setupSlides(nodeList: NodeList) {
     const nodes = [...nodeList].filter((n) => n instanceof HTMLElement);
     for (let i = 0; i < nodes.length; i += 1) {
+      // derive slide content and dots from template
       const node = nodes[i] as HTMLElement;
       const metaElements = createSlide({
         index: i + 1,
         children: node.outerHTML,
       });
-      const slidesNode = this.querySelector('#slides');
-      const controlsNode = this.querySelector('#controls');
+      // append slide content
+      const slidesNode = this.querySelector('.me-carousel__slides');
+      const controlsNode = this.querySelector('.me-carousel__controls');
       if (slidesNode && controlsNode) {
         slidesNode.insertBefore(
           metaElements.slide.content.cloneNode(true),
           controlsNode,
         );
       }
-      const labelsNode = this.querySelector('#labels');
+      // append dots
+      const labelsNode = this.querySelector('.me-carousel__control-dots');
       if (labelsNode) {
         labelsNode.appendChild(metaElements.label.content.cloneNode(true));
       }

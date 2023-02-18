@@ -115,96 +115,106 @@
             showcasing my web development skills. So why not have some fun while we're at it?!
           -->
         </small>
-        <div class="carousel__wrapper margin-top-20">
-          <me-carousel>
-            <section class="me-carousel__slide-content">
-              <picture>
-                <source
-                  media="(max-width: 500px)"
-                  srcset="https://i.postimg.cc/gJJvMPCJ/me-spain-s.webp"
-                />
-                <source
-                  media="(max-width: 900px)"
-                  srcset="https://i.postimg.cc/d1xGpxF9/me-spain-m.webp"
-                />
-                <source
-                  media="(max-width: 1399px)"
-                  srcset="https://i.postimg.cc/qq62TxMH/me-spain-l.webp"
-                />
-                <source
-                  media="(min-width: 1400px)"
-                  srcset="https://i.postimg.cc/HjGXs8Vc/me-spain-og.webp"
-                />
-                <img
-                  class="me-carousel__slide-image"
-                  src="https://i.postimg.cc/HjGXs8Vc/me-spain-og.webp"
-                  alt="A photo of Harley"
-                  width="600px"
-                  height="450px"
-                />
-              </picture>
-              <figcaption>About moi</figcaption>
-              <p>TODO: write something here</p>
-            </section>
-            <section class="me-carousel__slide-content">
-              <picture>
-                <source
-                  media="(max-width: 500px)"
-                  srcset="https://i.postimg.cc/HkTnd96D/me-standrews-s.webp"
-                />
-                <source
-                  media="(max-width: 900px)"
-                  srcset="https://i.postimg.cc/8zw55fYF/me-standrews-m.webp"
-                />
-                <source
-                  media="(max-width: 1399px)"
-                  srcset="https://i.postimg.cc/3wRwDJMt/me-standrews-l.webp"
-                />
-                <source
-                  media="(min-width: 1400px)"
-                  srcset="https://i.postimg.cc/903XSdDk/me-standrews-og.webp"
-                />
-                <img
-                  class="me-carousel__slide-image"
-                  src="https://i.postimg.cc/903XSdDk/me-standrews-og.webp"
-                  alt="Me and me miss"
-                  width="510px"
-                  height="600px"
-                />
-              </picture>
-              <figcaption>Me image 2</figcaption>
-              <p>St. Andrews beach with me miss.</p>
-            </section>
-            <section class="me-carousel__slide-content">
-              <picture>
-                <source
-                  media="(max-width: 500px)"
-                  srcset="https://i.postimg.cc/kXQG0pFv/me-scotland-s.webp"
-                />
-                <source
-                  media="(max-width: 900px)"
-                  srcset="https://i.postimg.cc/rpPwGXMM/me-scotland-m.webp"
-                />
-                <source
-                  media="(max-width: 1399px)"
-                  srcset="https://i.postimg.cc/fLSTB2RX/me-scotland-l.webp"
-                />
-                <source
-                  media="(min-width: 1400px)"
-                  srcset="https://i.postimg.cc/yxF6zD98/me-scotland-og.webp"
-                />
-                <img
-                  class="me-carousel__slide-image"
-                  src="https://i.postimg.cc/yxF6zD98/me-scotland-og.webp"
-                  alt="Harley on 'harley street'"
-                  width="600px"
-                  height="450px"
-                />
-              </picture>
-              <figcaption>that's-all-folks.png</figcaption>
-            </section>
-          </me-carousel>
-        </div>
+        <me-carousel
+          class="flex flex-row flex-row--centered margin-top-20 width-100"
+        >
+          <section class="me-carousel__slide-content">
+            <picture>
+              <source
+                media="(max-width: 500px)"
+                srcset="https://i.postimg.cc/gJJvMPCJ/me-spain-s.webp"
+              />
+              <source
+                media="(max-width: 900px)"
+                srcset="https://i.postimg.cc/d1xGpxF9/me-spain-m.webp"
+              />
+              <source
+                media="(max-width: 1399px)"
+                srcset="https://i.postimg.cc/qq62TxMH/me-spain-l.webp"
+              />
+              <source
+                media="(min-width: 1400px)"
+                srcset="https://i.postimg.cc/HjGXs8Vc/me-spain-og.webp"
+              />
+              <img
+                class="me-carousel__slide-image"
+                src="https://i.postimg.cc/HjGXs8Vc/me-spain-og.webp"
+                alt="A photo of Harley"
+                width="600px"
+                height="450px"
+              />
+            </picture>
+            <figcaption class="me-carousel__slide-caption">
+              About moi
+            </figcaption>
+            <p class="me-carousel__slide-description">
+              TODO: write something here
+            </p>
+          </section>
+          <section class="me-carousel__slide-content">
+            <picture>
+              <source
+                media="(max-width: 500px)"
+                srcset="https://i.postimg.cc/HkTnd96D/me-standrews-s.webp"
+              />
+              <source
+                media="(max-width: 900px)"
+                srcset="https://i.postimg.cc/8zw55fYF/me-standrews-m.webp"
+              />
+              <source
+                media="(max-width: 1399px)"
+                srcset="https://i.postimg.cc/3wRwDJMt/me-standrews-l.webp"
+              />
+              <source
+                media="(min-width: 1400px)"
+                srcset="https://i.postimg.cc/903XSdDk/me-standrews-og.webp"
+              />
+              <img
+                class="me-carousel__slide-image"
+                src="https://i.postimg.cc/903XSdDk/me-standrews-og.webp"
+                alt="Me and me miss"
+                width="510px"
+                height="600px"
+              />
+            </picture>
+            <figcaption class="me-carousel__slide-caption">
+              Me image 2
+            </figcaption>
+            <p class="me-carousel__slide-description">
+              St. Andrews beach with me miss.
+            </p>
+          </section>
+          <section class="me-carousel__slide-content">
+            <picture>
+              <source
+                media="(max-width: 500px)"
+                srcset="https://i.postimg.cc/kXQG0pFv/me-scotland-s.webp"
+              />
+              <source
+                media="(max-width: 900px)"
+                srcset="https://i.postimg.cc/rpPwGXMM/me-scotland-m.webp"
+              />
+              <source
+                media="(max-width: 1399px)"
+                srcset="https://i.postimg.cc/fLSTB2RX/me-scotland-l.webp"
+              />
+              <source
+                media="(min-width: 1400px)"
+                srcset="https://i.postimg.cc/yxF6zD98/me-scotland-og.webp"
+              />
+              <img
+                class="me-carousel__slide-image"
+                src="https://i.postimg.cc/yxF6zD98/me-scotland-og.webp"
+                alt="Harley on 'harley street'"
+                width="600px"
+                height="450px"
+              />
+            </picture>
+            <figcaption class="me-carousel__slide-caption">
+              that's-all-folks.png
+            </figcaption>
+          </section>
+        </me-carousel>
       </article>
     </main>
     <footer></footer>

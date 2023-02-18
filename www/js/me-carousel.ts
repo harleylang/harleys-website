@@ -4,11 +4,15 @@ template.innerHTML = `
   <form class="me-carousel" name="carousel">
     <ol class="me-carousel__slides">
       <li class="me-carousel__controls">
-        <button class="me-carousel__control-button me-carousel__control-button--prev" type="button">
+        <button 
+          class="me-carousel__control-button me-carousel__control-button--prev" 
+          type="button">
           <span class="me-carousel__control-button-text">&lt</span>
         </button>
         <div class="me-carousel__control-dots"></div>
-        <button class="me-carousel__control-button me-carousel__control-button--next" type="button">
+        <button 
+          class="me-carousel__control-button me-carousel__control-button--next" 
+          type="button">
           <span class="me-carousel__control-button-text">&gt</span>
         </button>
       </li>
@@ -37,8 +41,9 @@ function createSlide({ index, children }: { index: number; children: string }) {
   `;
 
   const label = document.createElement('template');
-  label.innerHTML =
-    `<label class="me-carousel__control-dot me-carousel__control-dot--${index}" for="me-carousel__input--${index}"></label>`;
+  label.innerHTML = `<label 
+      class="me-carousel__control-dot me-carousel__control-dot--${index}" 
+      for="me-carousel__input--${index}"></label>`;
 
   return { slide, label };
 }
@@ -51,7 +56,6 @@ class Carousel extends HTMLElement {
     // initialise variables
     this.#children = [...this.children];
     this.innerHTML = '';
-    this.loadFonts();
     this.appendChild(template.content.cloneNode(true));
     const prev = this.querySelector('.me-carousel__control-button--prev');
     if (prev) {
@@ -135,29 +139,6 @@ class Carousel extends HTMLElement {
     }
     // setup initial children
     this.setupSlides(this.#children as never as NodeList);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  loadFonts() {
-    const fonts = [
-      'https://fonts.googleapis.com/css?family=Permanent Marker&display=swap',
-      'https://fonts.googleapis.com/css2?family=Chewy&display=swap',
-    ];
-    const linksInHead = Array.from(document.head.children)
-      .filter(
-        (e) => e.nodeName === 'LINK' && !fonts.includes((e as HTMLLinkElement).href),
-      )
-      .map((e) => (e as HTMLLinkElement).href);
-
-    for (let f = 0; f < fonts.length; f += 1) {
-      const font = fonts[f];
-      if (!linksInHead.includes(font)) {
-        const link = document.createElement('link');
-        link.href = font;
-        link.rel = 'stylesheet';
-        document.head.appendChild(link);
-      }
-    }
   }
 
   connectedCallback() {

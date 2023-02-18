@@ -1,9 +1,12 @@
-.carousel__wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  me-carousel {
-    max-width: 100%;
+@import url("https://fonts.googleapis.com/css?family=Permanent Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -16,6 +19,7 @@
   max-width: 100%;
   height: fit-content;
   background: white;
+  color: rgb(var(--black));
 
   &:hover {
     #{ $self}__slide-image {
@@ -27,6 +31,7 @@
     width: 100%;
     height: fit-content;
     padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -48,16 +53,7 @@
 
         #{ $self }__slide-image {
           opacity: 1;
-          animation: fade 2s forwards;
-
-          @keyframes fade {
-            0% {
-              opacity: 0;
-            }
-            100% {
-              opacity: 1;
-            }
-          }
+          animation: fade 0.75s forwards;
         }
       }
     }
@@ -88,9 +84,14 @@
     }
 
     &-content {
-      border: 10px solid white;
-      width: calc(100% - 20px - 32px);
-      padding: 16px;
+      width: 100%;
+      margin-bottom: 80px;
+      @media only screen and (min-width: 600px) {
+        border: 10px solid white;
+        padding: 16px;
+        margin-bottom: 0;
+        width: calc(100% - 20px - 32px);
+      }
     }
 
     &-image {
@@ -101,16 +102,43 @@
       filter: var(--col-img-filter);
       transition: all 0.35s;
     }
+
+    &-caption {
+      font-family: "Permanent Marker";
+      font-size: 36px;
+      font-display: swap;
+      text-align: center;
+      margin: 16px;
+
+      @media only screen and (min-width: 600px) {
+        margin: 16px 0px;
+      }
+    }
+
+    &-description {
+      font-family: "Chewy";
+      font-display: swap;
+      margin: 16px;
+
+      @media only screen and (min-width: 600px) {
+        margin: 16px 0px;
+      }
+    }
   }
 
   &__controls {
     position: absolute;
+    bottom: -10px;
     width: 100%;
     aspect-ratio: 16/9;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+
+    @media only screen and (min-width: 600px) {
+      bottom: unset;
+    }
   }
 
   &__control-button {
@@ -121,26 +149,37 @@
     margin-bottom: 16px;
     border-radius: 50%;
     background: rgb(var(--white));
-    border: 2px outset;
-    border-color: rgba(var(--white), 40%);
+    border: none !important;
     width: 40px;
     height: 40px;
     cursor: pointer;
     color: rgb(var(--black));
+
+    @media only screen and (min-width: 600px) {
+      border: 2px outset rgba(var(--white), 40%) !important;
+    }
+
     &:active {
       border: 2px inset;
       border-color: rgb(var(--white), 40%);
     }
+
     &--prev {
-      margin-left: 48px;
+      @media only screen and (min-width: 600px) {
+        margin-left: 48px;
+      }
     }
+
     &--next {
-      margin-right: 48px;
+      @media only screen and (min-width: 600px) {
+        margin-right: 48px;
+      }
       right: 0;
       #{ $self }__control-button-text {
         right: -3px;
       }
     }
+
     &-text {
       position: relative;
       bottom: 16px;
@@ -148,13 +187,17 @@
   }
 
   &__control-dots {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin-bottom: 16px;
     gap: 2px;
     height: 40px;
+
+    @media only screen and (min-width: 600px) {
+      display: flex;
+    }
   }
 
   &__control-dot {
@@ -166,24 +209,3 @@
     cursor: pointer;
   }
 }
-
-/* .me-carousel {
-
-        figcaption {
-          color: rgb(var(--black));
-        }
-        figcaption {
-          &:nth-of-type(1) {
-            font-family: "Permanent Marker";
-            font-size: 36px;
-            font-display: swap;
-            text-align: center;
-            margin: 16px 0px;
-          }
-        }
-        p {
-          font-family: "Chewy";
-          font-display: swap;
-        }
-
-} */

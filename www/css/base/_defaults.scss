@@ -12,31 +12,27 @@ abbr {
 body {
   @include alpha;
 
-  --body-border-side: var(--dp);
-  --body-border-sides: calc(var(--body-border-side) * 2);
-  --body-padding-side: calc(var(--dp) * 2);
+  --body-padding-side: calc(var(--dp) / 2);
   --body-padding-sides: calc(var(--body-padding-side) * 2);
 
   background-color: rgba(var(--col-bg-default));
-  border-image: linear-gradient(
+  background-image: linear-gradient(
     0deg,
     rgba(var(--col-bg-opposite), 0.05),
     rgba(var(--col-bg-opposite), 0),
     rgba(var(--col-bg-opposite), 0)
   );
-  border-image-slice: 1;
-  border-style: solid;
-  border-width: 0 var(--body-border-side);
   color: rgba(var(--col-fg-default));
   font-family: helvetica, sans-serif;
   height: fit-content;
-  margin: 0;
+  margin: 0 auto;
   min-height: calc(100vh - calc(var(--dp) * 2));
   padding: var(--dp) var(--body-padding-side);
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
-  width: calc(100vw - var(--body-boder-sides) - var(--body-padding-sides));
+  width: calc(100% - var(--body-padding-sides));
+  max-width: 800px;
 
   &.background-transition {
     transition: background-color 0.5s ease;
@@ -59,17 +55,19 @@ body {
     filter: blur(100px);
   }
 
-  @media only screen and (min-width: 600px) {
-    --body-border-side: 10vw;
+  &:after {
+    content: "";
+    height: 100%;
+    width: 105%;
+    position: absolute;
+    background-color: rgba(var(--col-bg-default));
+    z-index: -2;
+    top: 0;
+    left: -2.5%;
   }
-  @media only screen and (min-width: 800px) {
-    --body-border-side: 15vw;
-  }
-  @media only screen and (min-width: 1000px) {
-    --body-border-side: 20vw;
-  }
-  @media only screen and (min-width: 1200px) {
-    --body-border-side: 25vw;
+
+  @media only screen and (min-width: 864px) {
+    --body-padding-side: var(--dp);
   }
 }
 

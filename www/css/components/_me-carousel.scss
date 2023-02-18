@@ -3,10 +3,10 @@
 
 @keyframes fade {
   0% {
-    opacity: 0;
+    filter: brightness(0);
   }
   100% {
-    opacity: 1;
+    filter: brightness(1) var(--col-img-filter);
   }
 }
 
@@ -20,12 +20,6 @@
   height: fit-content;
   background: white;
   color: rgb(var(--black));
-
-  &:hover {
-    #{ $self}__slide-image {
-      filter: none;
-    }
-  }
 
   &__slides {
     width: 100%;
@@ -52,7 +46,6 @@
         width: 100%;
 
         #{ $self }__slide-image {
-          opacity: 1;
           animation: fade 0.75s forwards;
         }
       }
@@ -99,8 +92,7 @@
       height: auto;
       object-fit: cover;
       aspect-ratio: 16/9;
-      filter: var(--col-img-filter);
-      transition: all 0.35s;
+      transition: all 0.75s;
     }
 
     &-caption {

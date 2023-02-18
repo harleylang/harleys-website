@@ -54,7 +54,7 @@
         const sibling = (comment as HTMLElement).previousElementSibling;
         if (sibling && comment.parentNode !== null) {
           const p = document.createElement('p');
-          p.innerHTML = `&lt;!-- ${comment.nodeValue ?? ''} --&gt;`;
+          p.innerText = `&lt;!-- ${comment.nodeValue ?? ''} --&gt;`;
           p.setAttribute('htmlCommentRevealed', '');
           p.addEventListener('click', (event: Event) => (event.target as HTMLElement).remove());
           comment.parentNode.insertBefore(p, comment);

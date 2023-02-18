@@ -3,10 +3,16 @@
 
 @keyframes fade {
   0% {
-    filter: brightness(0);
+    filter: brightness(0.15) var(--col-img-filter);
+  }
+  33% {
+    filter: brightness(0.75) var(--col-img-filter);
+  }
+  66% {
+    filter: brightness(0.9) var(--col-img-filter);
   }
   100% {
-    filter: brightness(1) var(--col-img-filter);
+    filter: brightness(1);
   }
 }
 
@@ -46,7 +52,7 @@
         width: 100%;
 
         #{ $self }__slide-image {
-          animation: fade 0.75s forwards;
+          animation: fade 5s forwards;
         }
       }
     }

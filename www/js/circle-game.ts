@@ -32,7 +32,7 @@ let circleGamePoints = 0;
 
     const dialog = document.createElement('dialog');
     dialog.id = 'circle-game-dialog';
-    dialog.innerHTML = `👌 psych, harley ${circleGamePoints} - you 0`;
+    dialog.innerText = `👌 psych, harley ${circleGamePoints} - you 0`;
     dialog.addEventListener('click', handleClose);
 
     const { parentNode } = target;
@@ -49,7 +49,7 @@ let circleGamePoints = 0;
     ) as HTMLDialogElement;
 
     if (dialog) {
-      dialog.innerHTML = `👌 psych, harley ${circleGamePoints} - you 0`;
+      dialog.innerText = `👌 psych, harley ${circleGamePoints} - you 0`;
     }
 
     if (dialog.showModal) {

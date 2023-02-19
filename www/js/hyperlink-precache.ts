@@ -107,8 +107,9 @@
         target: linkHref,
       });
       preloadLink.href = target;
-      preloadLink.rel = 'stylesheet preload prefetch';
+      preloadLink.rel = 'stylesheet prefetch';
       preloadLink.as = 'style';
+      preloadLink.disabled = true;
       document.head.appendChild(preloadLink);
     }
   }

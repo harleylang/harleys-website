@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Acme&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Fondamento&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
@@ -16,6 +17,12 @@
   font-size: 16px;
   font-display: swap;
   line-height: 1;
+}
+
+@mixin font-chewy {
+  font-family: "Chewy", sans-serif;
+  font-size: 16px;
+  font-display: swap;
 }
 
 @mixin font-fondamento {
@@ -50,6 +57,10 @@
   @include font-bubblegum();
 }
 
+.chewy {
+  @include font-bubblegum();
+}
+
 .fondamento,
 .silly {
   @include font-fondamento;
@@ -70,6 +81,7 @@
 // typography classes
 
 .extra {
+  font-weight: 600;
   &:first-letter {
     font-size: 175%;
   }

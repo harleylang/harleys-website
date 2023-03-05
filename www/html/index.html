@@ -10,30 +10,47 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤪</text></svg>"
     />
     <link rel="stylesheet" href="../css/pages/dist/index.css" />
-    <script type="module" src="../js/dist/me-carousel.mjs"></script>
-    <script type="module" src="../js/dist/me-darkmode-toggle.mjs"></script>
-    <script type="module" src="../js/dist/hyperlink-precache.mjs"></script>
-    <script type="module" src="../js/dist/show-html-comments.mjs"></script>
+    <script defer type="module" src="../js/dist/me-carousel.mjs"></script>
+    <script
+      defer
+      type="module"
+      src="../js/dist/me-darkmode-toggle.mjs"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="../js/dist/hyperlink-precache.mjs"
+    ></script>
+    <script
+      defer
+      type="module"
+      src="../js/dist/show-html-comments.mjs"
+    ></script>
   </head>
   <body>
-    <header class="flex flex-row flex-row--space-between">
-      <nav>
-        <a class="font-size-24" href="./blog/index.html" precache>Blog</a>
+    <header
+      class="header card border-radius-0 alpha-40 flex flex-row flex-row--space-between"
+    >
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="font-size-24" href="./blog/index.html" precache>Blog</a>
+          </li>
+        </ul>
       </nav>
       <div>
         <me-darkmode-toggle></me-darkmode-toggle>
       </div>
     </header>
-    <div class="margin-top-10 height-35 flex flex-row flex-row--space-between">
+    <div class="height-35 flex flex-row flex-row--space-between">
       <code htmlCommentToggle>&lt;!--</code>
-      <!-- Hello from the otherr ssiIIide -->
+      <span class="monospace font-size-24">Welcome!</span>
       <code htmlCommentToggle>--&gt;</code>
     </div>
+    <!-- Hello from the otherr ssiIIide -->
     <main>
       <article class="padding-16">
-        <me-carousel
-          class="flex flex-row flex-row--centered margin-top-20 width-100"
-        >
+        <me-carousel class="flex flex-row flex-row--centered width-100">
           <section class="me-carousel__slide-content">
             <picture>
               <source

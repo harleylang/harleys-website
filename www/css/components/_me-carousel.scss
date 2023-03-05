@@ -106,15 +106,19 @@
 
     &-caption {
       font-family: "Permanent Marker";
-      font-size: 36px;
+      font-size: 2em;
       font-display: swap;
-      margin: 16px;
+      height: 60px;
+      margin: 16px 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       text-align: center;
       word-wrap: break-word;
       word-break: break-word;
 
       @media only screen and (min-width: 600px) {
-        margin: 16px 0px;
+        margin: 0px;
       }
     }
 

@@ -170,4 +170,7 @@ ul {
 [htmlCommentRevealed],
 [htmlCommentToggle] {
   color: rgb(var(--col-fg-secondary));
+  me-carousel & {
+    color: rgb(var(--purple));
+  }
 }

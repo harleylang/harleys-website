@@ -1,6 +1,6 @@
 @import "../abstracts/_variables.scss";
+@import "../abstracts/_mixins.scss";
 @import "../abstracts/_keyframes.scss";
-@import "../abstracts/_utilities.scss";
 
 @import "../base/_typography.scss";
 @import "../base/_defaults.scss";
@@ -12,3 +12,6 @@
 @import "../states/_animations.scss";
 
 @import "../themes/_modes.scss";
+
+// always define utilities last so that they can override styles
+@import "../abstracts/_utilities.scss";

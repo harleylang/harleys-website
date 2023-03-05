@@ -27,7 +27,8 @@ body {
   height: fit-content;
   margin: 0 auto;
   min-height: calc(100vh - calc(var(--dp) * 2));
-  padding: var(--dp) var(--body-padding-side);
+  padding: calc(var(--dp) + calc(var(--dp) * 2) + var(--height-header))
+    var(--body-padding-side) var(--dp);
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;

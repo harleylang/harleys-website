@@ -23,17 +23,21 @@
     <!--ssg:head.html-->
   </head>
   <body>
-    <header class="flex flex-row flex-row--space-between margin-bottom-5">
-      <div>
-        <a class="font-size-24" href="../index.html" precache>About</a>
-      </div>
+    <header
+      class="header card border-radius-0 alpha-40 flex flex-row flex-row--space-between"
+    >
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a class="font-size-24" href="../index.html" precache>About</a>
+            <!--ssg:links.html-->
+          </li>
+        </ul>
+      </nav>
       <div>
         <me-darkmode-toggle></me-darkmode-toggle>
       </div>
     </header>
-    <aside>
-      <!--ssg:aside.html-->
-    </aside>
     <main>
       <section
         class="card margin-tb-30 alpha-40 shadow flex flex-column flex-row--centered overflow-x--hidden"

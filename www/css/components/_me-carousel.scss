@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Permanent Marker&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
 
 @keyframes fade {
   0% {
@@ -26,6 +25,10 @@
   height: fit-content;
   background: white;
   color: rgb(var(--black));
+
+  @media only screen and (min-width: 600px) {
+    min-height: 600px;
+  }
 
   &__slides {
     width: 100%;

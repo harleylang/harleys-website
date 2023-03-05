@@ -12,6 +12,7 @@ $spacing: (0, 5, 8, 10, 12, 15, 16, 18, 20, 25, 30, 35, 40, 45, 50);
 :host,
 body {
   --dp: 16px;
+  --height-header: 35px;
   --white: 255, 250, 250;
   --grey: 217, 217, 217;
   --light-grey: 150, 150, 150;
@@ -57,4 +58,5 @@ body {
   --shadow-blur-radius-mod: 0px;
   --shadow-spread-radius: 2px;
   --shadow-spread-radius-mod: 0px;
+  --z-index-header: 1000;
 }

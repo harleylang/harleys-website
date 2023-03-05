@@ -6,4 +6,12 @@
   top: 0;
   left: 0;
   z-index: var(--z-index-header);
+
+  &__nav-list {
+    padding: 0;
+  }
+
+  &__nav-item {
+    display: inline-block;
+  }
 }

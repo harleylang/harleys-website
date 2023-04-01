@@ -54,7 +54,7 @@ body {
 
   --gradient-purple-orange: linear-gradient(
     0deg,
-    #{shade("purple", 5%)} 0%,
+    #{shade("colour-purple", 5%)} 0%,
     rgb(var(--colour-orange)) 50%,
     rgb(var(--colour-yellow)) 100%
   );

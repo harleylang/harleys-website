@@ -97,8 +97,8 @@
 }
 
 .gradient {
-  background-color: var(--col-gradient-fallback);
-  background: var(--col-gradient);
+  background-color: var(--theme-gradient-fallback);
+  background: var(--theme-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;

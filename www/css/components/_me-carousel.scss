@@ -2,13 +2,13 @@
 
 @keyframes fade {
   0% {
-    filter: brightness(0.15) var(--col-img-filter);
+    filter: brightness(0.15) var(--theme-img-filter);
   }
   33% {
-    filter: brightness(0.75) var(--col-img-filter);
+    filter: brightness(0.75) var(--theme-img-filter);
   }
   66% {
-    filter: brightness(0.9) var(--col-img-filter);
+    filter: brightness(0.9) var(--theme-img-filter);
   }
   100% {
     filter: brightness(1);

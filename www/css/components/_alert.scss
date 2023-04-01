@@ -1,7 +1,7 @@
 .alert {
   position: relative;
   width: 100%;
-  background: rgb(var(--col-bg-card));
+  background: rgb(var(--theme-bg-card));
 
   &:before,
   &:after {
@@ -28,7 +28,7 @@
     right: 0;
     // TODO: re-enable this; this trick doesn't work if there is a gradient on the background. hmm.
     // animation: slide-right var(--slide-right-duration) cubic-bezier(0.27, 1.1, 0.25, 1);
-    // background: linear-gradient(90deg, rgb(var(--colour-grey)) 20px, rgb(var(--col-bg-default)) 0, rgb(var(--col-bg-default)) 100%);
+    // background: linear-gradient(90deg, rgb(var(--colour-grey)) 20px, rgb(var(--theme-bg-default)) 0, rgb(var(--theme-bg-default)) 100%);
     // padding-right: 100%;
     // right: -100%;
     // --slide-right-duration: 1.5s;

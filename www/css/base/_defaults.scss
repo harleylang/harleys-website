@@ -2,7 +2,7 @@
 
 a {
   @include font-acme;
-  color: rgb(var(--col-fg-secondary));
+  color: rgb(var(--theme-fg-secondary));
 }
 
 abbr {
@@ -15,14 +15,14 @@ body {
   --body-padding-side: calc(var(--dp) / 2);
   --body-padding-sides: calc(var(--body-padding-side) * 2);
 
-  background-color: rgba(var(--col-bg-default));
+  background-color: rgba(var(--theme-bg-default));
   background-image: linear-gradient(
     0deg,
-    rgba(var(--col-bg-opposite), 0.05),
-    rgba(var(--col-bg-opposite), 0),
-    rgba(var(--col-bg-opposite), 0)
+    rgba(var(--theme-bg-opposite), 0.05),
+    rgba(var(--theme-bg-opposite), 0),
+    rgba(var(--theme-bg-opposite), 0)
   );
-  color: rgba(var(--col-fg-default));
+  color: rgba(var(--theme-fg-default));
   font-family: helvetica, sans-serif;
   height: fit-content;
   margin: 0 auto;
@@ -53,8 +53,8 @@ body {
     left: 0;
     background: conic-gradient(
       from 180deg at 50% 50%,
-      rgb(var(--col-fg-primary)) 0deg,
-      rgb(var(--col-bg-highlight)) 180deg
+      rgb(var(--theme-fg-primary)) 0deg,
+      rgb(var(--theme-bg-highlight)) 180deg
     );
     mix-blend-mode: normal;
     filter: blur(100px);
@@ -65,7 +65,7 @@ body {
     height: 100%;
     width: 105%;
     position: absolute;
-    background-color: rgba(var(--col-bg-default));
+    background-color: rgba(var(--theme-bg-default));
     z-index: -2;
     top: 0;
     left: -2.5%;
@@ -174,7 +174,7 @@ ul {
 
 [htmlCommentRevealed],
 [htmlCommentToggle] {
-  color: rgb(var(--col-fg-secondary));
+  color: rgb(var(--theme-fg-secondary));
   me-carousel & {
     color: rgb(var(--colour-purple));
   }

@@ -1,61 +1,61 @@
 body.light-mode {
-  --col-fg-default: var(--colour-grey-dark);
-  --col-bg-default: var(--colour-white-rose);
-  --col-bg-opposite: var(--colour-black);
-  --col-bg-highlight: var(--colour-yellow);
-  --col-bg-card: var(--colour-orange-light);
-  --col-gradient: var(--gradient-purple-orange);
-  --col-gradient-fallback: var(--colour-purple);
-  --col-shadow: var(--colour-grey-light);
-  --col-img-filter: sepia(75%);
-  --col-fg-primary: var(--colour-orange);
-  --col-fg-secondary: var(--colour-purple);
+  --theme-fg-default: var(--colour-grey-dark);
+  --theme-bg-default: var(--colour-white-rose);
+  --theme-bg-opposite: var(--colour-black);
+  --theme-bg-highlight: var(--colour-yellow);
+  --theme-bg-card: var(--colour-orange-light);
+  --theme-gradient: var(--gradient-purple-orange);
+  --theme-gradient-fallback: var(--colour-purple);
+  --theme-shadow: var(--colour-grey-light);
+  --theme-img-filter: sepia(75%);
+  --theme-fg-primary: var(--colour-orange);
+  --theme-fg-secondary: var(--colour-purple);
 }
 
 @media (prefers-color-scheme: light) {
   :host,
   body {
-    --col-fg-default: var(--colour-grey-dark);
-    --col-bg-default: var(--colour-white-rose);
-    --col-bg-opposite: var(--colour-black);
-    --col-bg-highlight: var(--colour-yellow);
-    --col-bg-card: var(--colour-orange-light);
-    --col-gradient: var(--gradient-purple-orange);
-    --col-gradient-fallback: var(--colour-purple);
-    --col-shadow: var(--colour-grey-light);
-    --col-img-filter: sepia(75%);
-    --col-fg-primary: var(--colour-orange);
-    --col-fg-secondary: var(--colour-purple);
+    --theme-fg-default: var(--colour-grey-dark);
+    --theme-bg-default: var(--colour-white-rose);
+    --theme-bg-opposite: var(--colour-black);
+    --theme-bg-highlight: var(--colour-yellow);
+    --theme-bg-card: var(--colour-orange-light);
+    --theme-gradient: var(--gradient-purple-orange);
+    --theme-gradient-fallback: var(--colour-purple);
+    --theme-shadow: var(--colour-grey-light);
+    --theme-img-filter: sepia(75%);
+    --theme-fg-primary: var(--colour-orange);
+    --theme-fg-secondary: var(--colour-purple);
   }
 }
 
 body.dark-mode {
-  --col-fg-default: var(--colour-grey);
-  --col-bg-default: var(--colour-black);
-  --col-bg-opposite: var(--colour-white-rose);
-  --col-bg-highlight: var(--colour-green-neon);
-  --col-bg-card: var(--colour-black-light);
-  --col-gradient: var(--gradient-neon-blue-green);
-  --col-gradient-fallback: var(--colour-blue-neon);
-  --col-shadow: var(--colour-white-rose);
-  --col-img-filter: grayscale(75%);
-  --col-fg-primary: var(--colour-blue-neon);
-  --col-fg-secondary: var(--colour-green-neon);
+  --theme-fg-default: var(--colour-grey);
+  --theme-bg-default: var(--colour-black);
+  --theme-bg-opposite: var(--colour-white-rose);
+  --theme-bg-highlight: var(--colour-green-neon);
+  --theme-bg-card: var(--colour-black-light);
+  --theme-gradient: var(--gradient-neon-blue-green);
+  --theme-gradient-fallback: var(--colour-blue-neon);
+  --theme-shadow: var(--colour-white-rose);
+  --theme-img-filter: grayscale(75%);
+  --theme-fg-primary: var(--colour-blue-neon);
+  --theme-fg-secondary: var(--colour-green-neon);
 }
 
 @media (prefers-color-scheme: dark) {
   :host,
   body {
-    --col-fg-default: var(--colour-grey);
-    --col-bg-default: var(--colour-black);
-    --col-bg-opposite: var(--colour-white-rose);
-    --col-bg-highlight: var(--colour-green-neon);
-    --col-bg-card: var(--colour-black-light);
-    --col-gradient: var(--gradient-neon-blue-green);
-    --col-gradient-fallback: var(--colour-blue-neon);
-    --col-shadow: var(--colour-white-rose);
-    --col-img-filter: grayscale(75%);
-    --col-fg-primary: var(--colour-blue-neon);
-    --col-fg-secondary: var(--colour-green-neon);
+    --theme-fg-default: var(--colour-grey);
+    --theme-bg-default: var(--colour-black);
+    --theme-bg-opposite: var(--colour-white-rose);
+    --theme-bg-highlight: var(--colour-green-neon);
+    --theme-bg-card: var(--colour-black-light);
+    --theme-gradient: var(--gradient-neon-blue-green);
+    --theme-gradient-fallback: var(--colour-blue-neon);
+    --theme-shadow: var(--colour-white-rose);
+    --theme-img-filter: grayscale(75%);
+    --theme-fg-primary: var(--colour-blue-neon);
+    --theme-fg-secondary: var(--colour-green-neon);
   }
 }

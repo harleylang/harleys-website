@@ -23,7 +23,7 @@
   width: 600px;
   max-width: 100%;
   height: fit-content;
-  background: white;
+  background: rgb(var(--colour-white));
   color: rgb(var(--black));
 
   @media only screen and (min-width: 600px) {
@@ -70,14 +70,14 @@
         #{
         $self
         }__control-dot--#{$i} {
-        background-color: white;
+        background-color: rgb(var(--colour-white));
       }
     }
   }
 
   &__slide {
     height: fit-content;
-    background: white;
+    background: rgb(var(--colour-white));
     aspect-ratio: 16/13.5;
     &::marker {
       display: none;
@@ -89,7 +89,7 @@
       width: 100%;
       margin-bottom: 80px;
       @media only screen and (min-width: 600px) {
-        border: 10px solid white;
+        border: 10px solid rgb(var(--colour-white));
         padding: 16px;
         margin-bottom: 0;
         width: calc(100% - 20px - 32px);
@@ -211,7 +211,7 @@
     display: block;
     width: 1rem;
     height: 1rem;
-    background-color: #111;
+    background-color: rgb(var(--colour-grey-cod));
     border-radius: 50%;
     cursor: pointer;
   }

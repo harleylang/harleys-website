@@ -13,7 +13,12 @@ $spacing: (0, 5, 8, 10, 12, 15, 16, 18, 20, 25, 30, 35, 40, 45, 50);
 body {
   --dp: 16px;
   --height-header: 35px;
-  --white: 255, 250, 250;
+  --colour-blue-stratos: 4, 1, 60; // #04013C
+  --colour-blue-arapawa: 9, 9, 121; // #090979
+  --colour-grey-cod: 17, 17, 17; // #111
+  --colour-grey-tundora: 73, 73, 73; // #494949
+  --colour-white: 255, 255, 255; // #FFF
+  --white: 255, 250, 250; // #FFFAFA
   --grey: 217, 217, 217;
   --light-grey: 150, 150, 150;
   --dark-grey: 33, 33, 33;

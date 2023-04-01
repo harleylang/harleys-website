@@ -19,12 +19,12 @@
 
     &:checked {
       + #{ $self }__slider {
-        background: rgb(4, 1, 60);
+        background: rgb(var(--colour-blue-stratos));
         background: linear-gradient(
           90deg,
-          rgba(4, 1, 60, 1) 0%,
-          rgba(9, 9, 121, 1) 35%,
-          rgb(73, 73, 73) 100%
+          rgba(var(--colour-blue-stratos), 1) 0%,
+          rgba(var(--colour-blue-arapawa), 1) 35%,
+          rgb(var(--colour-grey-tundora)) 100%
         );
 
         &:before {
@@ -43,12 +43,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgb(131, 58, 180);
+    background: rgb(var(--purple));
     background: linear-gradient(
       90deg,
-      rgba(131, 58, 180, 1) 0%,
-      rgba(253, 29, 29, 1) 50%,
-      rgba(252, 176, 69, 1) 100%
+      rgba(var(--purple), 1) 0%,
+      rgba(var(--orange), 1) 50%,
+      rgba(var(--yellow), 1) 100%
     );
     transition: 0.1s;
 
@@ -59,7 +59,7 @@
       width: 26px;
       left: 4px;
       bottom: 4px;
-      background-color: white;
+      background-color: rgb(var(--colour-white));
       transition: 0.1s;
     }
 

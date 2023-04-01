@@ -12,7 +12,7 @@ abbr {
 body {
   @include alpha;
 
-  --body-padding-side: calc(var(--dp) / 2);
+  --body-padding-side: calc(var(--padding) / 2);
   --body-padding-sides: calc(var(--body-padding-side) * 2);
 
   background-color: rgba(var(--theme-bg-default));
@@ -26,9 +26,11 @@ body {
   font-family: helvetica, sans-serif;
   height: fit-content;
   margin: 0 auto;
-  min-height: calc(100vh - calc(var(--dp) * 2));
-  padding: calc(var(--dp) + calc(var(--dp) * 2) + var(--height-header))
-    var(--body-padding-side) var(--dp);
+  min-height: calc(100vh - calc(var(--padding) * 2));
+  padding: calc(
+      var(--padding) + calc(var(--padding) * 2) + var(--height-header)
+    )
+    var(--body-padding-side) var(--padding);
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
@@ -72,7 +74,7 @@ body {
   }
 
   @media only screen and (min-width: 864px) {
-    --body-padding-side: var(--dp);
+    --body-padding-side: var(--padding);
   }
 }
 

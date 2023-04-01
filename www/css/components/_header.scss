@@ -1,8 +1,8 @@
 .header {
   position: fixed;
   height: var(--height-header);
-  width: calc(100% - calc(var(--dp) * 2));
-  padding: var(--dp);
+  width: calc(100% - calc(var(--padding) * 2));
+  padding: var(--padding);
   top: 0;
   left: 0;
   z-index: var(--z-index-header);

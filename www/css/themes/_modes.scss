@@ -1,61 +1,61 @@
 body.light-mode {
-  --col-fg-default: var(--dark-grey);
-  --col-bg-default: var(--white);
-  --col-bg-opposite: var(--black);
-  --col-bg-highlight: var(--yellow);
-  --col-bg-card: var(--light-orange);
+  --col-fg-default: var(--colour-grey-dark);
+  --col-bg-default: var(--colour-white-rose);
+  --col-bg-opposite: var(--colour-black);
+  --col-bg-highlight: var(--colour-yellow);
+  --col-bg-card: var(--colour-orange-light);
   --col-gradient: var(--gradient-purple-orange);
-  --col-gradient-fallback: var(--purple);
-  --col-shadow: var(--light-grey);
+  --col-gradient-fallback: var(--colour-purple);
+  --col-shadow: var(--colour-grey-light);
   --col-img-filter: sepia(75%);
-  --col-fg-primary: var(--orange);
-  --col-fg-secondary: var(--purple);
+  --col-fg-primary: var(--colour-orange);
+  --col-fg-secondary: var(--colour-purple);
 }
 
 @media (prefers-color-scheme: light) {
   :host,
   body {
-    --col-fg-default: var(--dark-grey);
-    --col-bg-default: var(--white);
-    --col-bg-opposite: var(--black);
-    --col-bg-highlight: var(--yellow);
-    --col-bg-card: var(--light-orange);
+    --col-fg-default: var(--colour-grey-dark);
+    --col-bg-default: var(--colour-white-rose);
+    --col-bg-opposite: var(--colour-black);
+    --col-bg-highlight: var(--colour-yellow);
+    --col-bg-card: var(--colour-orange-light);
     --col-gradient: var(--gradient-purple-orange);
-    --col-gradient-fallback: var(--purple);
-    --col-shadow: var(--light-grey);
+    --col-gradient-fallback: var(--colour-purple);
+    --col-shadow: var(--colour-grey-light);
     --col-img-filter: sepia(75%);
-    --col-fg-primary: var(--orange);
-    --col-fg-secondary: var(--purple);
+    --col-fg-primary: var(--colour-orange);
+    --col-fg-secondary: var(--colour-purple);
   }
 }
 
 body.dark-mode {
-  --col-fg-default: var(--grey);
-  --col-bg-default: var(--black);
-  --col-bg-opposite: var(--white);
-  --col-bg-highlight: var(--neon-green);
-  --col-bg-card: var(--light-black);
+  --col-fg-default: var(--colour-grey);
+  --col-bg-default: var(--colour-black);
+  --col-bg-opposite: var(--colour-white-rose);
+  --col-bg-highlight: var(--colour-green-neon);
+  --col-bg-card: var(--colour-black-light);
   --col-gradient: var(--gradient-neon-blue-green);
-  --col-gradient-fallback: var(--neon-blue);
-  --col-shadow: var(--white);
+  --col-gradient-fallback: var(--colour-blue-neon);
+  --col-shadow: var(--colour-white-rose);
   --col-img-filter: grayscale(75%);
-  --col-fg-primary: var(--neon-blue);
-  --col-fg-secondary: var(--neon-green);
+  --col-fg-primary: var(--colour-blue-neon);
+  --col-fg-secondary: var(--colour-green-neon);
 }
 
 @media (prefers-color-scheme: dark) {
   :host,
   body {
-    --col-fg-default: var(--grey);
-    --col-bg-default: var(--black);
-    --col-bg-opposite: var(--white);
-    --col-bg-highlight: var(--neon-green);
-    --col-bg-card: var(--light-black);
+    --col-fg-default: var(--colour-grey);
+    --col-bg-default: var(--colour-black);
+    --col-bg-opposite: var(--colour-white-rose);
+    --col-bg-highlight: var(--colour-green-neon);
+    --col-bg-card: var(--colour-black-light);
     --col-gradient: var(--gradient-neon-blue-green);
-    --col-gradient-fallback: var(--neon-blue);
-    --col-shadow: var(--white);
+    --col-gradient-fallback: var(--colour-blue-neon);
+    --col-shadow: var(--colour-white-rose);
     --col-img-filter: grayscale(75%);
-    --col-fg-primary: var(--neon-blue);
-    --col-fg-secondary: var(--neon-green);
+    --col-fg-primary: var(--colour-blue-neon);
+    --col-fg-secondary: var(--colour-green-neon);
   }
 }

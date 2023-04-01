@@ -11,43 +11,7 @@ $spacing: (0, 5, 8, 10, 12, 15, 16, 18, 20, 25, 30, 35, 40, 45, 50);
 
 :host,
 body {
-  --dp: 16px;
-  --height-header: 35px;
-  --colour-blue-stratos: 4, 1, 60; // #04013C
-  --colour-blue-arapawa: 9, 9, 121; // #090979
-  --colour-grey-cod: 17, 17, 17; // #111
-  --colour-grey-tundora: 73, 73, 73; // #494949
-  --colour-white: 255, 255, 255; // #FFF
-  --white: 255, 250, 250; // #FFFAFA
-  --grey: 217, 217, 217;
-  --light-grey: 150, 150, 150;
-  --dark-grey: 33, 33, 33;
-  --light-black: 29, 30, 34;
-  --black: 20, 20, 20;
-  --neon-blue: 7, 0, 184;
-  --neon-blue_h: 242;
-  --neon-blue_s: 100%;
-  --neon-blue_l: 36.1%;
-  --neon-green: 0, 255, 136;
-  --light-blue: 237, 253, 253;
-  --gradient-neon-blue-green: linear-gradient(
-    0deg,
-    #{shade("neon-blue", 25%)} 0%,
-    rgb(var(--neon-green)) 100%
-  );
-  --purple: 131, 58, 180;
-  --purple_h: 276;
-  --purple_s: 51%;
-  --purple_l: 47%;
-  --orange: 253, 29, 29;
-  --light-orange: 254, 240, 239;
-  --yellow: 252, 176, 69;
-  --gradient-purple-orange: linear-gradient(
-    0deg,
-    #{shade("purple", 5%)} 0%,
-    rgb(var(--orange)) 50%,
-    rgb(var(--yellow)) 100%
-  );
+  // animations
   --animation-spring: cubic-bezier(0.27, 1.1, 0.25, 1);
   --animation-duration: 0.5s;
   --animation-duration--jittery: 0.5s;
@@ -55,6 +19,51 @@ body {
   @media (prefers-reduced-motion) {
     --animation-duration--jittery: 30s;
   }
+
+  // colours
+  --colour-black: 20, 20, 20;
+  --colour-black-light: 29, 30, 34;
+  --colour-blue-stratos: 4, 1, 60; // #04013C
+  --colour-blue-arapawa: 9, 9, 121; // #090979
+  --colour-blue-light: 237, 253, 253;
+  --colour-blue-neon: 7, 0, 184;
+  --colour-blue-neon_h: 242;
+  --colour-blue-neon_s: 100%;
+  --colour-blue-neon_l: 36.1%;
+  --colour-grey: 217, 217, 217;
+  --colour-grey-cod: 17, 17, 17; // #111
+  --colour-grey-dark: 33, 33, 33;
+  --colour-grey-light: 150, 150, 150;
+  --colour-grey-tundora: 73, 73, 73; // #494949
+  --colour-green-neon: 0, 255, 136;
+  --colour-purple: 131, 58, 180;
+  --colour-purple_h: 276;
+  --colour-purple_s: 51%;
+  --colour-purple_l: 47%;
+  --colour-orange: 253, 29, 29;
+  --colour-orange-light: 254, 240, 239;
+  --colour-white: 255, 255, 255; // #FFF
+  --colour-white-rose: 255, 250, 250; // #FFFAFA
+  --colour-yellow: 252, 176, 69;
+
+  --gradient-neon-blue-green: linear-gradient(
+    0deg,
+    #{shade("colour-blue-neon", 25%)} 0%,
+    rgb(var(--colour-green-neon)) 100%
+  );
+
+  --gradient-purple-orange: linear-gradient(
+    0deg,
+    #{shade("purple", 5%)} 0%,
+    rgb(var(--colour-orange)) 50%,
+    rgb(var(--colour-yellow)) 100%
+  );
+
+  // dimensions
+  --dp: 16px;
+  --height-header: 35px;
+
+  // modifiers
   --shadow-x: 0px;
   --shadow-x-mod: 0px;
   --shadow-y: 0px;

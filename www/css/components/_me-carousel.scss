@@ -24,7 +24,7 @@
   max-width: 100%;
   height: fit-content;
   background: rgb(var(--colour-white));
-  color: rgb(var(--black));
+  color: rgb(var(--colour-black));
 
   @media only screen and (min-width: 600px) {
     min-height: 600px;
@@ -155,20 +155,20 @@
     padding: 0;
     margin-bottom: 16px;
     border-radius: 50%;
-    background: rgb(var(--white));
+    background: rgb(var(--colour-white-rose));
     border: none !important;
     width: 40px;
     height: 40px;
     cursor: pointer;
-    color: rgb(var(--black));
+    color: rgb(var(--colour-black));
 
     @media only screen and (min-width: 600px) {
-      border: 2px outset rgba(var(--white), 40%) !important;
+      border: 2px outset rgba(var(--colour-white-rose), 40%) !important;
     }
 
     &:active {
       border: 2px inset;
-      border-color: rgb(var(--white), 40%);
+      border-color: rgb(var(--colour-white-rose), 40%);
     }
 
     &--prev {

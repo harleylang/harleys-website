@@ -43,12 +43,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgb(var(--purple));
+    background: rgb(var(--colour-purple));
     background: linear-gradient(
       90deg,
-      rgba(var(--purple), 1) 0%,
-      rgba(var(--orange), 1) 50%,
-      rgba(var(--yellow), 1) 100%
+      rgba(var(--colour-purple), 1) 0%,
+      rgba(var(--colour-orange), 1) 50%,
+      rgba(var(--colour-yellow), 1) 100%
     );
     transition: 0.1s;
 

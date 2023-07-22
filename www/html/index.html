@@ -28,29 +28,29 @@
     ></script>
   </head>
   <body>
-    <header
-      class="header card border-radius-0 alpha-40 flex flex-row flex-row--space-between"
-    >
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-item">
+    <header class="header card border-radius-0 alpha-40 flex flex-row">
+      <me-darkmode-toggle></me-darkmode-toggle>
+    </header>
+    <main>
+      <div class="flex">
+        <code htmlCommentToggle>&lt;!--</code>
+      </div>
+      <div class="TODO">
+        <h1>Hi, I'm Harley</h1>
+        <!-- Hello from the otherr ssiIIide -->
+        <p class="font-size-24 margin-0">I'm a web developer</p>
+        <p class="font-size-24 margin-0">And this is my website</p>
+      </div>
+      <nav class="nav margin-tb-30">
+        <ul class="nav__list flex flex-gap-30">
+          <li class="nav__item">
             <a class="font-size-24" href="./blog/index.html" precache>Blog</a>
           </li>
         </ul>
       </nav>
-      <div>
-        <me-darkmode-toggle></me-darkmode-toggle>
+      <div class="flex">
+        <code htmlCommentToggle>--&gt;</code>
       </div>
-    </header>
-    <div
-      class="height-35 margin-bottom-10 flex flex-row flex-row--space-between"
-    >
-      <code htmlCommentToggle>&lt;!--</code>
-      <h2 class="monospace font-size-24">Welcome!</h2>
-      <code htmlCommentToggle>--&gt;</code>
-    </div>
-    <!-- Hello from the otherr ssiIIide -->
-    <main>
       <article class="padding-16">
         <me-carousel class="flex flex-row flex-row--centered width-100">
           <section class="me-carousel__slide-content">
@@ -76,7 +76,7 @@
               />
             </picture>
             <figcaption class="me-carousel__slide-caption">
-              <h1 class="extra gradient margin-0">About me</h1>
+              <h3 class="extra gradient margin-0">About me</h3>
             </figcaption>
             <blockquote class="me-carousel__slide-description margin-lr-25">
               Welcome to my website. My name is Harley. I'm a Canadian living in

@@ -154,6 +154,7 @@ ul {
 /* custom elements */
 
 [htmlCommentToggle] {
+  display: contents;
   font-weight: bold;
   font-size: 24px;
   animation: twitchy var(--animation-duration--twitchy) ease-in-out forwards

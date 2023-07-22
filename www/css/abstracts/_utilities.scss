@@ -50,7 +50,7 @@
 }
 
 .font-size {
-  $sizes: (8, 10, 12, 14, 16, 18, 20, 24, 32);
+  $sizes: (8, 10, 12, 14, 16, 18, 20, 24, 32, 72);
   @each $i in $sizes {
     &-#{$i} {
       font-size: #{$i}px !important;
@@ -161,6 +161,12 @@
 
 .shadow {
   @include shadow;
+}
+
+.text-align {
+  &--center {
+    text-align: center;
+  }
 }
 
 .width {

@@ -1,0 +1,19 @@
+{
+  "name": "harleys-website",
+  "version": "0.2.0",
+  "description": "it is me website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harleylang/harleys-website.git"
+  },
+  "author": "Harley Lang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harleylang/harleys-website/issues"
+  },
+  "homepage": "https://github.com/harleylang/harleys-website#readme"
+}
